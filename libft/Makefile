@@ -6,20 +6,20 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2019/03/01 23:46:22 by vphongph         ###   ########.fr        #
+#    Updated: 2019/03/03 16:53:41 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-blink				= 	"\033[5:m"
-purple_dark	= 	"\033[38;5;62m"
+blink			= 	"\033[5:m"
+purple_dark		= 	"\033[38;5;62m"
 purple			= 	"\033[38;5;98m"
-green				= 	"\033[38;5;70m"
-green_dark	= 	"\033[38;5;28m"
-red					= 	"\033[38;5;196m"
+green			= 	"\033[38;5;70m"
+green_dark		= 	"\033[38;5;28m"
+red				= 	"\033[38;5;196m"
 red_dark		= 	"\033[38;5;88m"
-grey				=	"\033[38;5;242m"
+grey			=	"\033[38;5;242m"
 yellow			= 	"\033[38;5;178m"
-reset				= 	"\033[0m"
+reset			= 	"\033[0m"
 
 NAME		=	libft.a
 
@@ -38,6 +38,7 @@ SRCS		=	ft_memalloc.c		\
 				ft_memcpy_v2.c		\
 				ft_strlen_v2.c		\
 				ft_putstr_fd_v2.c	\
+				ft_putstr_v2.c	\
 				ft_bzero_v2.c		\
 				ft_strsub_v2.c		\
 				ft_dlstnew.c		\
