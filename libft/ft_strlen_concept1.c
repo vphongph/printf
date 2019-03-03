@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen_concept1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/28 15:45:59 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/03 23:58:16 by vphongph         ###   ########.fr       */
+/*   Created: 2018/12/17 01:57:50 by vphongph          #+#    #+#             */
+/*   Updated: 2019/03/03 22:18:54 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 #include <stdlib.h>
-#include "libft/libft.h"
-#include <stdint.h>
 
-int   main(void)
+int64_t		detectnull(int64_t s)
 {
-	char *ptr = "Hello";
+	return ((s - 0x0101010101010101) & ~s & 0x8080808080808080);
+}
 
-	printf("       \"Hello\" : %p\n", ptr);
-	printf("  int64 : %#.16llx\n", (int64_t)ptr % 8);
-	printf(" uint64 : %#.16llx\n", (uint64_t)ptr & 7);
-	printf("uintptr : %#.16lx\n\n", (uintptr_t)ptr % 8);
+size_t	ft_strlen_v3(char *s)
+{
+	char *str;
 
-  return (0);
+	str = s;
+
+	while (*str && (int64_t)s % 8)
+	while (!(detectnull(*(long long *)str)))
+	{
+		str += sizeof(long long);
+	}
+	while (*str)
+	{
+		str++;
+	}
+	return (str - s);
 }
