@@ -1,11 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   address_get_set.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/04 17:13:16 by vphongph         ###   ########.fr       */
+/*   Created: 2019/03/04 17:03:58 by vphongph          #+#    #+#             */
+/*   Updated: 2019/03/04 17:10:38 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft/libft.h"
+
+void	*address_get_set(void *address_to_save)
+{
+	static void *address_saved = NULL;
+
+	if (address_to_save)
+		address_saved = address_to_save;
+	return (address_saved);
+}
