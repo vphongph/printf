@@ -6,6 +6,16 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/04 17:13:16 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/04 20:14:35 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int		ft_printf(const char *restrict format, ...);
+
+int main()
+{
+	int i = 0;
+
+	ft_printf("qweqweqwe", i, 'A', 'l', 'i', 'c', 'e');
+	return (0);
+}
