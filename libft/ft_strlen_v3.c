@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen_concept1.c                               :+:      :+:    :+:   */
+/*   ft_strlen_v3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 01:57:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/03 22:18:54 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/04 02:20:52 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdlib.h>
+
+/*
+** stdint.h can be ok too for the different types of int
+** but dont have the size_t, for the latter you can use stdlib.h or string.h
+*/
 
 int64_t		detectnull(int64_t s)
 {
 	return ((s - 0x0101010101010101) & ~s & 0x8080808080808080);
 }
 
-size_t	ft_strlen_v3(char *s)
+int			ft_strlen_v3(char *s)
 {
 	char *str;
 
 	str = s;
 
-	while (*str && (int64_t)s % 8)
-	while (!(detectnull(*(long long *)str)))
+	while (*str && (uintptr_t)s & 7)
+		str++;
+	while (!(detectnull(*(int64_t *)str)))
 	{
-		str += sizeof(long long);
+		str += sizeof(int64_t);
 	}
 	while (*str)
 	{
