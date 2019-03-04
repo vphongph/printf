@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/03 16:53:46 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/04 14:49:19 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ t_dlist			*ft_dlstnew(void *content, size_t content_size);
 int				ft_dlstdelone(t_dlist **top, void (*del)(void *, size_t));
 int				ft_dlstadd(t_dlist **top, t_dlist *new);
 int				ft_atoi(const char *str);
+void			*ft_memset(void *b, int c, size_t len);
+int				ft_strlen_v3(char *s);
 
 #endif

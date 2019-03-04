@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2019/03/03 16:53:41 by vphongph         ###   ########.fr        #
+#    Updated: 2019/03/04 14:49:18 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,13 +38,15 @@ SRCS		=	ft_memalloc.c		\
 				ft_memcpy_v2.c		\
 				ft_strlen_v2.c		\
 				ft_putstr_fd_v2.c	\
-				ft_putstr_v2.c	\
+				ft_putstr_v2.c		\
 				ft_bzero_v2.c		\
 				ft_strsub_v2.c		\
 				ft_dlstnew.c		\
 				ft_dlstdelone.c		\
 				ft_dlstadd.c		\
-				ft_atoi.c
+				ft_atoi.c			\
+				ft_memset.c			\
+				ft_strlen_v3.c
 
 OBJS		=	$(SRCS:.c=.o)
 
