@@ -6,9 +6,13 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:03:58 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/04 17:10:38 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/05 22:01:45 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Signleton ?
+*/
 
 #include "libft/libft.h"
 
