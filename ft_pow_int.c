@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:47:58 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/08 14:44:11 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/08 19:43:54 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int8_t	check_result(int64_t original_x, int64_t current_x)
 {
 	if (original_x > 0)
 	{
-		printf("1 / : %lld\n",(LLONG_MAX) / current_x);
+		// printf("1 / : %lld\n",(LLONG_MAX) / current_x);
 		if (LLONG_MAX / current_x < original_x)
 		{
-			printf("next POS POS Result too big\n");
+			// printf("next POS POS Result too big\n");
 			return (1);
 		}
 	}
@@ -69,19 +69,19 @@ int8_t	check_result(int64_t original_x, int64_t current_x)
 	{
 		if (current_x > 0)
 		{
-			printf("2 / : %lld\n",(-LLONG_MAX - 1) / -current_x);
+			// printf("2 / : %lld\n",(-LLONG_MAX - 1) / -current_x);
 			if ((-LLONG_MAX - 1) / -current_x < -original_x)
 			{
-				printf("next NEG NEG Result too big\n");
+				// printf("next NEG NEG Result too big\n");
 				return (1);
 			}
 		}
 		if (current_x < 0)
 		{
-			printf("3 / : %lld\n",(-LLONG_MAX) / current_x);
+			// printf("3 / : %lld\n",(-LLONG_MAX) / current_x);
 			if ((-LLONG_MAX) / current_x < -original_x || (-LLONG_MAX) / current_x <= 1)
 			{
-				printf("next NEG POS Result too big\n");
+				// printf("next NEG POS Result too big\n");
 				return (1);
 			}
 		}
@@ -97,7 +97,7 @@ int64_t calc_result(int64_t x, int64_t y)
 	original_x = x;
 	while (--y > 0)
 	{
-		printf("X : %lld\n", x * original_x);
+		// printf("X : %lld\n", x * original_x);
 		x *= original_x;
 		if (y != 1 && check_result(original_x, x))
 			return (0);
