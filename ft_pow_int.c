@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:47:58 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/07 02:21:25 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/08 14:44:11 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 /*
 ** Attention protection faillible,
 ** quand l'int boucle au plus du double (+ de 100%)
-** Notamment à partir -11 ^ 19 ou 11, pareil pour -12 ou 12 etc...
+** Notamment à partir de -7 ^ 23  -11 ^ 19 ou 11, pareil pour -12 ou 12 etc...
 ** À utiliser pour les petites valeurs, ne pas se fier à la protection
 */
 
@@ -56,28 +56,32 @@
 
 int8_t	check_result(int64_t original_x, int64_t current_x)
 {
-	if (original_x > 0 && (LLONG_MAX / current_x) < original_x)
+	if (original_x > 0)
 	{
-		write(1, "next POS POS Result too big\n", 28);
-		return (1);
+		printf("1 / : %lld\n",(LLONG_MAX) / current_x);
+		if (LLONG_MAX / current_x < original_x)
+		{
+			printf("next POS POS Result too big\n");
+			return (1);
+		}
 	}
 	if (original_x < 0)
 	{
 		if (current_x > 0)
 		{
-			printf("/ %lld\n",(-LLONG_MAX - 1) / -current_x);
+			printf("2 / : %lld\n",(-LLONG_MAX - 1) / -current_x);
 			if ((-LLONG_MAX - 1) / -current_x < -original_x)
 			{
-				write(1, "next NEG NEG Result too big\n", 28);
+				printf("next NEG NEG Result too big\n");
 				return (1);
 			}
 		}
 		if (current_x < 0)
 		{
-			printf("/ %lld\n",(-LLONG_MAX) / current_x);
-			if ((-LLONG_MAX) / current_x < -original_x)
+			printf("3 / : %lld\n",(-LLONG_MAX) / current_x);
+			if ((-LLONG_MAX) / current_x < -original_x || (-LLONG_MAX) / current_x <= 1)
 			{
-				write(1, "next NEG POS Result too big\n", 28);
+				printf("next NEG POS Result too big\n");
 				return (1);
 			}
 		}
@@ -93,6 +97,7 @@ int64_t calc_result(int64_t x, int64_t y)
 	original_x = x;
 	while (--y > 0)
 	{
+		printf("X : %lld\n", x * original_x);
 		x *= original_x;
 		if (y != 1 && check_result(original_x, x))
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/07 02:24:52 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/08 14:56:23 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,30 @@ int			main()
 	// ft_printf("qweqweqwe", 123456.15, 'A', 'l', 'i', 'c', 'e');
 	// printf("%.100f\n", 123456.15);
 
-	// printf("%lld\n", ft_pow_int(-0x8000000000000000, 2));
-	printf("%lld\n", ft_pow_int(-2, 6));
+	// printf("%lld\n", ft_pow_int(-LLONG_MAX - 1 , 2));
+	// printf("%lld\n", ft_pow_int(2, 63));
 	// printf("%lld\n", ft_pow_int(-3, 40));
 	// printf("%lld\n", ft_pow_int(-4, 32));
 	// printf("%lld\n", ft_pow_int(-5, 28));
-	// printf("%lld\n", ft_pow_int(-6, 114));
-	// printf("%lld\n", ft_pow_int(-7, 25));
+	// printf("%lld\n", ft_pow_int(-6, 25));
+	// printf("%lld\n", ft_pow_int(-7, 23));
 	// printf("%lld\n", ft_pow_int(-8, 22));
 	// printf("%lld\n", ft_pow_int(-9, 20));
 	// printf("%lld\n", ft_pow_int(-10, 19));
-	// printf("%lld\n", ft_pow_int(-2 , 63));
-	// printf("%lld\n", ft_pow_int(-12, 20));
+	// printf("%lld\n", ft_pow_int(-11, 19));
+	// printf("%lld\n", ft_pow_int(-12, 18));
+	// printf("%lld\n", ft_pow_int(-13, 18));
+	// printf("%lld\n", ft_pow_int(-14, 17));
+	// printf("%lld\n", ft_pow_int(-15, 17));
+	// printf("%lld\n", ft_pow_int(-16, 16));
+	// printf("%lld\n", ft_pow_int(-17, 16));
+	// printf("%lld\n", ft_pow_int(-18, 16));
+	// printf("%lld\n", ft_pow_int(-19, 15));
+	printf("%lld\n", ft_pow_int(-20, 15));
+
 
 	// printf("%lld\n", ft_pow_int(11, 30));
-	// printf("%lld\n", ft_pow_int(0x7fffff, 2));
+	// printf("%lld\n", ft_pow_int(0x7fffff, 3));
 	// printf("%lld\n", ft_pow_int(0x7ffffffff, 2));
 
 	// if (j + 1 == i)
