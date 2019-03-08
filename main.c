@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/07 02:23:13 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/07 02:24:52 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			main()
 	// printf("%.100f\n", 123456.15);
 
 	// printf("%lld\n", ft_pow_int(-0x8000000000000000, 2));
-	printf("%lld\n", ft_pow_int(-2, 63));
+	printf("%lld\n", ft_pow_int(-2, 6));
 	// printf("%lld\n", ft_pow_int(-3, 40));
 	// printf("%lld\n", ft_pow_int(-4, 32));
 	// printf("%lld\n", ft_pow_int(-5, 28));
