@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/04 20:13:33 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/10 20:37:43 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ int				ft_dlstadd(t_dlist **top, t_dlist *new);
 int				ft_atoi(const char *str);
 void			*ft_memset(void *b, int c, size_t len);
 int				ft_strlen_v3(char *s);
+char			*ft_itoa(int n);
 
 #endif

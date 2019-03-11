@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:47:58 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/08 19:43:54 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/10 23:08:24 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,72 +16,35 @@
 #include <i386/limits.h>
 
 /*
-** Attention protection faillible,
-** quand l'int boucle au plus du double (+ de 100%)
-** Notamment à partir de -7 ^ 23  -11 ^ 19 ou 11, pareil pour -12 ou 12 etc...
-** À utiliser pour les petites valeurs, ne pas se fier à la protection
-*/
-
-/*
-**	Pour le debug :
-**	while (++i < y)
-**	{
-**		x *= original_x;
-**		printf("i : %lld\n", i);
-**		printf("x : %lld\n", x);
-**		printf("last neg x : %lld\n", last_neg_x);
-**		printf("last pos x : %lld\n", last_pos_x);
-**		if (!(i & 1) && last_neg_x < x)
-**		{
-**			write(1, "NEG Result too big\n", 19);
-**			return (0);
-**		}
-**		if (i & 1 && last_pos_x > x)
-**		{
-**			write(1, "POS Result too big\n", 19);
-**			return (0);
-**		}
-**		if (i & 1)
-**		{
-**			last_pos_x = x;
-**			printf("new pos x : %lld\n", last_pos_x);
-**		}
-**		else
-**		{
-**			last_neg_x = x;
-**			printf("new neg x : %lld\n", last_neg_x);
-**		}
-**	}
+** __Protection__
+** on divise val max par notre nombre,
+** si le quotient > nombre, trigger sécurité et renvoie 0
+**
 */
 
 int8_t	check_result(int64_t original_x, int64_t current_x)
 {
 	if (original_x > 0)
 	{
-		// printf("1 / : %lld\n",(LLONG_MAX) / current_x);
 		if (LLONG_MAX / current_x < original_x)
-		{
-			// printf("next POS POS Result too big\n");
 			return (1);
-		}
 	}
 	if (original_x < 0)
 	{
 		if (current_x > 0)
 		{
-			// printf("2 / : %lld\n",(-LLONG_MAX - 1) / -current_x);
 			if ((-LLONG_MAX - 1) / -current_x < -original_x)
 			{
-				// printf("next NEG NEG Result too big\n");
+				write(1, "Result too big\n", 5);
 				return (1);
 			}
 		}
 		if (current_x < 0)
 		{
-			// printf("3 / : %lld\n",(-LLONG_MAX) / current_x);
+			printf("3 / : %lld\n",(-LLONG_MAX) / current_x);
 			if ((-LLONG_MAX) / current_x < -original_x || (-LLONG_MAX) / current_x <= 1)
 			{
-				// printf("next NEG POS Result too big\n");
+				write(1, "Result too big\n", 5);
 				return (1);
 			}
 		}

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero_v2.c                                      :+:      :+:    :+:   */
+/*   ft_bzero_v3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:34:10 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/11 03:21:09 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/11 03:11:50 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft/libft.h"
 #include <unistd.h>
 
 /*
@@ -24,30 +24,9 @@
 **
 ** Choix de la solution ci-dessus pour la norminette.
 ** Sinon "may not compile or is invalid for some reasons." à tort.
-** Solution possible avec __int128 émulé par le compilo, mais pas plus rapide,
-** résultat de temps plus stable mais plus lent. À creuser.
 */
 
-static void	ft_zero512(void **s, size_t *n)
-{
-	const t_64speed		speed64 = {.init = 0};
-	const t_512speed	speed512 = {.init = 0};
-
-	while (*n >> 9)
-	{
-		**(t_512speed **)s = speed512;
-		*s += 512;
-		*n -= 512;
-	}
-	while (*n >> 6)
-	{
-		**(t_64speed **)s = speed64;
-		*s += 64;
-		*n -= 64;
-	}
-}
-
-void		ft_bzero_v2(void *s, size_t n)
+void		ft_bzero_v3(void *s, size_t n)
 {
 	if (!s)
 	{
@@ -55,7 +34,12 @@ void		ft_bzero_v2(void *s, size_t n)
 			write(2, RED"\abzero v2 -> ∅ pointer & putstr fd v2 ∅\n"RESET, 63);
 		return ;
 	}
-	ft_zero512(&s, &n);
+	while (n >> 4)
+	{
+		*(__int128 *)s = 0;
+		s += 16;
+		n -= 16;
+	}
 	while (n >> 3)
 	{
 		*(long long *)s = 0;
