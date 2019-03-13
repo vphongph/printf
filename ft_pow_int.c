@@ -6,13 +6,12 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:47:58 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/11 22:59:56 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/13 19:11:28 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdio.h>
 #include <i386/limits.h>
 
 /*
@@ -25,37 +24,29 @@
 
 int8_t	check_result(int64_t original_x, int64_t current_x)
 {
-	if (original_x > 0)
+	if (original_x > 0 && LLONG_MAX / current_x < original_x)
 	{
-		if (LLONG_MAX / current_x < original_x)
+		write(1, "Result too big\n", 15);
+		return (1);
+	}
+	if (original_x < 0)
+	{
+		if (current_x > 0 && (-LLONG_MAX - 1) / -current_x < -original_x)
+		{
+			write(1, "Result too big\n", 15);
+			return (1);
+		}
+		if (current_x < 0 && ((-LLONG_MAX) / current_x <= 1
+				|| (-LLONG_MAX) / current_x < -original_x))
 		{
 			write(1, "Result too big\n", 15);
 			return (1);
 		}
 	}
-	if (original_x < 0)
-	{
-		if (current_x > 0)
-		{
-			if ((-LLONG_MAX - 1) / -current_x < -original_x)
-			{
-				write(1, "Result too big\n", 15);
-				return (1);
-			}
-		}
-		if (current_x < 0)
-		{
-			if ((-LLONG_MAX) / current_x < -original_x || (-LLONG_MAX) / current_x <= 1)
-			{
-				write(1, "Result too big\n", 15);
-				return (1);
-			}
-		}
-	}
 	return (0);
 }
 
-int64_t calc_result(int64_t x, int64_t y)
+int64_t	calc_result(int64_t x, int64_t y)
 {
 	int64_t original_x;
 

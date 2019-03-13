@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:34:10 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/11 03:21:09 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/13 20:58:09 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 
 static void	ft_zero512(void **s, size_t *n)
 {
-	const t_64speed		speed64 = {.init = 0};
-	const t_512speed	speed512 = {.init = 0};
+	static const t_64speed	speed64;
+	static const t_512speed	speed512;
 
 	while (*n >> 9)
 	{

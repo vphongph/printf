@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/11 22:59:10 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/13 19:07:10 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ double		PI_nilakantha(int round);
 int			main()
 {
 	int64_t j = 9223372036854775807;
-	int64_t l = 3037000000;
+	int64_t l = 2097;
 	int64_t m = 2;
 
 	(void)j;
@@ -35,7 +35,7 @@ int			main()
 	(void)m;
 
 	// printf("%lld\n", ft_pow_int(-LLONG_MAX -1 , 2));
-	// printf("%lld\n", ft_pow_int(2, 64));
+	// printf("%lld\n", ft_pow_int(-2, 64));
 	// printf("%lld\n", ft_pow_int(-3, 40));
 	// printf("%lld\n", ft_pow_int(-4, 32));
 	// printf("%lld\n", ft_pow_int(-5, 28));
@@ -57,29 +57,27 @@ int			main()
 	// printf("%lld\n", ft_pow_int(-21, 15));
 	// printf("%lld\n", ft_pow_int(-22, 15));
 	// ...
-	// printf("%lld\n", ft_pow_int(-2097152, 4));
+	// printf("%lld\n", ft_pow_int(-55109, 4));
 	// printf("%lld\n", ft_pow_int(-2097153, 3));
 	// printf("%lld\n", ft_pow_int(-3037000500, 2));
-
-	// printf("%lld\n", ft_pow_int(2097151, 4));
+	//
+	// printf("%lld\n", ft_pow_int(55109, 4));
 	// printf("%lld\n", ft_pow_int(2097152, 3));
 	// printf("%lld\n", ft_pow_int(3037000500, 2));
 
+	// printf("%lld\n", ft_pow_int(0, -100000));
 
-	// while (l <= 10000000000000)
+
+	// while (l <= 1000000000000000000)
 	// {
-		// while (ft_pow_int(l, m) != 0)
-			// m++;
-		// printf("%lld, %lld\n", l, m);
-		// if (m == 2)
-			// sleep(3);
-		// m = 2;
-		// l++;
+	// 	while (ft_pow_int(l, m) != 0)
+	// 		m++;
+	// 	printf("%lld, %lld\n", l, m);
+	// 	if (m == 4)
+	// 		sleep(3);
+	// 	m = 2;
+	// 	l++;
 	// }
-
-	// printf("%lld\n", ft_pow_int(11, 30));
-	// printf("%lld\n", ft_pow_int(0x7fffff, 3));
-	// printf("%lld\n", ft_pow_int(0x7ffffffff, 2));
 
 	// if (j + 1 == i)
 	// {}
@@ -98,3 +96,4 @@ int			main()
 
 	return (0);
 }
+//
