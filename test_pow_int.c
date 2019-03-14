@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/13 19:07:10 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/13 23:54:56 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 #include "libft/libft.h"
 #define MY_LLONG_MAX 9223372036854775807
 
-int			ft_printf(const char *restrict format, ...);
 uint64_t	ft_pow_int(int64_t x, uint64_t y);
 double		PI_nilakantha(int round);
 
@@ -34,7 +33,7 @@ int			main()
 	(void)l;
 	(void)m;
 
-	// printf("%lld\n", ft_pow_int(-LLONG_MAX -1 , 2));
+	printf("%lld\n", ft_pow_int(-LLONG_MAX -1 , 2));
 	// printf("%lld\n", ft_pow_int(-2, 64));
 	// printf("%lld\n", ft_pow_int(-3, 40));
 	// printf("%lld\n", ft_pow_int(-4, 32));
