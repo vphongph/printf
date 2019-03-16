@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 23:56:30 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/16 06:33:33 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/16 18:48:50 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ union			u_LfToInt2
 		__uint128_t		padding : 48;
 	};
 };
+
+int16_t ft_printbin(__uint128_t nb, uint8_t size);
 
 long double		pi_nilakantha(uint8_t mantissa_bits)
 {
@@ -92,27 +94,12 @@ long double		pi_nilakantha(uint8_t mantissa_bits)
 	toInt2.exponent = 0b100000000000000;
 
 
-	uint8_t nb = 42;
+	char nb = 42;
 
 	// nb = toInt1.y;
 
-	__uint128_t l = 0x01;
-	uint8_t j = 0;
-	uint8_t z = sizeof(nb) * 8 - 1;
-
-
-	while (j < z + 1)
-	{
-		// printf(" %d \n", z);
-		// printf(" %d \n", j);
-		if ((l << (z - j)) & nb)
-			write(1, "1", 1);
-		else
-			write(1, "0", 1);
-		j++;
-	}
+	printf("\nprintbin return : %d\n", ft_printbin(nb, sizeof(nb)));
 	write(1, "\n", 1);
-
 
 	shift = 0;
 	// while (shift < 64)
