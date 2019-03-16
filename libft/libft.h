@@ -6,25 +6,27 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/10 20:37:43 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/16 23:53:59 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define RED		"\e[38;2;255;0;0m"
-# define DARKPINK	"\e[38;2;252;19;104m"
-# define PINK		"\e[38;2;253;155;203m"
-# define BLUE		"\e[38;2;57;154;250m"
-# define GREEN		"\e[38;2;175;215;44m"
-# define YELLOW		"\e[38;2;243;197;80m"
-# define ALLIANCE	"\e[38;2;51;196;127m"
-# define FEDERATION	"\e[38;2;65;128;219m"
-# define ASSEMBLY	"\e[38;2;160;97;209m"
-# define ORDER		"\e[38;2;255;105;80m"
-# define BLINK		"\033[5:m"
-# define RESET		"\e[0m"
-# include <string.h>
+# if __DARWIN_BYTE_ORDER == __DARWIN_LITTLE_ENDIAN
+#  define RED			"\e[38;2;255;0;0m"
+#  define DARKPINK		"\e[38;2;252;19;104m"
+#  define PINK			"\e[38;2;253;155;203m"
+#  define BLUE			"\e[38;2;57;154;250m"
+#  define GREEN			"\e[38;2;175;215;44m"
+#  define YELLOW		"\e[38;2;243;197;80m"
+#  define ALLIANCE		"\e[38;2;51;196;127m"
+#  define FEDERATION	"\e[38;2;65;128;219m"
+#  define ASSEMBLY		"\e[38;2;160;97;209m"
+#  define ORDER			"\e[38;2;255;105;80m"
+#  define BLINK			"\033[5:m"
+#  define RESET			"\e[0m"
+#  include <string.h>
+#  include <stdlib.h>
 
 typedef	struct	s_list
 {
@@ -53,6 +55,32 @@ typedef struct	s_64speed
 	char	init;
 }				t_64speed;
 
+union			u_lftoint1
+{
+	long double	x;
+	__uint128_t y;
+};
+
+union			u_lftochar
+{
+	long double	x;
+	char		y[sizeof(long double)];
+};
+
+typedef struct	s_long_double
+{
+	uint64_t		mantissa;
+	uint16_t		exponent : 15;
+	uint8_t			sign : 1;
+	uint64_t		padding : 48;
+}				t_long_double;
+
+union			u_lftoint2
+{
+	long double		x;
+	t_long_double	y;
+};
+
 void			*ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
 void			*ft_memjoin(void *s1, void *s2, size_t l, size_t n);
@@ -71,4 +99,5 @@ void			*ft_memset(void *b, int c, size_t len);
 int				ft_strlen_v3(char *s);
 char			*ft_itoa(int n);
 
+# endif
 #endif
