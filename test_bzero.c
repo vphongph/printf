@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 01:37:46 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/13 23:13:25 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/16 01:25:15 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int 	main()
 
 	while (i < 10000000)
 	{
-		// ft_bzero_v3(tab, 4092);
-		ft_bzero_v2(tab, 4092);
+		ft_bzero_v3(tab, 4092);
+		// ft_bzero_v2(tab, 4092);
 		i++;
 	}
 

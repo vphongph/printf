@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/15 00:15:24 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/15 22:54:57 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ const double	my_pi = 3.14159265;
 
 int			ft_printf(const char *restrict format, ...);
 uint64_t	ft_pow_int(int64_t x, uint64_t y);
-double		PI_nilakantha(int round);
+double		PI_nilakantha(int mantissa_bits);
 
 
 int			main()

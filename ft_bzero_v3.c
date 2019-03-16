@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:34:10 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/11 03:11:50 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/16 01:26:21 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ void		ft_bzero_v3(void *s, size_t n)
 			write(2, RED"\abzero v2 -> ∅ pointer & putstr fd v2 ∅\n"RESET, 63);
 		return ;
 	}
-	while (n >> 4)
-	{
-		*(__int128 *)s = 0;
-		s += 16;
-		n -= 16;
-	}
-	while (n >> 3)
-	{
-		*(long long *)s = 0;
-		s += 8;
-		n -= 8;
-	}
+	// while (n >> 4)
+	// {
+		// *(__int128 *)s = 0;
+		// s += 16;
+		// n -= 16;
+	// }
+	// while (n >> 3)
+	// {
+		// *(long long *)s = 0;
+		// s += 8;
+		// n -= 8;
+	// }
 	while (n)
 	{
 		*(char *)s = 0;

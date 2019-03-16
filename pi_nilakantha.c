@@ -6,11 +6,12 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 23:56:30 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/15 00:20:00 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/16 06:33:33 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include <stdio.h>
 
 union			u_LfToChar
@@ -19,27 +20,35 @@ union			u_LfToChar
 	char		y[sizeof(long double)];
 };
 
-union			u_LfToInt
+union			u_LfToInt1
 {
 	long double	x;
-	__int128	y;
+	__uint128_t y;
 };
 
-long double		pi_nilakantha(int round)
+union			u_LfToInt2
+{
+	long double	x;
+	struct
+	{
+		__uint128_t		mantissa : 64;
+		__uint128_t		exponent : 15;
+		__uint128_t		sign : 1;
+		__uint128_t		padding : 48;
+	};
+};
+
+long double		pi_nilakantha(uint8_t mantissa_bits)
 {
 	long double pi;
 	int8_t sign;
 	long double i;
-	(void)round;
-
-	union u_LfToInt test;
+	union u_LfToInt1 toInt1;
+	union u_LfToInt2 toInt2;
 
 	pi = 3;
 	sign = 1;
 	i = 2;
-
-	// while (i < 469000)
-
 	while (i < 469000)
 	{
 		if (sign == 1)
@@ -50,10 +59,75 @@ long double		pi_nilakantha(int round)
 		sign = -sign;
 	}
 
-	test.x = pi;
+	mantissa_bits = 64 - mantissa_bits;
 
-	test.y = test.y >> round;
-	test.y = test.y << round;
+	toInt1.x = pi;
+	toInt2.x = pi;
 
-	return (test.x);
+
+	// toInt1.y >>= mantissa_bits;
+	// toInt1.y <<= mantissa_bits;
+
+	// __uint128_t tmp1;
+	// __uint128_t tmp2;
+	int shift = 127;
+
+	//
+	// while (shift > 0)
+	// {
+	// 	tmp1 = toInt1.y << shift;
+	// 	tmp1 = toInt1.y >> 127;
+	// 	tmp1 = tmp1 + 48;
+	// 	write(1, &tmp1, 1);
+	// 	shift--;
+	// }
+	// write(1, "\n", 1);
+
+
+	// toInt2.mantissa >>= mantissa_bits;
+	// toInt2.mantissa <<= mantissa_bits;
+
+	toInt2.mantissa = 0b1100100000000000000000000000000000000000000000000000000000000000;
+	toInt2.sign = 0b0;
+	toInt2.exponent = 0b100000000000000;
+
+
+	uint8_t nb = 42;
+
+	// nb = toInt1.y;
+
+	__uint128_t l = 0x01;
+	uint8_t j = 0;
+	uint8_t z = sizeof(nb) * 8 - 1;
+
+
+	while (j < z + 1)
+	{
+		// printf(" %d \n", z);
+		// printf(" %d \n", j);
+		if ((l << (z - j)) & nb)
+			write(1, "1", 1);
+		else
+			write(1, "0", 1);
+		j++;
+	}
+	write(1, "\n", 1);
+
+
+	shift = 0;
+	// while (shift < 64)
+	// {
+	// 	tmp2 = toInt2.mantissa << shift;
+	// 	tmp2 = toInt2.mantissa >> 63;
+	// 	tmp2 = tmp2 + 48;
+	// 	write(1, &tmp2, 1);
+	// 	shift++;
+	// }
+	// write(1, "\n", 1);
+
+	printf("%.30Lf\n", toInt1.x);
+	printf("%.30LF\n", toInt2.x);
+
+	return (toInt1.x);
 }
+// 0000000000000000000000000010101000000000000000000000000000101010
