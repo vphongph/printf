@@ -6,33 +6,36 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 23:56:30 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/17 00:02:05 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/17 01:48:50 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 #include "libft/libft.h"
 
-static long double round_pi (lond double pi, uint8_t mantissa_round)
+static long double	round_pi(long double pi, uint8_t mantiss_prec)
 {
-	union u_lftoint1 toint1;
-	union u_lftoint2 toint2;
+	union u_longf ulf;
 
-
-
+	ulf.x = pi;
+	mantiss_prec = 64 - mantiss_prec;
+	ulf.y.mantissa >>= mantiss_prec;
+	ulf.y.mantissa <<= mantiss_prec;
+	return (ulf.x);
 }
 
-long double		pi_nilakantha(uint8_t mantissa_round)
+long double			pi_nilakantha(uint8_t mantiss_prec)
 {
-
-	long double pi;
-	long double i;
-	int8_t sign;
+	long double	pi;
+	long double	i;
+	int8_t		sign;
 
 	pi = 3;
 	i = 2;
 	sign = 1;
+	if (mantiss_prec == 0
+		|| (mantiss_prec > 64 && write(1, "mantissa precision NON OK\n", 26)))
+		return (0);
 	while (i < 469000)
 	{
 		if (sign == 1)
@@ -42,23 +45,5 @@ long double		pi_nilakantha(uint8_t mantissa_round)
 		i += 2;
 		sign = -sign;
 	}
-
-	mantissa_round = 64 - mantissa_round;
-
-	toInt1.x = pi;
-	toInt2.x = pi;
-
-	int nbbits = 64;
-
-	// toInt1.y >>= mantissa_bits;
-	// toInt1.y <<= mantissa_bits;
-
-	// toInt2.mantissa >>= mantissa_bits;
-	// toInt2.mantissa <<= mantissa_bits;
-
-	// toInt2.mantissa = 0b1100100000000000000000000000000000000000000000000000000000000000;
-	// toInt2.sign = 0b0;
-	// toInt2.exponent = 0b100000000000000;
-
-	return (round_pi(pi ,mantissa_round));
+	return (round_pi(pi, mantiss_prec));
 }

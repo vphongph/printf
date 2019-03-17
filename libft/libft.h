@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/16 23:53:59 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/17 13:18:48 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct	s_long_double
 	uint64_t		padding : 48;
 }				t_long_double;
 
-union			u_lftoint2
+union			u_longf
 {
 	long double		x;
 	t_long_double	y;

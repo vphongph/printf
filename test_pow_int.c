@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/13 23:54:56 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/17 12:58:28 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 #define MY_LLONG_MAX 9223372036854775807
 
 uint64_t	ft_pow_int(int64_t x, uint64_t y);
-double		PI_nilakantha(int round);
-
 
 int			main()
 {
