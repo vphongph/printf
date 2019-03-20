@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/17 13:18:48 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/20 00:48:09 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #  define ORDER			"\e[38;2;255;105;80m"
 #  define BLINK			"\033[5:m"
 #  define RESET			"\e[0m"
+#  define EXP_LF		16382
 #  include <string.h>
 #  include <stdlib.h>
 

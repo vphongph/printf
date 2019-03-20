@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:47:58 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/17 17:56:51 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/19 23:58:11 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,15 @@
 ** et donc la division est différente selon le cas, INT64 MAX ou INT64 MIN
 */
 
-long double	ft_modulo_lf(long double x, long double y);
+static long double	ft_modulo_lf(long double x, long double y)
+{
+	long double ratio;
+	ratio = x/y;
+
+	if(x == y * ratio)
+		return (0);
+	return(x - y * ratio);
+}
 
 
 int8_t	check_result(long double original_x, long double current_x)
@@ -62,6 +70,11 @@ long double	calc_pos_exponent(long double x, long double y)
 		x *= original_x;
 		// if (y != 1 && check_result(original_x, x))
 			// return (0);
+		if (x == 1.0/0.0)
+		{
+			// write(1, "infinity\n", 9);
+			break;
+		}
 	}
 	return (x);
 }
@@ -82,7 +95,7 @@ long double	calc_neg_exponent(long double x, long double y)
 		if (x == 0)
 		{
 			write(1, "zero\n", 5);
-			printf("%lld\n", i++);
+			printf("%lld\n", i);
 			break;
 		}
 		i++;
