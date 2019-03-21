@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/21 02:29:47 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/21 16:53:22 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,21 @@
 
 /*
 **_________________________________COLORS_______________________________________
+** \e instead of \033 is ok too, but not standard (-pedantic)
 */
 
-#  define RED			"\e[38;2;255;0;0m"
-#  define DARKPINK		"\e[38;2;252;19;104m"
-#  define PINK			"\e[38;2;253;155;203m"
-#  define BLUE			"\e[38;2;57;154;250m"
-#  define GREEN			"\e[38;2;175;215;44m"
-#  define YELLOW		"\e[38;2;243;197;80m"
-#  define ALLIANCE		"\e[38;2;51;196;127m"
-#  define FEDERATION	"\e[38;2;65;128;219m"
-#  define ASSEMBLY		"\e[38;2;160;97;209m"
-#  define ORDER			"\e[38;2;255;105;80m"
+#  define RED			"\033[38;2;255;0;0m"
+#  define DARKPINK		"\033[38;2;252;19;104m"
+#  define PINK			"\033[38;2;253;155;203m"
+#  define BLUE			"\033[38;2;57;154;250m"
+#  define GREEN			"\033[38;2;175;215;44m"
+#  define YELLOW		"\033[38;2;243;197;80m"
+#  define ALLIANCE		"\033[38;2;51;196;127m"
+#  define FEDERATION	"\033[38;2;65;128;219m"
+#  define ASSEMBLY		"\033[38;2;160;97;209m"
+#  define ORDER			"\033[38;2;255;105;80m"
 #  define BLINK			"\033[5:m"
-#  define RESET			"\e[0m"
+#  define RESET			"\033[0m"
 
 /*
 **________________________________CONSTANTS_____________________________________

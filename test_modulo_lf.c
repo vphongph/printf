@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/21 05:36:52 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/21 17:39:10 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,29 @@ int16_t	set_exponent(int16_t to_set)
 		return (0);
 	}
 	return (to_set + EXP_LF);
+}
+
+long double	set_nan_inf(int8_t c, int8_t sign)
+{
+	t_longf ulf;
+
+	ulf.y.exponent = 0b111111111111111;
+
+	if (sign == 0)
+		ulf.y.sign = 0;
+	if (sign == 1)
+		ulf.y.sign = 1;
+	if (c == 'n')
+	{
+		ulf.y.mantissa = 1;
+		return (ulf.x);
+	}
+	if (c == 'i')
+	{
+		ulf.y.mantissa = 0;
+		return (ulf.x);
+	}
+	return (0);
 }
 
 long double	ft_modulo_lf_test(long double x, long double y)
@@ -87,13 +110,21 @@ int			main()
 	ulf1.y.mantissa = 0b1111111111111111111111111111111111111111111111111111111111111111;
 
 	ulf2.y.sign = 0;
-	ulf2.y.exponent = 0b100000000000000;
-	ulf2.y.mantissa = 0b0000000000000000000000000000000000000000000000000000000000000011;
+	ulf2.y.exponent = 0b111111111111111;
+	ulf2.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000000;
+
+	ulf2.x = set_nan_inf('i',10);
+	ft_printbin(ulf2.y.sign, 1, 'b');
+	printf("\n");
+	ft_printbin(ulf2.y.exponent, 15, 'b');
+	printf("\n");
+	ft_printbin(ulf2.y.mantissa, 64, 'b');
+	printf("\n");
 
 	// printf("ulf1.x : %Lf\n", ulf1.x);
 	printf("ulf2.x : %Lf\n", ulf2.x);
 	// printf("ulf.x : %.50Lf\n", 1.0L/0.0L);
-	printf("modulo : %.50Lf\n", ft_modulo_lf_test(ulf2.x, ulf1.x));
+	// printf("modulo : %.50Lf\n", ft_modulo_lf_test(ulf2.x, ulf1.x));
 
 
 	// printf("%.10Lf\n", ft_modulo_lf_test(100000000000000000001.645455, 3));

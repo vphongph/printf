@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2019/03/21 01:08:36 by vphongph         ###   ########.fr        #
+#    Updated: 2019/03/21 17:38:17 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ NAME		=	libft.a
 CC			=	gcc
 
 ifeq ($(DEBUG), yes)
-	CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address
+	CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address,undefined
 else
 	CFLAGS	=	-Wall -Wextra -Werror
 endif
