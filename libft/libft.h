@@ -6,13 +6,23 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/20 00:48:09 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/21 02:29:47 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+/*
+**___________________________PORTABILITY PROTECTION_____________________________
+*/
+
 # if __DARWIN_BYTE_ORDER == __DARWIN_LITTLE_ENDIAN
+
+/*
+**_________________________________COLORS_______________________________________
+*/
+
 #  define RED			"\e[38;2;255;0;0m"
 #  define DARKPINK		"\e[38;2;252;19;104m"
 #  define PINK			"\e[38;2;253;155;203m"
@@ -25,9 +35,22 @@
 #  define ORDER			"\e[38;2;255;105;80m"
 #  define BLINK			"\033[5:m"
 #  define RESET			"\e[0m"
+
+/*
+**________________________________CONSTANTS_____________________________________
+*/
+
 #  define EXP_LF		16382
-#  include <string.h>
+
+/*
+**________________________________LIBRARIES_____________________________________
+*/
+
 #  include <stdlib.h>
+
+/*
+**________________________________STRUCTURES____________________________________
+*/
 
 typedef	struct	s_list
 {
@@ -56,31 +79,35 @@ typedef struct	s_64speed
 	char	init;
 }				t_64speed;
 
-union			u_lftoint1
-{
-	long double	x;
-	__uint128_t y;
-};
-
-union			u_lftochar
+typedef union	u_lftochar
 {
 	long double	x;
 	char		y[sizeof(long double)];
-};
+}				t_lftochar;
 
-typedef struct	s_long_double
+typedef union	u_lftoint
+{
+	long double	x;
+	__int128_t	y;
+}				t_lftoint;
+
+struct			s_long_double
 {
 	uint64_t		mantissa;
 	uint16_t		exponent : 15;
 	uint8_t			sign : 1;
 	uint64_t		padding : 48;
-}				t_long_double;
-
-union			u_longf
-{
-	long double		x;
-	t_long_double	y;
 };
+
+typedef union	u_longf
+{
+	long double				x;
+	struct s_long_double	y;
+}				t_longf;
+
+/*
+** _______________________________PROTOTYPES____________________________________
+*/
 
 void			*ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
@@ -99,6 +126,8 @@ int				ft_atoi(const char *str);
 void			*ft_memset(void *b, int c, size_t len);
 int				ft_strlen_v3(char *s);
 char			*ft_itoa(int n);
+int64_t			ft_pow_int(int64_t x, int64_t y);
+int16_t			ft_printbin(__uint128_t nb, uint8_t size, uint8_t format_0b);
 
 # endif
 #endif
