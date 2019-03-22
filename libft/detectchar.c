@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:09:39 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/22 02:16:08 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/22 17:39:30 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 
 int16_t	ft_printhex(__uint128_t nb, uint8_t size, uint8_t format_0x);
 
-__uint128_t		detectchar(uint64_t mem, uint8_t memsize, uint8_t c)
+__uint128_t		detectchar(__uint128_t mem, uint8_t memsize, uint8_t c)
 {
 	__uint128_t distribution;
 	__uint128_t eighty;
 
 	distribution = 1;
 	eighty = 0x80;
-	if (!(memsize <= 8 && memsize >= 1))
+	if (!(memsize <= 16 && memsize >= 1))
 	{
 		ft_putstr_fd_v2(RED BLINK"error detectchar\n"RESET, 2);
 		return (0);
@@ -53,7 +53,9 @@ j = 0;
 	// printf(YELLOW"%#.16llx\n"RESET,detectchar(*(uint64_t *)"aaaaaaaa", 8, 'a'));
 	    // printf(YELLOW"%llu\n"RESET,detectchar(*(uint64_t *)"aaaaaaaa", 8, 'a'));
 										//    0xZZZZZZZZZZZZZZZZ
-ft_printhex(42, 1, 'x');
+ft_printbin(detectchar(*(__uint128_t *)"aaaaaaaaaaaaaaaa", 16, 'a'), 128, 'b');
+
+// ft_printhex(42, 1, 'x');
 
 	return (0);
 }

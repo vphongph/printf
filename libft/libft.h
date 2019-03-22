@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/21 16:53:22 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/22 20:13:16 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int				ft_strlen_v3(char *s);
 char			*ft_itoa(int n);
 int64_t			ft_pow_int(int64_t x, int64_t y);
 int16_t			ft_printbin(__uint128_t nb, uint8_t size, uint8_t format_0b);
+uint8_t			ft_putnbr_base(__int128_t nb, uint8_t base);
 
 # endif
 #endif
