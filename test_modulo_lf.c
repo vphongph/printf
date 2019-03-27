@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/27 18:42:12 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/28 00:11:47 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,10 +204,10 @@ int			main()
 	// if (lf_remove_decimal(ulf2.x) == 0)
 	// 	printf("remove = 0 \n");
 
-	// if ((ulf3.x = lf_modulo_test(ulf2.x, ulf1.x)) == 0)
-		// printf(YELLOW"yeah\n");
-	// else
-		// printf("%Lf\n", ulf3.x);
+	if ((ulf3.x = lf_modulo_test(ulf2.x, ulf1.x)) == 0)
+		printf(YELLOW"yeah\n");
+	else
+		printf("%Lf\n", ulf3.x);
 
 }
 
