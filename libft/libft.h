@@ -6,18 +6,19 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/22 20:13:16 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/26 16:19:15 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include <i386/endian.h>
 
 /*
 **___________________________PORTABILITY PROTECTION_____________________________
 */
 
-# if __DARWIN_BYTE_ORDER == __DARWIN_LITTLE_ENDIAN
+# if BYTE_ORDER == LITTLE_ENDIAN
 
 /*
 **_________________________________COLORS_______________________________________
@@ -38,19 +39,19 @@
 #  define RESET			"\033[0m"
 
 /*
-**________________________________CONSTANTS_____________________________________
+**_________________________________CONSTANTS____________________________________
 */
 
 #  define EXP_LF		16382
 
 /*
-**________________________________LIBRARIES_____________________________________
+**_________________________________LIBRARIES____________________________________
 */
 
 #  include <stdlib.h>
 
 /*
-**________________________________STRUCTURES____________________________________
+**_________________________________STRUCTURES___________________________________
 */
 
 typedef	struct	s_list
@@ -107,7 +108,7 @@ typedef union	u_longf
 }				t_longf;
 
 /*
-** _______________________________PROTOTYPES____________________________________
+**_________________________________PROTOTYPES___________________________________
 */
 
 void			*ft_memalloc(size_t size);
@@ -129,7 +130,8 @@ int				ft_strlen_v3(char *s);
 char			*ft_itoa(int n);
 int64_t			ft_pow_int(int64_t x, int64_t y);
 int16_t			ft_printbin(__uint128_t nb, uint8_t size, uint8_t format_0b);
-uint8_t			ft_putnbr_base(__int128_t nb, uint8_t base);
+uint8_t			ft_putnbr_base(__uint128_t nb, uint8_t base);
+__uint128_t		detectchar(__uint128_t mem, uint8_t memsize, uint8_t c);
 
 # endif
 #endif

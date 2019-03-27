@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/21 17:39:10 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/27 04:41:24 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 /*
 ** La ratio est base 2, attention à la représentation décimale.
 ** On pourrait croire que 10 % 0.1 = 0 mais la base 2 ne le permet pas.
+** ATTENTION à bien préciser long double si on entre un float litéral en parma(1.0L)
+, sinon perte
+*8 de précision, la mantisse ne vaut pas 64 bits
+** ATTENTION au pseudo 0 != 0
 */
 
 int16_t		get_exponent(int16_t to_get)
@@ -39,64 +43,111 @@ int16_t	set_exponent(int16_t to_set)
 	return (to_set + EXP_LF);
 }
 
+/*
+** ATTENTION au PSEUDO INF != INF
+** ATTENTION au PSEUDO NaN != NaN
+** ATTENTION au NaN non défini, non comparable
+*/
+
 long double	set_nan_inf(int8_t c, int8_t sign)
 {
 	t_longf ulf;
 
 	ulf.y.exponent = 0b111111111111111;
 
-	if (sign == 0)
-		ulf.y.sign = 0;
-	if (sign == 1)
-		ulf.y.sign = 1;
+	if (sign == 0 || sign == 1)
+		ulf.y.sign = sign;
+	else
+		return (0);
 	if (c == 'n')
 	{
-		ulf.y.mantissa = 1;
+		ulf.y.mantissa = (1L << 63) + 1;
 		return (ulf.x);
 	}
 	if (c == 'i')
 	{
-		ulf.y.mantissa = 0;
+		ulf.y.mantissa = 1L << 63;
 		return (ulf.x);
+	}
+	return (0);
+}
+
+int8_t check_xy(long double x, long double y)
+{
+	t_longf ux;
+	t_longf uy;
+	t_longf ratio;
+
+	ux.x = x;
+	uy.x = y;
+	ratio.x = x/y;
+	if (ux.y.exponent == 0b111111111111111
+		|| uy.y.exponent == 0b111111111111111
+		|| ratio.y.exponent == 0b1111111111111111
+		|| get_exponent(ratio.y.exponent) >= 64)
+	{
+		printf("expo : %d\n", get_exponent(ratio.y.exponent));
+		printf(RED"modulo inapplicable\n"RESET);
+		return (1);
 	}
 	return (0);
 }
 
 long double	ft_modulo_lf_test(long double x, long double y)
 {
-	int64_t ratio_int;
-	long double ratio_lf;
-	t_longf ulf;
+	t_longf ratio_lf1;
+	t_longf ratio_lf2;
+	int32_t	shift;
 
-	if (y == 0 && ((x > 0 && ft_putstr_fd_v2(RED"+inf\n"RESET, 2))
-			|| (x < 0 && ft_putstr_fd_v2(RED"-inf\n"RESET, 2))))
+	ratio_lf1.x = x/y;
+
+	if (check_xy(x, y))
 		return (0);
-	ulf.x = x;
-	if (get_exponent(ulf.y.exponent) >= 64)
-		;
 
-	ratio_int = x/y;
-	ratio_lf = x/y;
-	printf("x : %.50Lf\n", x);
-	printf("ratio lf  : %.50Lf\n", ratio_lf);
-	printf("ratio int : %lld\n", ratio_int);
-	ulf.x = x;
-	printf("expo x   : %d\n", get_exponent(ulf.y.exponent));
-	ulf.x = y;
-	printf("expo y   : %d\n", get_exponent(ulf.y.exponent));
-	ulf.x = x/y;
-	printf("expo x/y : %d\n", get_exponent(ulf.y.exponent));
+	ratio_lf2.x = x/y;
 
-	if (x == 0)
+	printf("expo : %d\n", get_exponent(ratio_lf2.y.exponent));
+
+	ft_printbin(ratio_lf2.y.mantissa, 64, 'b');
+	printf("\n");
+	if ((shift  = 64 - get_exponent(ratio_lf2.y.exponent)) >= 64)
+		ratio_lf2.x = 0;
+	else if (shift > 0)
+	{
+		ratio_lf2.y.mantissa >>= shift;
+		ratio_lf2.y.mantissa <<= shift;
+	}
+
+	printf("shift : %d\n", shift);
+
+	ft_printbin(ratio_lf2.y.mantissa, 64, 'b');
+	printf("\n");
+
+	printf("ratio lf1  : %.50Lf\n", ratio_lf1.x);
+	printf("ratio lf2  : %.50Lf\n", ratio_lf2.x);
+
+	if (ratio_lf1.x == 0)
 		printf(GREEN"EH BEH\n"RESET);
-	if (ratio_lf == 0)
-		printf(BLUE"eh beh\n"RESET);
-	if(ratio_lf == ratio_int)
+	if (ratio_lf2.x == 0)
+		printf(BLUE"EH BEH\n"RESET);
+
+
+	if(ratio_lf1.x == ratio_lf2.x)
 	{
 		printf(YELLOW"YEAH\n"RESET);
 		return (0);
 	}
-	return(x - ratio_int * y);
+	return(x - ratio_lf2.x * y);
+}
+
+int8_t	ft_modulo_lf_two(long double x)
+{
+	long double y = 2;
+	while ((y) < x)
+		y += 2;
+	if (y == x)
+		return (0);
+	return (1);
 }
 
 
@@ -104,16 +155,32 @@ int			main()
 {
 	t_longf ulf1;
 	t_longf ulf2;
+	t_longf ulf3; (void)ulf3;
 
 	ulf1.y.sign = 0;
-	ulf1.y.exponent = 0b111111111111110;
-	ulf1.y.mantissa = 0b1111111111111111111111111111111111111111111111111111111111111111;
+	// ulf1.y.exponent = 0b111111111111110;
+	ulf1.y.exponent = set_exponent(-16382);
+	ulf1.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000000;
 
 	ulf2.y.sign = 0;
-	ulf2.y.exponent = 0b111111111111111;
-	ulf2.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000000;
+	// ulf2.y.exponent = 0b000000000000001;
+	ulf2.y.exponent = set_exponent(65);
+	ulf2.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000001;
 
-	ulf2.x = set_nan_inf('i',10);
+	ft_printbin(ulf2.y.exponent, 15, 'b');
+	printf("\n");
+	printf("\n");
+
+
+	// if (ulf2.x == 0)
+		// printf("C'EST OK\n");
+
+	// ulf2.x *= 2.0;
+	// ulf2.x = set_nan_inf('i', 0);
+	// ulf2.x -= 1;
+	// ulf2.x /= 2;
+
+
 	ft_printbin(ulf2.y.sign, 1, 'b');
 	printf("\n");
 	ft_printbin(ulf2.y.exponent, 15, 'b');
@@ -122,10 +189,25 @@ int			main()
 	printf("\n");
 
 	// printf("ulf1.x : %Lf\n", ulf1.x);
-	printf("ulf2.x : %Lf\n", ulf2.x);
-	// printf("ulf.x : %.50Lf\n", 1.0L/0.0L);
-	// printf("modulo : %.50Lf\n", ft_modulo_lf_test(ulf2.x, ulf1.x));
+	printf("ulf2.x : %.50Lf\n", ulf2.x);
+	// printf("modulo : %.170Lf\n", ft_modulo_lf_test(10.0L, 1000000L));
 
+	// if (ulf2.y.exponent == 0b111111111111111)
+		// printf(ORDER"WAOUU\n"RESET);
+	// if (ulf2.x == ulf2.x)
+		// printf(ALLIANCE"WAOUU\n"RESET);
+	// if (1./ulf1.x == set_nan_inf('i',0))
+		// printf(FEDERATION"WAOUU\n"RESET);
 
-	// printf("%.10Lf\n", ft_modulo_lf_test(100000000000000000001.645455, 3));
+	printf("%.10Lf\n", ft_modulo_lf_test(ulf2.x, 2.L));
+
 }
+
+
+/*
+QUESTION ???
+Exposant positif mais mantisse null, c'est pas 0 c'est quoi ?
+ARITHMETIQUE des float ? tres petit nb + nombre normal ?
+Pseudo 0 + un autre ?
+** LES nan ne se valent pas ? les inf non plus ?
+*/
