@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 23:59:08 by vphongph          #+#    #+#             */
-/*   Updated: 2018/12/05 22:42:31 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/30 20:19:17 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*ft_malloc(int n, unsigned int *nb, int *tmp, int len)
 
 	if (n < 0)
 	{
-		if (!(str = (char *)ft_memalloc((len + 2) * sizeof(*str))))
+		if (!(str = (char *)ft_memalloc((uint32_t)(len + 2) * sizeof(*str))))
 			return (NULL);
 		*nb = (unsigned int)-n;
 		str[0] = '-';
@@ -26,7 +26,7 @@ static char	*ft_malloc(int n, unsigned int *nb, int *tmp, int len)
 	}
 	else
 	{
-		if (!(str = (char *)ft_memalloc((len + 1) * sizeof(*str))))
+		if (!(str = (char *)ft_memalloc((uint32_t)(len + 1) * sizeof(*str))))
 			return (NULL);
 		*nb = (unsigned int)n;
 		*tmp = len - 1;

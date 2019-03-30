@@ -6,18 +6,18 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/15 18:29:13 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/05 02:58:58 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/30 18:50:26 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 #include <unistd.h>
 
 char	*ft_strsub_v2(char *s, unsigned int start, size_t len)
 {
 	char	*str;
 
+	str = NULL;
 	if (!(s && (str = (char *)malloc(len + 1))))
 	{
 		if (ft_putstr_fd_v2(RED"\astrsub v2 ∅ pointer | malloc ∅\n"

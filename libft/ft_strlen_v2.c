@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 21:05:38 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/04 00:41:45 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/30 18:30:36 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,21 @@ int		ft_strlen_v2(char *s)
 	while (1)
 	{
 		if (!*str)
-			return (str - s);
+			return ((int)(str - s));
 		if (!*(str + 1))
-			return ((str + 1) - s);
+			return ((int)((str + 1) - s));
 		if (!*(str + 2))
-			return ((str + 2) - s);
+			return ((int)((str + 2) - s));
 		if (!*(str + 3))
-			return ((str + 3) - s);
+			return ((int)((str + 3) - s));
 		if (!*(str + 4))
-			return ((str + 4) - s);
+			return ((int)((str + 4) - s));
 		if (!*(str + 5))
-			return ((str + 5) - s);
+			return ((int)((str + 5) - s));
 		if (!*(str + 6))
-			return ((str + 6) - s);
+			return ((int)((str + 6) - s));
 		if (!*(str + 7))
-			return ((str + 7) - s);
+			return ((int)((str + 7) - s));
 		str += 8;
 	}
 }

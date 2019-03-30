@@ -6,12 +6,11 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 02:08:01 by vphongph          #+#    #+#             */
-/*   Updated: 2019/02/25 01:41:19 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/30 21:08:49 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 #include <unistd.h>
 
 /*

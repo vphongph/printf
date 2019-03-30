@@ -6,12 +6,11 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 00:14:23 by vphongph          #+#    #+#             */
-/*   Updated: 2019/01/16 23:44:03 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/30 21:07:12 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 t_dlist	*ft_dlstnew(void *content, size_t content_size)
 {

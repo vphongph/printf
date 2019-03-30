@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2019/03/28 13:05:33 by vphongph         ###   ########.fr        #
+#    Updated: 2019/03/30 17:39:54 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,6 @@ else
 endif
 
 SRC_NAMES		:=	ft_printf.c		\
-					ft_pow_int.c		\
 					main.c
 
 SRC_PATH		:=

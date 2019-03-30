@@ -6,11 +6,10 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 01:57:50 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/04 14:53:07 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/30 21:09:12 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <unistd.h>
 #include "libft.h"
 
@@ -19,7 +18,7 @@
 ** but don't have the size_t, for the latter you can use stdlib.h or string.h
 */
 
-static int64_t	detectnull(int64_t s)
+static uint64_t	detectnull(uint64_t s)
 {
 	return ((s - 0x0101010101010101) & ~s & 0x8080808080808080);
 }
@@ -33,8 +32,8 @@ int				ft_strlen_v3(char *s)
 		return (-1);
 	while (*str && (uintptr_t)str & 7)
 		str++;
-	while (!(detectnull(*(int64_t *)str)))
-		str += sizeof(int64_t);
+	while (!(detectnull(*(uint64_t *)str)))
+		str += sizeof(uint64_t);
 	while (*str)
 		str++;
 	return (str - s);

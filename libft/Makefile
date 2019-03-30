@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2019/03/26 15:59:51 by vphongph         ###   ########.fr        #
+#    Updated: 2019/03/30 21:05:25 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ CC			=	gcc
 
 ifeq ($(DEBUG), yes)
 	CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address,undefined
+else ifeq ($(DEBUG), all)
+	CFLAGS	=	-g3 -Weverything
 else
 	CFLAGS	=	-Wall -Wextra -Werror
 endif
@@ -48,10 +50,15 @@ SRCS		=	ft_memalloc.c		\
 				ft_memset.c			\
 				ft_strlen_v3.c		\
 				ft_itoa.c			\
-				ft_pow_int.c		\
+				mth_pow_int.c		\
 				ft_printbin.c		\
 				ft_putnbr_base.c	\
 				detectchar.c		\
+				lf_get_exponent.c	\
+				lf_set_exponent.c	\
+				lf_set_nan_inf.c	\
+				lf_check_nupi.c		\
+				lf_remove_decimal.c
 
 OBJS		=	$(SRCS:.c=.o)
 

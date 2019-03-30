@@ -6,107 +6,21 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/29 02:22:02 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/30 21:05:01 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <printf.h>
 #include "libft/libft.h"
-
+#include <string.h>
 /*
 ** La ratio est base 2, attention à la représentation décimale.
 ** On pourrait croire que 10 % 0.1 = 0 mais la base 2 ne le permet pas.
 ** ATTENTION à bien préciser long double si on entre un float litéral en parma(1.0L)
 , sinon perte
 *8 de précision, la mantisse ne vaut pas 64 bits
-** ATTENTION au pseudo 0 != 0
 */
-
-int16_t		lf_get_exponent(int16_t to_get)
-{
-	if (to_get < 0)
-	{
-		ft_putstr_fd_v2(RED"get expo : not a exponent\n"RESET, 2);
-		return (0);
-	}
-	return (to_get - EXP_LF);
-}
-
-int16_t	lf_set_exponent(int16_t to_set)
-{
-	if (to_set < -EXP_LF || to_set > EXP_LF + 1)
-	{
-		ft_putstr_fd_v2(RED"set expo : exponent non ok\n"RESET, 2);
-		return (0);
-	}
-	return (to_set + EXP_LF);
-}
-
-/*
-** ATTENTION au PSEUDO INF != INF
-** ATTENTION au PSEUDO NaN != NaN
-** ATTENTION au NaN non défini, non comparable
-*/
-
-long double	lf_set_nan_inf(int8_t c, int8_t sign)
-{
-	t_longf ulf;
-
-	ulf.y.exponent = 0b111111111111111;
-	if (sign == 0 || sign == 1)
-		ulf.y.sign = sign;
-	else
-		return (0);
-	if (c == 'n')
-	{
-		ulf.y.mantissa = (1ULL << 63) + 1;
-		return (ulf.x);
-	}
-	if (c == 'i')
-	{
-		ulf.y.mantissa = 1ULL << 63;
-		return (ulf.x);
-	}
-	return (0);
-}
-
-int8_t		lf_check_nupi(long double x)
-{
-	t_longf ulf;
-
-	ulf.x = x;
-	if (ulf.y.exponent == 0b111111111111111 && ulf.y.mantissa != 1ULL << 63)
-		return (1);
-	if (ulf.y.exponent != 0 && !(ulf.y.mantissa & (1ULL << 63)))
-		return (1);
-	return (0);
-}
-
-long double	lf_remove_decimal(long double x)
-{
-	t_longf ulf;
-	int32_t	shift;
-
-	if (lf_check_nupi(x))
-	{
-		ft_putstr_fd_v2(RED"rm decimal : input non ok\n"RESET, 2);
-		return (0);
-	}
-	ulf.x = x;
-	if ((shift = 63 - lf_get_exponent(ulf.y.exponent)) >= 64)
-	{
-		ulf.y.exponent = 0;
-		ulf.y.mantissa = 0;
-	}
-	else if (shift > 0)
-	{
-		ulf.y.mantissa >>= shift;
-		ulf.y.mantissa <<= shift;
-	}
-	return (ulf.x);
-}
-
 
 static int8_t	check_exponent(long double x, long double y)
 {
@@ -116,7 +30,7 @@ static int8_t	check_exponent(long double x, long double y)
 	if (lf_get_exponent(ratio.y.exponent) >= 64)
 	{
 		printf("expo : %d\n", lf_get_exponent(ratio.y.exponent));
-		if (y != 1 && y != -1 && y != 2 && y != -2)
+		if (y != 1.L && y != -1.L && y != 2.L && y != -2.L)
 			printf(RED"modulo inapplicable\n"RESET);
 		return (1);
 	}
@@ -180,9 +94,9 @@ int			main()
 	ulf1.y.exponent = lf_set_exponent(-16383);
 	ulf1.y.mantissa = 0b0000000000000000000000000000000000000000000000000000000000000000;
 
-	ulf2.y.sign = 1;
+	ulf2.y.sign = 0;
 	// ulf2.y.exponent = 0b000000000000001;
-	ulf2.y.exponent = lf_set_exponent(16384);
+	ulf2.y.exponent = lf_set_exponent(16383);
 	ulf2.y.mantissa = 0b0000000000000000000000000000000000000000000000000000000000000000;
 
 
@@ -206,10 +120,11 @@ int			main()
 	// printf("ulf1.x : %.50Lf\n", ulf1.x);
 	// printf("\n");
 
-	// ulf2.x = lf_set_nan_inf('i', 1);
+	ulf2.x = lf_set_nan_inf('i', 0);
 	// ulf2.x /= ulf1.x;
 	// ulf2.x *= ulf1.x;
 	// ulf2.x *= 2.0;
+	// ulf2.x += 0.0L;
 
 
 
@@ -233,12 +148,16 @@ int			main()
 	// printf("ulf1.x : %.50Lf\n", ulf1.x);
 	// printf("\n");
 
-	// printf("ulf2.x removed : %.50Lf\n", lf_remove_decimal(ulf2.x));
+	printf("ulf2.x removed : %.50Lf\n", lf_remove_decimal(ulf2.x));
 	// if (lf_remove_decimal(ulf2.x) == 0)
 		// printf(YELLOW"remove == 0 \n"RESET);
 
 	// printf("ulf2.x removed + 1 : %.50Lf\n", lf_remove_decimal(ulf2.x) + 1);
 
+	if (lf_check_nupi(ulf2.x))
+		printf(ORDER"AIE\n"RESET);
+	// if (ulf2.x == ulf2.x)
+		// printf(ALLIANCE"HEHE\n"RESET);
 
 // 	if ((ulf3.x = lf_modulo_test(ulf2.x, ulf1.x)) == 0)
 // 		printf(YELLOW"yeah\n");

@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_v2.c                                     :+:      :+:    :+:   */
+/*   lf_set_nan_inf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/18 17:35:26 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/30 18:45:40 by vphongph         ###   ########.fr       */
+/*   Created: 2019/03/30 01:02:30 by vphongph          #+#    #+#             */
+/*   Updated: 2019/03/30 21:02:54 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
-int		ft_putstr_v2(char *s)
+/*
+** ATTENTION au PSEUDO INF != INF
+** ATTENTION au NaN, aucun n'est comparable, même pas à lui même
+*/
+
+long double	lf_set_nan_inf(int8_t c, int8_t sign)
 {
-	int i;
+	t_longf ulf;
 
-	i = 0;
-	if (!s)
+	ulf.y.exponent = 0b111111111111111;
+	if (sign == 0 || sign == 1)
+		ulf.y.sign = (uint8_t)sign;
+	else
+		return (0);
+	if (c == 'n')
 	{
-		write(2, RED"\aputstr v2 -> ∅ pointer\n"RESET, 45);
-		return (-1);
+		ulf.y.mantissa = (1ULL << 63) + 1;
+		return (ulf.x);
 	}
-	if ((i = write(1, s, (size_t)ft_strlen_v2(s))) == -1)
+	if (c == 'i')
 	{
-		write(2, RED"\aputstr v2 -> write ∅\n"RESET, 43);
-		return (-1);
+		ulf.y.mantissa = 1ULL << 63;
+		return (ulf.x);
 	}
-	return (i);
+	return (0);
 }
