@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/01 03:52:48 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/01 15:14:01 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 ** ATTENTION arrondi, perte de precision quand exponent * mantisse ne permet pas de representer un nombre, un arrondis s'opère, modulo pas 100% fiable, donc à appliquer avec valeurs safe
 ** modulo boo, safer
 ** TOUJOURS BIEN SURVEILLER NB BIT pour EXPONENT OU AUTRE< TRES DANGEREUX
+** Pas super fiable, avec arrondis, perte de precision etc... ou grand nombre divisé par 2.1, pas fiable
 
 */
 //
@@ -75,6 +76,7 @@ long double		lf_modulo_test(long double x, long double y)
 {
 	t_longf ratio_lf1;
 	t_longf ratio_lf2;
+	__int128_t ratio_int;
 
 	if (check_xy(x, y))
 		return (0);
@@ -83,16 +85,20 @@ long double		lf_modulo_test(long double x, long double y)
 
 	ratio_lf1.x = x/y;
 	ratio_lf2.x = lf_remove_decimal(x/y);
+	ratio_int = x/y;
 
 	printf("ratio lf1  : %.50Lf\n", ratio_lf1.x);
 	printf("expo lf1   : %d\n", lf_get_exponent(ratio_lf1.y.exponent));
 	printf("ratio lf2  : %.50Lf\n", ratio_lf2.x);
+	printf("ratio int\n");
+	ft_putnbr_base(ratio_int, 10);
+	printf("\n");
 
 	if (lf_abs(y) > lf_abs(x))
 		return (x);
-	if (ratio_lf1.x == ratio_lf2.x)
-		return (0);
-	return (x - ratio_lf2.x * y);
+	// if (ratio_lf1.x == ratio_lf2.x)
+		// return (0);
+	return (x - (__int128_t)(x/y) * y);
 }
 
 int			main()
@@ -105,29 +111,29 @@ int			main()
 
 	ulf1.y.sign = 1;
 	// ulf1.y.exponent = 0b111111111111111;
-	ulf1.y.exponent = lf_set_exponent(16383);
+	ulf1.y.exponent = lf_set_exponent(63);
 	ulf1.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000001;
 	// ulf1.y.exponent = lf_set_exponent(16383);
 	// ulf1.y.mantissa = 0b0000000000000000000000000000000000000000000000000000000000000000;
 	// ulf1.x = 2.0000000000000000001084202172485L;
 	// ulf1.x = 2.0000000000000000001084202172486L;
 	        // 0000000000000000002
-	// ulf1.x = 2.1L;
+	ulf1.x = 2.1L;
 	// ulf1.x = 2.9L;
 	// ulf1.x = 3.0L;
-	ulf1.x = 3.0L;
+	// ulf1.x = 3.0L;
 
 
 	ulf2.y.sign = 0;
 	// ulf2.y.exponent = 0b000000000000001;
-	ulf2.y.exponent = lf_set_exponent(-16382);
+	ulf2.y.exponent = lf_set_exponent(64);
 	ulf2.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000001;
 	// ulf2.y.exponent = lf_set_exponent(16383);
 	// ulf2.y.mantissa = 0b0000000000000000000000000000000000000000000000000000000000000000;
 	// ulf2.x = 1537228672809129301.375L;
 	// ulf2.x *= 2.0L;
 	// ulf2.x = 2.2L;
-	ulf2.x = 8.0L;
+	ulf2.x = 18446744073709551618.0L;
 
 	// 9223372036854775808 / 2.9
 
@@ -208,11 +214,13 @@ int			main()
 	else
 		printf("%Lf\n", ulf3.x);
 
+	printf("%f\n", fmod(18446744073709551618.0,2.1));
+
 	ulf3.y.sign = 0;
 	ulf3.y.exponent = lf_set_exponent(0);
-	ulf3.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000001;
+	ulf3.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000000;
 
-	printf("%La\n", ulf3.x);
+	// printf("%La\n", 2.5L);
 }
 // 000000001
 
