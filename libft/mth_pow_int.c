@@ -6,12 +6,11 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 15:47:58 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/30 21:06:09 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/03/31 03:39:46 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 #include <i386/limits.h>
 
 /*
@@ -26,20 +25,20 @@ static int8_t	check_result(int64_t original_x, int64_t current_x)
 {
 	if (original_x > 0 && LLONG_MAX / current_x < original_x)
 	{
-		write(1, "Result too big\n", 15);
+		ft_putstr_fd_v2(RED"Result too big\n"RESET, 2);
 		return (1);
 	}
 	if (original_x < 0)
 	{
 		if (current_x > 0 && (-LLONG_MAX - 1) / -current_x < -original_x)
 		{
-			write(1, "Result too big\n", 15);
+			ft_putstr_fd_v2(RED"Result too big\n"RESET, 2);
 			return (1);
 		}
 		if (current_x < 0 && ((-LLONG_MAX) / current_x <= 1
 				|| (-LLONG_MAX) / current_x < -original_x))
 		{
-			write(1, "Result too big\n", 15);
+			ft_putstr_fd_v2(RED"Result too big\n"RESET, 2);
 			return (1);
 		}
 	}
@@ -76,7 +75,7 @@ static int64_t	zero_one_pow(int64_t x, int64_t y)
 	if (x == 0)
 	{
 		if (y < 0)
-			write(1, "Infinity\n", 9);
+			ft_putstr_fd_v2(RED"Infinity\n"RESET, 2);
 		return (0);
 	}
 	if (x == -1 && y & 1)

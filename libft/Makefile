@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2019/03/30 21:05:25 by vphongph         ###   ########.fr        #
+#    Updated: 2019/03/31 03:15:15 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,8 +77,10 @@ $(NAME)	:	$(OBJS)
 		@ranlib $(NAME)
 		@echo $(purple_dark)" Indexing lib"$(reset)
 ifeq ($(DEBUG), yes)
+		@echo " $(CFLAGS)"$(reset)
 		@echo $(red)$(blink)" DEBUG"$(reset) $(yellow)"MODE $(NAME)"$(reset)
 else
+		@echo " $(CFLAGS)"$(reset)
 		@echo $(yellow)" NORMAL MODE $(NAME)"$(reset)
 endif
 
