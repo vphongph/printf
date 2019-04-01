@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/01 02:31:28 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/01 19:29:37 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ int				ft_strlen_v3(char *s);
 char			*ft_itoa(int n);
 int64_t			mth_pow_int(int64_t x, int64_t y);
 int16_t			ft_printbin(__uint128_t nb, uint8_t size, uint8_t format_0b);
-uint8_t			ft_putnbr_base(__uint128_t nb, uint8_t base);
+uint8_t			ft_putnbr_base(__uint128_t nb, uint8_t base, char signedness);
 __uint128_t		detectchar(__uint128_t mem, uint8_t memsize, uint8_t c);
 int16_t			lf_get_exponent(uint16_t to_get);
 uint16_t		lf_set_exponent(int16_t to_set);
