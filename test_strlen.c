@@ -6,14 +6,16 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 15:45:59 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/16 01:37:09 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/04 03:32:39 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft/libft.h"
+#include <string.h>
 
+size_t	ft_strlen(const char *s);
 int		ft_strlen_v3(char *s);
 void	*ft_memset(void *b, int c, size_t len);
 
@@ -36,17 +38,17 @@ int		main(void)
 
 	// char *s = NULL;
 
-	while (i < 10000000)
+	while (i < 1000000)
 	{
-		// ft_strlen(s);
+		ft_strlen(s);
 		// ft_strlen_v2(s);
 		// ft_strlen_v3(s);
-		strlen(s);
+		// strlen(s);
 		i++;
 	}
 
 	// printf("ft_strlen_v2 : %d\n", ft_strlen_v2(s));
-	printf("ft_strlen_v3 : %d\n", ft_strlen_v3(s));
+	// printf("ft_strlen_v3 : %d\n", ft_strlen_v3(s));
 	// printf("strlen       : %lu\n", strlen(s));
 
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/01 19:29:37 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/03 20:44:34 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # if BYTE_ORDER == LITTLE_ENDIAN
 
 /*
-**_________________________________COLORS_______________________________________
+**_________________________COLORS_(ESCAPE SEQUENCES)____________________________
 ** \e instead of \033 is ok too, but not standard (-pedantic)
 */
 
@@ -36,7 +36,9 @@
 #  define ASSEMBLY		"\033[38;2;160;97;209m"
 #  define ORDER			"\033[38;2;255;105;80m"
 #  define BLINK			"\033[5:m"
+#  define BELL			"\a"
 #  define RESET			"\033[0m"
+
 
 /*
 **_________________________________CONSTANTS____________________________________

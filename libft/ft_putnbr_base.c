@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/22 17:50:45 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/01 19:29:38 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/03 18:39:44 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,11 @@ static uint8_t	put_base10(__uint128_t nb, char *base_tab, char signedness)
 	uint8_t		i;
 
 	i = 1;
-	// ft_printbin(nb, 128, 'b');
-	// write(1, "\n", 1);
 	if ((__int128_t)nb < 0 && signedness == 's')
 	{
 		nb = -nb;
-		// ft_printbin(nb, 128, 'b');
 		write(1, "-", 1);
 	}
-	// sleep(100);
 	if (nb > 10 - 1)
 		i += put_base10(nb / 10, base_tab, signedness);
 	write(1, &base_tab[nb % 10], 1);
