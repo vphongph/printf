@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/05 04:30:29 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/05 19:47:11 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,25 @@
 // #define BIG_INT_POW5 6
 // #define BIG_INT_POW5_RES 15625
 
-#define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 100000000000000)
+// #define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 100000000000000)
+// #define BIG_INT_MAX (BIG_INT_CARRY - 1)
+// #define BIG_INT_SIZE 349
+// #define BIG_INT_DIGIT 33
+// #define BIG_INT_FACTOR 340282
+// #define BIG_INT_POW2 18
+// #define BIG_INT_POW2_RES 262144
+// #define BIG_INT_POW5 7
+// #define BIG_INT_POW5_RES 78125
+
+#define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 10000000000000)
 #define BIG_INT_MAX (BIG_INT_CARRY - 1)
-#define BIG_INT_SIZE 349
-#define BIG_INT_DIGIT 33
-#define BIG_INT_FACTOR 340282
-#define BIG_INT_POW2 18
-#define BIG_INT_POW2_RES 262144
-#define BIG_INT_POW5 7
-#define BIG_INT_POW5_RES 78125
+#define BIG_INT_SIZE 360
+#define BIG_INT_DIGIT 32
+#define BIG_INT_FACTOR 3402823
+#define BIG_INT_POW2 21
+#define BIG_INT_POW2_RES 2097152
+#define BIG_INT_POW5 9
+#define BIG_INT_POW5_RES 1953125
 
 // #define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 10)
 // #define BIG_INT_MAX (BIG_INT_CARRY - 1)
@@ -294,25 +304,28 @@ int		main(void)
 	// 	i++;
 	// }
 
-	int i = 0;
-	// while (i < 100)
-	{
-		// big_int_pow_of_2(tab128, BIG_INT_SIZE, 16383);
-		i++;
-	}
+	t_longf ulf1;
 
+	ulf1.y.sign = 0;
+	ulf1.y.exponent = 0b111111111111110;
+	ulf1.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000000;
+
+
+	int i = 0;
+	while (i < 100)
+	{
+		big_int_pow_of_2(tab128, BIG_INT_SIZE, -16445);
+		// printf("%Lf\n", ulf1.x);
+		i++;
+		i++;
+
+	}
 
 
 	printf("\nbig int print out : %d", big_int_print(tab, BIG_INT_SIZE));
 	printf("\n\n");
 	// printf("digit : %d\n\n", big_int_count(tab, BIG_INT_SIZE));
 
-
-	t_longf ulf1;
-
-	ulf1.y.sign = 0;
-	ulf1.y.exponent = 0b111111111111110;
-	ulf1.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000000;
 
 	// ft_printbin(ulf1.y.sign, 1, 'b');
 	// printf("\n");
@@ -321,7 +334,6 @@ int		main(void)
 	// ft_printbin(ulf1.y.mantissa, 64, 'b');
 	// printf("\n");
 
-	printf("%Lf\n", ulf1.x);
 
 	// ft_putnbr_base(UINT128_MAX, 10, 0);
 	// printf("\n");
