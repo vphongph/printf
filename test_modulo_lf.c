@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/01 15:14:01 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/06 03:12:18 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** On pourrait croire que 10 % 0.1 = 0 mais la base 2 ne le permet pas.
 ** ATTENTION à bien préciser long double si on entre un float litéral en parma(1.0L)
 , sinon perte
-*8 de précision, la mantisse ne vaut pas 64 bits
+*8 de précision, la mantisse ne vaut pas 64 bits, pareil literal dans variable
 ** Si x/2
 ** ATTENTION arrondi, perte de precision quand exponent * mantisse ne permet pas de representer un nombre, un arrondis s'opère, modulo pas 100% fiable, donc à appliquer avec valeurs safe
 ** modulo boo, safer
