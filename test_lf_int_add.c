@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/06 03:28:38 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/07 03:30:18 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,61 +24,74 @@
 	* 0x10 + 0xFFFFFFFFFFFFFFFF)
 #define INT128_MIN ((__uint128_t)0x8000000000000000 * 0x1000000000000000 * 0x10)
 #define INT128_MAX (INT128_MIN - 1)
+#define DISTRIB_INT128_INT16 ((__uint128_t)0x0001000100010001 * 0x1000000000000 * 0x10000 + 0x0001000100010001)
+#define MANTISSA_TAB 64
+
 // #define BIG_INT_DIGIT 37
 // #define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 1000000000000000000)
 // #define BIG_INT_MAX (BIG_INT_CARRY - 1)
 // #define BIG_INT_FACTOR (UINT128_MAX / BIG_INT_CARRY)
-// #define BIG_INT_SIZE 312
+// #define BIG_INT_TAB 312
 // #define BIG_INT_POW2 5
 // #define BIG_INT_POW2_RES 32
 // #define BIG_INT_POW5 2
 // #define BIG_INT_POW5_RES 25
+// #define BIG_INT_EXPO 16445
+
 
 // #define BIG_INT_DIGIT 36
 // #define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 100000000000000000)
 // #define BIG_INT_MAX (BIG_INT_CARRY - 1)
 // #define BIG_INT_FACTOR (UINT128_MAX / BIG_INT_CARRY)
-// #define BIG_INT_SIZE 320
+// #define BIG_INT_TAB 320
 // #define BIG_INT_POW2 8
 // #define BIG_INT_POW2_RES 256
 // #define BIG_INT_POW5 3
 // #define BIG_INT_POW5_RES 125
+// #define BIG_INT_EXPO 16445
+
 
 // #define BIG_INT_DIGIT 35
 // #define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 10000000000000000)
 // #define BIG_INT_MAX (BIG_INT_CARRY - 1)
 // #define BIG_INT_FACTOR (UINT128_MAX / BIG_INT_CARRY)
-// #define BIG_INT_SIZE 329
+// #define BIG_INT_TAB 329
 // #define BIG_INT_POW2 11
 // #define BIG_INT_POW2_RES 2048
 // #define BIG_INT_POW5 5
 // #define BIG_INT_POW5_RES 3125
+// #define BIG_INT_EXPO 16445
+
 
 // #define BIG_INT_DIGIT 34
 // #define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 1000000000000000)
 // #define BIG_INT_MAX (BIG_INT_CARRY - 1)
 // #define BIG_INT_FACTOR (UINT128_MAX / BIG_INT_CARRY)
-// #define BIG_INT_SIZE 339
+// #define BIG_INT_TAB 339
 // #define BIG_INT_POW2 15
 // #define BIG_INT_POW2_RES 32768
 // #define BIG_INT_POW5 6
 // #define BIG_INT_POW5_RES 15625
+// #define BIG_INT_EXPO 16445
+
 
 // #define BIG_INT_DIGIT 33
 // #define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 100000000000000)
 // #define BIG_INT_MAX (BIG_INT_CARRY - 1)
 // #define BIG_INT_FACTOR (UINT128_MAX / BIG_INT_CARRY)
-// #define BIG_INT_SIZE 349
+// #define BIG_INT_TAB 349
 // #define BIG_INT_POW2 18
 // #define BIG_INT_POW2_RES 262144
 // #define BIG_INT_POW5 7
 // #define BIG_INT_POW5_RES 78125
+// #define BIG_INT_EXPO 16445
+
 
 #define BIG_INT_DIGIT 32
 #define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 10000000000000)
 #define BIG_INT_MAX (BIG_INT_CARRY - 1)
 #define BIG_INT_FACTOR (UINT128_MAX / BIG_INT_CARRY)
-#define BIG_INT_SIZE 360
+#define BIG_INT_TAB 360
 #define BIG_INT_POW2 21
 #define BIG_INT_POW2_RES 2097152
 #define BIG_INT_POW5 9
@@ -92,7 +105,7 @@
 ** ____BIG_INT_CARRY____
 ** Valeur à partir de laquelle on est dans la retenue, nb de 0 de CARRY = DIGIT
 ** + DIGIT petit + CARRY grand
-** ____BIG_INT_SIZE____
+** ____BIG_INT_TAB____
 ** Taille min du tableau pour contenir le plus petit float sans les leading 0
 ** Soit => 11 514 chiffres / DIGIT (+ 1, si modolo != 0)
 ** ____BIG_INT_FACTOR____
@@ -108,21 +121,24 @@
 // #define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 1000000000000)
 // #define BIG_INT_MAX (BIG_INT_CARRY - 1)
 // #define BIG_INT_FACTOR (UINT128_MAX / BIG_INT_CARRY)
-// #define BIG_INT_SIZE 372
+// #define BIG_INT_TAB 372
 // #define BIG_INT_POW2 25
 // #define BIG_INT_POW2_RES 33554432
 // #define BIG_INT_POW5 10
 // #define BIG_INT_POW5_RES 9765625
+// #define BIG_INT_EXPO 16445
+
 
 // #define BIG_INT_DIGIT 20
 // #define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 10)
 // #define BIG_INT_MAX (BIG_INT_CARRY - 1)
 // #define BIG_INT_FACTOR (UINT128_MAX / BIG_INT_CARRY)
-// #define BIG_INT_SIZE 576
+// #define BIG_INT_TAB 576
 // #define BIG_INT_POW2 61
 // #define BIG_INT_POW2_RES 2305843009213693952
 // #define BIG_INT_POW5 26
 // #define BIG_INT_POW5_RES 1490116119384765625
+// #define BIG_INT_EXPO 16445
 
 
 
@@ -226,7 +242,7 @@ __uint128_t	*big_int_x(__uint128_t *tab_nb, uint16_t tab_size, uint64_t factor)
 {
 	int64_t carry;
 
-	if (!tab_nb || tab_size > BIG_INT_SIZE || factor > BIG_INT_FACTOR)
+	if (!tab_nb || tab_size > BIG_INT_TAB || factor > BIG_INT_FACTOR)
 	{
 		ft_putstr_fd_v2(RED"Big int x -> ∅\n"RESET, 2);
 		return (tab_nb);
@@ -245,7 +261,7 @@ __uint128_t	*big_int_add(__uint128_t *tab_nb1,__uint128_t *tab_nb2, uint16_t tab
 {
 	int64_t carry;
 
-	if (!tab_nb1 || !tab_nb2 || tab_size > BIG_INT_SIZE)
+	if (!tab_nb1 || !tab_nb2 || tab_size > BIG_INT_TAB)
 	{
 		ft_putstr_fd_v2(RED"Big int add -> ∅\n"RESET, 2);
 		return (NULL);
@@ -295,9 +311,12 @@ __uint128_t	*big_int_add(__uint128_t *tab_nb1,__uint128_t *tab_nb2, uint16_t tab
 
 __uint128_t	*big_int_pow_of_2(__uint128_t *tab_nb, uint16_t tab_size, int64_t exponent)
 {
-	if (!tab_nb || tab_size > BIG_INT_SIZE || exponent > BIG_INT_EXPO
+	if (!tab_nb || tab_size > BIG_INT_TAB || exponent > BIG_INT_EXPO
 		|| exponent < -BIG_INT_EXPO)
+	{
+		ft_putstr_fd_v2(RED"Big int pow of 2 -> ∅\n"RESET, 2);
 		return (tab_nb);
+	}
 	ft_bzero_v2(tab_nb, sizeof(__uint128_t) * tab_size);
 	tab_nb[tab_size - 1] = 1;
 	if (exponent < 0 )
@@ -313,7 +332,7 @@ int16_t	big_int_count(__uint128_t *tab_nb, uint16_t tab_size)
 	int16_t digit;
 	int16_t i;
 
-	if (!tab_nb || tab_size > BIG_INT_SIZE)
+	if (!tab_nb || tab_size > BIG_INT_TAB)
 	{
 		ft_putstr_fd_v2(RED"Big int count -> ∅\n"RESET, 2);
 		return (0);
@@ -337,28 +356,54 @@ int16_t	big_int_count(__uint128_t *tab_nb, uint16_t tab_size)
 __uint128_t *big_int_float(__uint128_t *tab_nb, uint16_t tab_size, int16_t *tab_expo)
 {
 	int16_t i;
-	(void)tab_nb;
-	(void)tab_size;
+	int16_t diff_expo;
+	__uint128_t tab_nb_tmp[BIG_INT_TAB];
 
-	i = -1;
-	while (tab_expo[++i] >= 0)
-			;
-	printf("%d\n", i);
-
-	// big_int_pow_of_2(tab_nb, tab_size, tab_expo[0]);
-
-	return (NULL);
+	i = 0;
+	while (tab_expo[i] != BIG_INT_EXPO + 1 && tab_expo[i] >= 0)
+			i++;
+	if (!i)
+		return (tab_nb);
+	diff_expo = tab_expo[i - 1];
+	big_int_pow_of_2(tab_nb_tmp, tab_size, tab_expo[i - 1]);
+	big_int_add(tab_nb, tab_nb_tmp, tab_size);
+	i -= 2;
+	while (i >= 0)
+	{
+		while (tab_expo[i] - diff_expo)
+		{
+			big_int_x(tab_nb_tmp, tab_size, 2);
+			diff_expo++;
+		}
+		big_int_add(tab_nb, tab_nb_tmp, tab_size);
+		i--;
+	}
+	return (tab_nb);
 }
 
-int *lf_get_mantissa_pow()
+int	lf_get_mantissa_pow(int16_t *tab_expo, int64_t mantissa)
+{
+	int16_t i;
+	(void)mantissa;
+
+	i = 0;
+	while ((uint16_t)i < sizeof(int16_t) * MANTISSA_TAB / sizeof(__uint128_t))
+	{
+		((__uint128_t *)tab_expo)[i] = (BIG_INT_EXPO + 1) * DISTRIB_INT128_INT16;
+		i++;
+	}
+	return (0);
+}
 
 int		main(void)
 {
-	__uint128_t tab128[BIG_INT_SIZE];
-	__uint128_t tab128_2[BIG_INT_SIZE];
+	__uint128_t tab128[BIG_INT_TAB];
+	__uint128_t tab128_2[BIG_INT_TAB];
 	__uint128_t *tab;
 	__uint128_t *tab2;
-	int16_t tab_expo[64] = {5, 4, 3, 2, 1, 0, -BIG_INT_EXPO};
+	int16_t tab_expo[MANTISSA_TAB] = {16000,128, 64, 10, -1, BIG_INT_EXPO + 1};
+
+	// lf_get_mantissa_pow(tab_expo, 10);
 
 	t_longf ulf1;(void) ulf1;
 	t_longf ulf2;(void) ulf2;
@@ -385,45 +430,46 @@ int		main(void)
 	// printf("%.64Lf\n", ulf2.x);
 
 
-
 	tab = tab128;
 	tab2 = tab128_2;
 
 	ft_bzero_v2(tab128, sizeof (tab128));
 	ft_bzero_v2(tab128_2, sizeof (tab128_2));
 
-	big_int_float(tab128, BIG_INT_SIZE, tab_expo);
+	// tab128[BIG_INT_TAB -3] = (__uint128_t)42ULL;
+	// tab128_2[BIG_INT_TAB -3] = (__uint128_t)42ULL;
 
-	// tab128[BIG_INT_SIZE -3] = (__uint128_t)42ULL;
-	// tab128_2[BIG_INT_SIZE -3] = (__uint128_t)42ULL;
+	// tab128[BIG_INT_TAB -2] = (__uint128_t)0ULL;
+	// tab128_2[BIG_INT_TAB -2] = (__uint128_t)0ULL;
 
-	// tab128[BIG_INT_SIZE -2] = (__uint128_t)0ULL;
-	// tab128_2[BIG_INT_SIZE -2] = (__uint128_t)0ULL;
+	tab128[BIG_INT_TAB -1] = 42;
+	// tab128_2[BIG_INT_TAB -1] = 1;
 
-	// tab128[BIG_INT_SIZE -1] = 1;
-	// tab128_2[BIG_INT_SIZE -1] = 1;
+	// printf("\nbig int print out : %d\n\n", big_int_print(tab, BIG_INT_TAB));
 
-	// printf("\nbig int print out : %d", big_int_print(tab, BIG_INT_SIZE));
-	// printf("\n\n");
+	big_int_float(tab128, BIG_INT_TAB, tab_expo);
 
 	int i = 1;
 	// while (i < 100)
 	{
-		// big_int_x(tab128, BIG_INT_SIZE, 2);
-		// big_int_pow_of_2(tab128, BIG_INT_SIZE, 16383);
-		// big_int_pow_of_2(tab128_2, BIG_INT_SIZE, 16383);
+		// big_int_x(tab128, BIG_INT_TAB, 2);
+		// big_int_pow_of_2(tab128, BIG_INT_TAB, 16383);
+		// big_int_pow_of_2(tab128_2, BIG_INT_TAB, 16383);
 		// while (i++ < 64)
-			// big_int_add(tab128, tab128_2, BIG_INT_SIZE);
+			// big_int_add(tab128, tab128_2, BIG_INT_TAB);
 		i++;
 	}
 
 
-	// printf("\nbig int print out : %d", big_int_print(tab, BIG_INT_SIZE));
-	// printf("\n\n");
-	// printf("digit : %d\n\n", big_int_count(tab, BIG_INT_SIZE));
+	printf("\nbig int print out : %d\n\n", big_int_print(tab, BIG_INT_TAB));
 
-	// ft_putnbr_base(BIG_INT_FACTOR, 10, 0);
-	// printf("\n");
+	i = 0;
+	while (i < 64)
+	{
+		printf("%d\n", tab_expo[i]);
+		i++;
+	}
+	printf("digit : %d\n\n", big_int_count(tab, BIG_INT_TAB));
 
 	return (0);
 }
