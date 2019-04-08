@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 17:36:31 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/06 21:08:13 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/07 19:38:39 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,24 @@ void	*ft_memset(void *b, int c, size_t len);
 
 int main(void)
 {
-	int16_t tab[64];
+	int16_t tab[64]; (void)tab;
 	// f	t_memset(tab, 0x7f , sizeof(tab));
-	ft_bzero_v2(tab, sizeof(tab));
+	// ft_bzero_v2(tab, sizeof(tab));
+	//
+	int i = 0; (void)i;
+	//
+	// while ((unsigned int)i < sizeof(tab) / sizeof(__uint128_t))
+	// {
+	// 	((__uint128_t *)tab)[i] = 16446 * DISTRIB_INT128_INT16;
+	// 	i++;
+	// }
+	//
+	// i = 0;
+	// while (i < 	64)
+	// {
+	// 	printf("%c\n", tab[i]);
+	// 	i++;
+	// }
 
-	int i = 0;
-
-	while ((unsigned int)i < sizeof(tab) / sizeof(__uint128_t))
-	{
-		((__uint128_t *)tab)[i] = 16446 * DISTRIB_INT128_INT16;
-		i++;
-	}
-
-	i = 0;
-	while (i < 	64)
-	{
-		printf("%c\n", tab[i]);
-		i++;
-	}
 	return (0);
 }

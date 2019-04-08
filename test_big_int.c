@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_lf_int_add.c                                  :+:      :+:    :+:   */
+/*   test_big_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/07 03:30:18 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/08 22:13:00 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 #include <unistd.h>
 #include "libft/libft.h"
 #include "ft_printf.h"
+#include <limits.h>
 
-/*
-**  340282366920938463463374607431768211455
-** -170141183460469231731687303715884105728
-**  170141183460469231731687303715884105727
-*/
-#define UINT128_MAX ((__uint128_t)0xFFFFFFFFFFFFFFFF * 0x1000000000000000 \
-	* 0x10 + 0xFFFFFFFFFFFFFFFF)
-#define INT128_MIN ((__uint128_t)0x8000000000000000 * 0x1000000000000000 * 0x10)
-#define INT128_MAX (INT128_MIN - 1)
-#define DISTRIB_INT128_INT16 ((__uint128_t)0x0001000100010001 * 0x1000000000000 * 0x10000 + 0x0001000100010001)
-#define MANTISSA_TAB 64
+// #define TEST_MAX ((__uint128_t)ULLONG_MAX * 0x1000000000000000 * 0x10 + ULLONG_MAX)
+//
+// #define UINT128_MAX ((__uint128_t)0xFFFFFFFFFFFFFFFF * 0x1000000000000000 \
+// 	* 0x10 + 0xFFFFFFFFFFFFFFFF)
+// #define INT128_MIN ((__uint128_t)0x8000000000000000 * 0x1000000000000000 * 0x10)
+// #define INT128_MAX (INT128_MIN - 1)
+// #define DISTRIB_INT128_INT16 ((__uint128_t)0x0001000100010001 * 0x1000000000000 * 0x10000 + 0x0001000100010001)
+// #define MANTISSA_TAB 64
 
 // #define BIG_INT_DIGIT 37
 // #define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 1000000000000000000)
@@ -86,37 +84,6 @@
 // #define BIG_INT_POW5_RES 78125
 // #define BIG_INT_EXPO 16445
 
-
-#define BIG_INT_DIGIT 32
-#define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 10000000000000)
-#define BIG_INT_MAX (BIG_INT_CARRY - 1)
-#define BIG_INT_FACTOR (UINT128_MAX / BIG_INT_CARRY)
-#define BIG_INT_TAB 360
-#define BIG_INT_POW2 21
-#define BIG_INT_POW2_RES 2097152
-#define BIG_INT_POW5 9
-#define BIG_INT_POW5_RES 1953125
-#define BIG_INT_EXPO 16445
-
-
-/*
-** ____BIG_INT_DIGIT____
-** Nb de chiffres max dans un big int
-** ____BIG_INT_CARRY____
-** Valeur à partir de laquelle on est dans la retenue, nb de 0 de CARRY = DIGIT
-** + DIGIT petit + CARRY grand
-** ____BIG_INT_TAB____
-** Taille min du tableau pour contenir le plus petit float sans les leading 0
-** Soit => 11 514 chiffres / DIGIT (+ 1, si modolo != 0)
-** ____BIG_INT_FACTOR____
-** Facteur max sans int overflow, + CARRY grand + FACTOR grand
-** -> UINT128_MAX / CARRY (== 34028236)
-** ____BIG_INT_POW2____
-** Puissance de 2 max >= FACTOR
-** ____ BIG_INT_POW5____
-** Puissance de 5 max >= FACTOR
-*/
-
 // #define BIG_INT_DIGIT 31
 // #define BIG_INT_CARRY ((__uint128_t)10000000000000000000ULL * 1000000000000)
 // #define BIG_INT_MAX (BIG_INT_CARRY - 1)
@@ -140,24 +107,20 @@
 // #define BIG_INT_POW5_RES 1490116119384765625
 // #define BIG_INT_EXPO 16445
 
-
-
-// static const __uint128_t uint128_max = (__uint128_t)0xFFFFFFFFFFFFFFFF * 0x1000000000000000 * 0x10 + 0xFFFFFFFFFFFFFFFF;
-
 /*
-ATTENTION MACRO
-ATTENTION % -> & ne fonctionne qu'qvec multiple de puissance de 2 comme / ->  >>
+ATTENTION MACRO, priorité de calcul se fait après avoir été écrit, penser à mettre des parenthèses
+ATTENTION % -> & ne fonctionne qu'avec multiple de puissance de 2 comme / ->  >>
 */
 
-
-__int128_t	mth_fast_pow(__int128_t nb , __int128_t exponent)
-{
-	if (exponent == 1)
-		return (nb);
-	if (!(exponent & 1))
-		return (mth_fast_pow(nb * nb, exponent / 2));
-	return (nb * mth_fast_pow(nb * nb, (exponent - 1) / 2));
-}
+//
+// __int128_t mth_fast_pow(__int128_t nb , __int128_t exponent)
+// {
+// 	if (exponent == 1)
+// 		return (nb);
+// 	if (!(exponent & 1))
+// 		return (mth_fast_pow(nb * nb, exponent / 2));
+// 	return (nb * mth_fast_pow(nb * nb, (exponent - 1) / 2));
+// }
 
 //
 // __int128_t	*big_int_fast_pow(__int128_t nb , __int128_t exponent)
@@ -195,165 +158,7 @@ __int128_t	mth_fast_pow(__int128_t nb , __int128_t exponent)
 // }
 //
 
-
-int16_t	big_int_print(__uint128_t *tab_nb, int16_t tab_size)
-{
-	int16_t i;
-	int16_t j;
-	__uint128_t carry;
-
-	if (!tab_nb && ft_putstr_fd_v2("null", 2))
-		return (0);
-
-	i = 0;
-	j = 0;
-	carry = BIG_INT_CARRY;
-
-	while (i < tab_size && !(tab_nb[i]))
-		i++;
-	if (i < tab_size && tab_nb[i])
-		j += ft_putnbr_base(tab_nb[i++], 10, 0);
-	while (i < tab_size)
-	{
-		if (tab_nb[i])
-		{
-			while (tab_nb[i] < carry / 10)
-			{
-				write(1, "0", 1);
-				carry /= 10;
-				j++;
-			}
-			carry = BIG_INT_CARRY;
-			j += ft_putnbr_base(tab_nb[i], 10, 0);
-		}
-		else
-		{
-			write (1,"0000000000000000000000000000000000000", BIG_INT_DIGIT);
-			j += BIG_INT_DIGIT;
-		}
-		i++;
-	}
-	if (j == 0)
-		write(1, "0", 1);
-	return (j);
-}
-
-__uint128_t	*big_int_x(__uint128_t *tab_nb, uint16_t tab_size, uint64_t factor)
-{
-	int64_t carry;
-
-	if (!tab_nb || tab_size > BIG_INT_TAB || factor > BIG_INT_FACTOR)
-	{
-		ft_putstr_fd_v2(RED"Big int x -> ∅\n"RESET, 2);
-		return (tab_nb);
-	}
-	carry = 0;
-	while (tab_size-- > 0)
-	{
-		tab_nb[tab_size] *= factor;
-		tab_nb[tab_size] += carry;
-		if ((carry = (tab_nb[tab_size] / BIG_INT_CARRY)))
-			tab_nb[tab_size] %= BIG_INT_CARRY;
-	}
-	return (tab_nb);
-}
-__uint128_t	*big_int_add(__uint128_t *tab_nb1,__uint128_t *tab_nb2, uint16_t tab_size)
-{
-	int64_t carry;
-
-	if (!tab_nb1 || !tab_nb2 || tab_size > BIG_INT_TAB)
-	{
-		ft_putstr_fd_v2(RED"Big int add -> ∅\n"RESET, 2);
-		return (NULL);
-	}
-	carry = 0;
-	while (tab_size-- > 0)
-	{
-		tab_nb1[tab_size] += tab_nb2[tab_size];
-		tab_nb1[tab_size] += carry;
-		if ((carry = (tab_nb1[tab_size] / BIG_INT_CARRY)))
-			tab_nb1[tab_size] %= BIG_INT_CARRY;
-	}
-	return (tab_nb1);
-}
-
-
-
- __uint128_t *pow_of_2_positive(__uint128_t *tab_nb, uint16_t tab_size, int64_t exponent)
-{
-	int16_t first_run;
-	int16_t second_run;
-
-	first_run = exponent / BIG_INT_POW2;
-	second_run = exponent % BIG_INT_POW2;
-	while (first_run--)
-		big_int_x(tab_nb, tab_size, BIG_INT_POW2_RES);
-	while (second_run--)
-		big_int_x(tab_nb, tab_size, 2);
-	return (tab_nb);
-}
-
- __uint128_t *pow_of_2_negative(__uint128_t *tab_nb, uint16_t tab_size, int64_t exponent)
-{
-	int16_t first_run;
-	int16_t second_run;
-
-	first_run = -exponent / BIG_INT_POW5;
-	second_run = -exponent % BIG_INT_POW5;
-
-	while (first_run--)
-		big_int_x(tab_nb, tab_size, BIG_INT_POW5_RES);
-	while (second_run--)
-		big_int_x(tab_nb, tab_size, 5);
-	return (tab_nb);
-}
-
-
-__uint128_t	*big_int_pow_of_2(__uint128_t *tab_nb, uint16_t tab_size, int64_t exponent)
-{
-	if (!tab_nb || tab_size > BIG_INT_TAB || exponent > BIG_INT_EXPO
-		|| exponent < -BIG_INT_EXPO)
-	{
-		ft_putstr_fd_v2(RED"Big int pow of 2 -> ∅\n"RESET, 2);
-		return (tab_nb);
-	}
-	ft_bzero_v2(tab_nb, sizeof(__uint128_t) * tab_size);
-	tab_nb[tab_size - 1] = 1;
-	if (exponent < 0 )
-		return (pow_of_2_negative(tab_nb, tab_size, exponent));
-	if (exponent > 0)
-		return (pow_of_2_positive(tab_nb, tab_size, exponent));
-	return (tab_nb);
-}
-
-
-int16_t	big_int_count(__uint128_t *tab_nb, uint16_t tab_size)
-{
-	int16_t digit;
-	int16_t i;
-
-	if (!tab_nb || tab_size > BIG_INT_TAB)
-	{
-		ft_putstr_fd_v2(RED"Big int count -> ∅\n"RESET, 2);
-		return (0);
-	}
-	i = 0;
-	digit = 0;
-	while (i < tab_size && !tab_nb[i])
-		i++;
-	while (i < tab_size && tab_nb[i] / 10)
-	{
-		tab_nb[i] /= 10;
-		digit++;
-	}
-	if (i < tab_size && tab_nb[i] / 1)
-		digit++;
-	while (++i < tab_size)
-		digit += BIG_INT_DIGIT;
-	return (digit);
-}
-
-__uint128_t *big_int_float(__uint128_t *tab_nb, uint16_t tab_size, int16_t *tab_expo)
+__uint128_t *big_int_pos_expo(__uint128_t *tab_nb, uint16_t tab_size, int16_t *tab_expo)
 {
 	int16_t i;
 	int16_t diff_expo;
@@ -381,95 +186,84 @@ __uint128_t *big_int_float(__uint128_t *tab_nb, uint16_t tab_size, int16_t *tab_
 	return (tab_nb);
 }
 
-int	lf_get_mantissa_pow(int16_t *tab_expo, int64_t mantissa)
-{
-	int16_t i;
-	(void)mantissa;
-
-	i = 0;
-	while ((uint16_t)i < sizeof(int16_t) * MANTISSA_TAB / sizeof(__uint128_t))
-	{
-		((__uint128_t *)tab_expo)[i] = (BIG_INT_EXPO + 1) * DISTRIB_INT128_INT16;
-		i++;
-	}
-	return (0);
-}
-
 int		main(void)
 {
 	__uint128_t tab128[BIG_INT_TAB];
 	__uint128_t tab128_2[BIG_INT_TAB];
-	__uint128_t *tab;
-	__uint128_t *tab2;
-	int16_t tab_expo[MANTISSA_TAB] = {16000,128, 64, 10, -1, BIG_INT_EXPO + 1};
+	int16_t tab_expo[MANTISSA_TAB + 1];
+	int i = 0;
 
-	// lf_get_mantissa_pow(tab_expo, 10);
-
+	(void)tab_expo;
 	t_longf ulf1;(void) ulf1;
 	t_longf ulf2;(void) ulf2;
+	ulf2.y.sign = 0;
+	ulf2.y.exponent = 0b000000000000001;
+	ulf2.y.mantissa = 0b1111111111111111111111111111111111111111111111111111111111111111;
 
-	// ulf1.y.sign = 0;
-	// ulf1.y.exponent = 0b111111111111110;
-	// ulf1.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000000;
+	// printf("%d\n", lf_get_exponent(ulf2.y.exponent));
+	lf_get_mantissa_pow(tab_expo, ulf2.y.mantissa ,ulf2.y.exponent);
+	// printf("%Lf\n", ulf2.x);
 
-	// ulf2.y.sign = 0;
-	// ulf2.y.exponent = 0b100000000000000;
-	// ulf2.y.mantissa = 0b1000011001100110011001100110011001100110011001100110011001100110;
 
 	// ulf1.x = 1;
 	// ulf2.x = 0.1L;
 
-	// ft_printbin(ulf2.y.sign, 1, 'b');
-	// printf("\n");
-	// ft_printbin(ulf2.y.exponent, 15, 'b');
-	// printf("\n");
-	// ft_printbin(ulf2.y.mantissa, 64, 'b');
-	// printf("\n");
+	ft_printbin(ulf2.y.sign, 1, 'b');
+	printf("\n");
+	ft_printbin(ulf2.y.exponent, 15, 'b');
+	printf("\n");
+	ft_printbin(ulf2.y.mantissa, 64, 'b');
+	printf("\n");
 
 	// printf("%.64Lf\n", ulf1.x / ulf2.x);
-	// printf("%.64Lf\n", ulf2.x);
+	printf("%.64Lf\n", ulf2.x);
 
-
-	tab = tab128;
-	tab2 = tab128_2;
 
 	ft_bzero_v2(tab128, sizeof (tab128));
 	ft_bzero_v2(tab128_2, sizeof (tab128_2));
 
-	// tab128[BIG_INT_TAB -3] = (__uint128_t)42ULL;
-	// tab128_2[BIG_INT_TAB -3] = (__uint128_t)42ULL;
+	// while (i < BIG_INT_TAB)
+	// {
+		// ft_putnbr_base(tab128[i], 10 , 0);
+		// printf("\n");
+		// i++;
+	// }
 
-	// tab128[BIG_INT_TAB -2] = (__uint128_t)0ULL;
-	// tab128_2[BIG_INT_TAB -2] = (__uint128_t)0ULL;
+	// tab128[BIG_INT_TAB -3] = 4221105;
+	// tab128_2[BIG_INT_TAB -3] = 42L;
 
-	tab128[BIG_INT_TAB -1] = 42;
+	// tab128[BIG_INT_TAB -2] = 0;
+	// tab128_2[BIG_INT_TAB -2] = 0;
+
+	// tab128[BIG_INT_TAB -1] = 21;
 	// tab128_2[BIG_INT_TAB -1] = 1;
 
 	// printf("\nbig int print out : %d\n\n", big_int_print(tab, BIG_INT_TAB));
 
-	big_int_float(tab128, BIG_INT_TAB, tab_expo);
+	big_int_pos_expo(tab128, BIG_INT_TAB, tab_expo);
 
-	int i = 1;
+	// int i = 1;
 	// while (i < 100)
-	{
+	// {
 		// big_int_x(tab128, BIG_INT_TAB, 2);
 		// big_int_pow_of_2(tab128, BIG_INT_TAB, 16383);
 		// big_int_pow_of_2(tab128_2, BIG_INT_TAB, 16383);
 		// while (i++ < 64)
 			// big_int_add(tab128, tab128_2, BIG_INT_TAB);
-		i++;
-	}
+		// i++;
+	// }
+
+	printf("digit : %d\n\n", big_int_count(tab128, BIG_INT_TAB));
 
 
-	printf("\nbig int print out : %d\n\n", big_int_print(tab, BIG_INT_TAB));
+	printf("\nbig int print out : %d\n\n", big_int_print(tab128, BIG_INT_TAB));
 
 	i = 0;
-	while (i < 64)
+	while (i < MANTISSA_TAB + 1)
 	{
 		printf("%d\n", tab_expo[i]);
 		i++;
 	}
-	printf("digit : %d\n\n", big_int_count(tab, BIG_INT_TAB));
 
 	return (0);
 }
