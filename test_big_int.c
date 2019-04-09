@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/08 22:13:00 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/09 16:32:01 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,16 +197,13 @@ int		main(void)
 	t_longf ulf1;(void) ulf1;
 	t_longf ulf2;(void) ulf2;
 	ulf2.y.sign = 0;
-	ulf2.y.exponent = 0b000000000000001;
-	ulf2.y.mantissa = 0b1111111111111111111111111111111111111111111111111111111111111111;
+	ulf2.y.exponent = 0b100000000000000;
+	ulf2.y.mantissa = 0b1111111111111111111111111111111111111111111111111111111110000000;
+	ulf2.x = 2.1;
 
 	// printf("%d\n", lf_get_exponent(ulf2.y.exponent));
-	lf_get_mantissa_pow(tab_expo, ulf2.y.mantissa ,ulf2.y.exponent);
-	// printf("%Lf\n", ulf2.x);
-
-
-	// ulf1.x = 1;
-	// ulf2.x = 0.1L;
+	lf_get_mantissa_pow(tab_expo, ulf2.x);
+	printf("%Lf\n", ulf2.x);
 
 	ft_printbin(ulf2.y.sign, 1, 'b');
 	printf("\n");
@@ -216,7 +213,7 @@ int		main(void)
 	printf("\n");
 
 	// printf("%.64Lf\n", ulf1.x / ulf2.x);
-	printf("%.64Lf\n", ulf2.x);
+	// printf("%.64Lf\n", ulf2.x);
 
 
 	ft_bzero_v2(tab128, sizeof (tab128));
@@ -240,7 +237,7 @@ int		main(void)
 
 	// printf("\nbig int print out : %d\n\n", big_int_print(tab, BIG_INT_TAB));
 
-	big_int_pos_expo(tab128, BIG_INT_TAB, tab_expo);
+	// big_int_pos_expo(tab128, BIG_INT_TAB, tab_expo);
 
 	// int i = 1;
 	// while (i < 100)
@@ -253,10 +250,10 @@ int		main(void)
 		// i++;
 	// }
 
-	printf("digit : %d\n\n", big_int_count(tab128, BIG_INT_TAB));
+	// printf("digit : %d\n\n", big_int_count(tab128, BIG_INT_TAB));
 
 
-	printf("\nbig int print out : %d\n\n", big_int_print(tab128, BIG_INT_TAB));
+	// printf("\nbig int print out : %d\n\n", big_int_print(tab128, BIG_INT_TAB));
 
 	i = 0;
 	while (i < MANTISSA_TAB + 1)

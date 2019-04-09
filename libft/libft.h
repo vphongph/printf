@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/03 20:44:34 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/09 16:45:25 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,21 @@ typedef union	u_longf
 	long double				x;
 	struct s_long_double	y;
 }				t_longf;
+
+struct			s_double
+{
+	uint64_t		mantissa;
+	uint16_t		exponent : 11;
+	uint8_t			sign : 1;
+	uint64_t		padding : 48;
+};
+
+typedef union	u_float
+{
+	long double		x;
+	struct s_double	y;
+}				t_float;
+
 
 /*
 **_________________________________PROTOTYPES___________________________________

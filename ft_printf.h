@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:36 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/08 22:05:49 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/09 16:18:49 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 	* 0x10 + 0xFFFFFFFFFFFFFFFF)
 #  define INT128_MIN ((__uint128_t)0x8000000000000000 * 0x1000000000000000 * 0x10)
 #  define INT128_MAX (INT128_MIN - 1)
-#  define DISTRIB_INT128_INT16 ((__uint128_t)0x0001000100010001 * 0x1000000000000 * 0x10000 + 0x0001000100010001)
+#  define DISTRIB_2_TO_8 ((__uint128_t)0x0001000100010001 * 0x1000000000000 * 0x10000 + 0x0001000100010001)
 #  define MANTISSA_TAB 64
 
 /*
@@ -86,7 +86,8 @@ int8_t			big_int_pow_of_2(__uint128_t *tab, uint16_t tab_s, int16_t expo);
 int8_t			big_int_add(__uint128_t *tab1, __uint128_t *tab2, uint16_t tab_s);
 int16_t			big_int_print(__uint128_t *tab_nb, uint16_t tab_size);
 int16_t			big_int_count(__uint128_t *tab_nb, uint16_t tab_size);
-int			lf_get_mantissa_pow(int16_t *tab_expo, int64_t mantissa, int16_t exponent);
+int8_t			lf_get_mantissa_pow(int16_t *tab_expo, long double lf);
+
 
 
 
