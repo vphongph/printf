@@ -6,11 +6,15 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 21:52:10 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/09 16:31:50 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/10 01:50:32 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+** Never return--*tab_expo
+*/
 
 static int	clean_tab_expo(int16_t *tab_expo)
 {
@@ -25,14 +29,14 @@ static int	clean_tab_expo(int16_t *tab_expo)
 	return (i);
 }
 
-int8_t		lf_get_mantissa_pow(int16_t *tab_expo, long double lf)
+int16_t		lf_get_mantissa_pow(int16_t *tab_expo, long double lf)
 {
 	t_longf		ulf;
 	int16_t		shift;
 	int16_t		expo;
 	__uint128_t	one;
 
-	ulf.x=lf;
+	ulf.x = lf;
 	if (!tab_expo && (ft_putstr_v2(RED"lf get mantissa pow -> ∅\n"RESET)))
 		return (-1);
 	(expo = lf_get_exponent(ulf.y.exponent)) == -EXP_LF ? expo++ : expo;
@@ -45,5 +49,6 @@ int8_t		lf_get_mantissa_pow(int16_t *tab_expo, long double lf)
 			*tab_expo++ = shift - (MANTISSA_TAB - 1) + expo;
 		shift--;
 	}
-	return (0);
+	tab_expo--;
+	return (-*tab_expo);
 }

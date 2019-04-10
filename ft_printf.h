@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:36 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/09 16:18:49 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/10 01:30:37 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #  include <stdlib.h>
 
 
-
+const extern __uint128_t g_128max;
 
 /*
 **  340282366920938463463374607431768211455
@@ -86,7 +86,11 @@ int8_t			big_int_pow_of_2(__uint128_t *tab, uint16_t tab_s, int16_t expo);
 int8_t			big_int_add(__uint128_t *tab1, __uint128_t *tab2, uint16_t tab_s);
 int16_t			big_int_print(__uint128_t *tab_nb, uint16_t tab_size);
 int16_t			big_int_count(__uint128_t *tab_nb, uint16_t tab_size);
-int8_t			lf_get_mantissa_pow(int16_t *tab_expo, long double lf);
+int16_t			lf_get_mantissa_pow(int16_t *tab_expo, long double lf);
+int8_t			big_int_calc_int(__uint128_t *tab_nb, uint16_t tab_s, int16_t *tab_expo);
+int8_t			big_int_calc_dec(__uint128_t *tab_nb, uint16_t tab_s, int16_t *tab_expo);
+
+
 
 
 

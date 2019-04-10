@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:34:10 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/13 23:14:58 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/09 20:49:13 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** Quand on déclare partiellement la struc, tout le reste est à 0.
 ** Possible de déclarer en ligne car c'est une constante
 ** On déclare un tableau vide :
-** const t_64speed		speed64 = {.init = 0};
+** const t_64speed	speed64 = {.init = 0};
 ** const t_512speed	speed512 = {.init = 0};
 **
 ** Choix de la solution ci-dessus pour la norminette.
