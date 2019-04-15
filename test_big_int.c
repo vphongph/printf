@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/15 23:28:46 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/16 00:06:06 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,8 +241,10 @@ int16_t	*big_int_add_one(__uint128_t *tab_nb, int16_t index, __uint128_t one)
 int16_t check_round(__uint128_t *tab_nb, int16_t index, __uint128_t one)
 {
 	__uint128_t to_round;
+	__uint128_t trailing;
 
 	to_round = tab_nb[index] / one % 10;
+	trailing = tab_nb[index] % one;
 
 	if (to_round > 5)
 		big_int_add_one(tab_nb, index, one * 10);
@@ -265,7 +267,9 @@ int			jump(int *i, int *current, int location)
 		*i += 1;
 	*current +=  BIG_INT_DIGIT * (*i - (tmp_i + 1));
 
-	return (*current - 2);
+	if (*i < BIG_INT_TAB)
+		return (*current);
+	return (-1);
 }
 
 int16_t	big_int_round(__uint128_t *tab_nb, uint16_t tab_size, int16_t location)
@@ -274,7 +278,6 @@ int16_t	big_int_round(__uint128_t *tab_nb, uint16_t tab_size, int16_t location)
 	int current;
 	__uint128_t carry;
 	i = 0;
-
 
 	int z = -1;
 
@@ -285,7 +288,6 @@ int16_t	big_int_round(__uint128_t *tab_nb, uint16_t tab_size, int16_t location)
 		i++;
 	while (i < tab_size && !(tab_nb[i] / carry))
 		carry /= 10;
-
 	while (i < tab_size && carry)
 	{
 		z++;
@@ -301,10 +303,12 @@ int16_t	big_int_round(__uint128_t *tab_nb, uint16_t tab_size, int16_t location)
 	}
 	printf("I first : %d\n", i);
 	printf("current first : %d\n", current);
-	z += jump(&i, &current, location);
+	carry = BIG_INT_CARRY / 10;
+	if ((z = jump(&i, &current, location)) < 0)
+		carry = 0;
+	z -= 2;
 	printf("I : %d\n", i);
 	printf("current : %d\n", current);
-	carry = BIG_INT_CARRY / 10;
 	while (carry)
 	{
 		z++;
@@ -346,8 +350,7 @@ int		main(void)
 
 	// ulf2.x = uf2.x;
 	// ulf2.x = 5.5L;
-	// ulf2.x = 0.400000000000000000L;
-
+	ulf2.x = 1.500000000000000000L;
 
 	printf("%.70Lf\n",ulf2.x);
 	printf("%.Lf\n\n",ulf2.x);
