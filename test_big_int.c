@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/16 00:06:06 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/17 02:23:19 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,22 +238,34 @@ int16_t	*big_int_add_one(__uint128_t *tab_nb, int16_t index, __uint128_t one)
 	return (0);
 }
 
+int16_t check_trailing(__uint128_t *tab_nb, int16_t index, __uint128_t one)
+{
+	if (tab_nb[index] % one)
+		return (1);
+	while (++index < BIG_INT_TAB)
+		if (tab_nb[index])
+			return (1);
+	return (0);
+}
+
 int16_t check_round(__uint128_t *tab_nb, int16_t index, __uint128_t one)
 {
 	__uint128_t to_round;
-	__uint128_t trailing;
+	int16_t trailing;
 
 	to_round = tab_nb[index] / one % 10;
-	trailing = tab_nb[index] % one;
 
 	if (to_round > 5)
 		big_int_add_one(tab_nb, index, one * 10);
 	if (to_round == 5)
 	{
-		if (one < (BIG_INT_CARRY / 10) && tab_nb[index] / (one * 10) % 2)
-			big_int_add_one(tab_nb, index, one * 10);
-		if (one == (BIG_INT_CARRY / 10) && index > 0 && tab_nb[--index] % 2)
-			big_int_add_one(tab_nb, index, 1);
+		trailing = check_trailing(tab_nb, index, one);
+		if (one < BIG_INT_CARRY / 10)
+			if (tab_nb[index] / (one * 10) % 2 || trailing)
+				big_int_add_one(tab_nb, index, one * 10);
+		if (one == BIG_INT_CARRY / 10)
+			if (index > 0 && (tab_nb[--index] % 2 || trailing))
+				big_int_add_one(tab_nb, index, 1);
 	}
 	return (0);
 }
@@ -268,7 +280,10 @@ int			jump(int *i, int *current, int location)
 	*current +=  BIG_INT_DIGIT * (*i - (tmp_i + 1));
 
 	if (*i < BIG_INT_TAB)
+	{
+		printf(YELLOW"OK JUMP"RESET"\n");
 		return (*current);
+	}
 	return (-1);
 }
 
@@ -350,10 +365,11 @@ int		main(void)
 
 	// ulf2.x = uf2.x;
 	// ulf2.x = 5.5L;
-	ulf2.x = 1.500000000000000000L;
+	ulf2.x = 0.850000000000000000L;
+	// ulf2.x = 0.50000000000000000L;
 
 	printf("%.70Lf\n",ulf2.x);
-	printf("%.Lf\n\n",ulf2.x);
+	printf("%.43Lf\n\n",ulf2.x);
 
 
 	// ft_printbin(ulf2.y.sign, 1, 'b');
@@ -374,7 +390,6 @@ int		main(void)
 		// printf("\n");
 		// i++;
 	// }
-
 	// tab128[BIG_INT_TAB -4] = 1;
 	// tab128_2[BIG_INT_TAB -3] = 42L;
 
@@ -437,7 +452,6 @@ int		main(void)
 
 	// printf("digit : %d\n\n", big_int_count(tab128, BIG_INT_TAB));
 
-
 	i = 0;
 	while (i < MANTISSA_TAB + 1)
 	{
@@ -446,6 +460,7 @@ int		main(void)
 	}
 
 	return (0);
+
 }
 
 // 340282366920938463463374607431768211455
