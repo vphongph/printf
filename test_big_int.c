@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/17 02:23:19 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/17 23:01:09 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,6 +260,7 @@ int16_t check_round(__uint128_t *tab_nb, int16_t index, __uint128_t one)
 	if (to_round == 5)
 	{
 		trailing = check_trailing(tab_nb, index, one);
+		// trailing = 0;
 		if (one < BIG_INT_CARRY / 10)
 			if (tab_nb[index] / (one * 10) % 2 || trailing)
 				big_int_add_one(tab_nb, index, one * 10);
@@ -343,12 +344,14 @@ int16_t	big_int_round(__uint128_t *tab_nb, uint16_t tab_size, int16_t location)
 }
 
 
+
 int		main(void)
 {
 	__uint128_t tab128[BIG_INT_TAB];
-	// __uint128_t tab128_2[BIG_INT_TAB];
+	__uint128_t tab128_2[BIG_INT_TAB];
 	int16_t tab_expo[MANTISSA_TAB + 1];
 	int i = 0;
+	int j = 0;
 
 	(void)tab_expo;
 	t_longf ulf1;(void) ulf1;
@@ -360,16 +363,21 @@ int		main(void)
 	uf2.y.mantissa = 0b0000000000000000000000000000000000000000000000000001;
 
 	ulf2.y.sign = 0;
-	ulf2.y.exponent = 0b011111111111110;
+	ulf2.y.exponent = 0b011110111111111;
 	ulf2.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000000;
 
 	// ulf2.x = uf2.x;
-	// ulf2.x = 5.5L;
-	ulf2.x = 0.850000000000000000L;
+	// ulf2.x = 2.095L; //prec 2
+	// ulf2.x = 2.999L; // prec 2, dec no good and need to print so, counting again needed
+	ulf2.x = 2.9L; // prec 0 , dec no good but no need to print so ok
+	// ulf2.x = 0.850000000000000000L;
 	// ulf2.x = 0.50000000000000000L;
 
-	printf("%.70Lf\n",ulf2.x);
-	printf("%.43Lf\n\n",ulf2.x);
+	// printf("%.70Lf\n",ulf2.x);
+
+	int precision = 0;
+
+	printf("%.*Lf\n\n", precision, ulf2.x);
 
 
 	// ft_printbin(ulf2.y.sign, 1, 'b');
@@ -382,7 +390,7 @@ int		main(void)
 	ft_bzero_v2(tab128, sizeof (tab128));
 	// ft_bzero_v2(tab_expo, sizeof (tab_expo));
 
-	// ft_bzero_v2(tab128_2, sizeof (tab128_2));
+	ft_bzero_v2(tab128_2, sizeof (tab128_2));
 
 	// while (i < BIG_INT_TAB)
 	// {
@@ -401,15 +409,26 @@ int		main(void)
 	// tab128[BIG_INT_TAB -1] = 6546546546546549879;
 	// tab128_2[BIG_INT_TAB -1] = 1;
 	i = lf_get_mantissa_pow(tab_expo, ulf2.x);
-	// printf("%d\n", i);
+	printf("%d\n", i);
 	big_int_calc_dec(tab128, BIG_INT_TAB, tab_expo);
+	j = big_int_count(tab128, BIG_INT_TAB);
+	big_int_calc_int(tab128_2, BIG_INT_TAB, tab_expo);
+
+
 	//
 	big_int_print(tab128, BIG_INT_TAB);
 	printf("\n");
 	// ft_putnbr_base(tab128[0], 10, 0);
 	// printf("\n");
 
-	big_int_round(tab128, BIG_INT_TAB, 2);
+	big_int_round(tab128, BIG_INT_TAB, (precision + 1) - (i - j));
+
+	printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
+
+
+	if (i - big_int_count(tab128, BIG_INT_TAB) < 0)
+		big_int_add_one(tab128_2, 359, 1);
+
 	// check_round(tab128, 359, BIG_INT_CARRY / 10);
 	// big_int_add_one(tab128, 359, 0);
 
@@ -447,8 +466,10 @@ int		main(void)
 			// big_int_add(tab128, tab128_2, BIG_INT_TAB);
 		// i++;
 	// }
+	printf("\nbig int "ALLIANCE"DEC"RESET" print out : %d\n\n", big_int_print(tab128, BIG_INT_TAB));
 
-	printf("\nbig int print out : %d\n\n", big_int_print(tab128, BIG_INT_TAB));
+	printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(tab128_2, BIG_INT_TAB));
+
 
 	// printf("digit : %d\n\n", big_int_count(tab128, BIG_INT_TAB));
 
