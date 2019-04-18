@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/17 08:06:37 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/18 23:11:09 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 #  define BLINK			"\033[5:m"
 #  define BELL			"\a"
 #  define RESET			"\033[0m"
-
 
 /*
 **_________________________________CONSTANTS____________________________________
@@ -109,7 +108,6 @@ typedef union	u_longf
 	struct s_long_double	y;
 }				t_longf;
 
-
 /*
 ** One implicit bit in the mantissa, but cast in long double -> will be explicit
 */
@@ -126,7 +124,6 @@ typedef union	u_float
 	double			x;
 	struct s_double	y;
 }				t_float;
-
 
 /*
 **_________________________________PROTOTYPES___________________________________
@@ -158,6 +155,8 @@ uint16_t		lf_set_exponent(int16_t to_set);
 long double		lf_set_nan_inf(int8_t c, int8_t sign);
 int8_t			lf_check_nupi(long double x);
 long double		lf_remove_decimal(long double x);
+int8_t			ft_putnnbr_base(__uint128_t nb, uint8_t base, char sign,
+	int8_t n);
 
 # endif
 #endif

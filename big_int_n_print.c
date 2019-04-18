@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   big_int_print_count.c                              :+:      :+:    :+:   */
+/*   big_int_n_print.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:41:21 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/18 16:49:13 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/19 00:13:24 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,50 +41,28 @@ static int16_t	print_tab(__uint128_t *tab, int16_t tab_s, int16_t i, int16_t j)
 	return (j);
 }
 
-int16_t			big_int_print(__uint128_t *tab_nb, uint16_t tab_size)
+int16_t			big_int_n_print(__uint128_t *tab_nb, uint16_t tab_s, int16_t n)
 {
 	int16_t i;
 	int16_t j;
+	__uint128_t carry;
 
-	if (!tab_nb || tab_size > BIG_INT_TAB)
+	carry = BIG_INT_CARRY / 10;
+	if (!tab_nb || tab_s > BIG_INT_TAB)
 	{
 		ft_putstr_fd_v2(RED"Big int print -> ∅\n"RESET, 2);
 		return (-1);
 	}
 	i = 0;
 	j = 0;
-	while (i < tab_size && !(tab_nb[i]))
+	while (i < tab_s && !(tab_nb[i]))
 		i++;
-	if (i < tab_size && tab_nb[i])
+	while (i < tab_s && tab_nb[i] / carry)
+	{
+		j++;
+		carry /= 10;
+	}
+	if (j)
 		j += ft_putnbr_base(tab_nb[i++], 10, 0);
-	return (print_tab(tab_nb, tab_size, i, j));
-}
-
-int16_t			big_int_count(__uint128_t *tab_nb, uint16_t tab_size)
-{
-	int16_t		i;
-	int16_t		digit;
-	__uint128_t	nb;
-
-	if (!tab_nb || tab_size > BIG_INT_TAB)
-	{
-		ft_putstr_fd_v2(RED"Big int count -> ∅\n"RESET, 2);
-		return (0);
-	}
-	i = 0;
-	digit = 0;
-	while (i < tab_size && !tab_nb[i])
-		i++;
-	if (i < tab_size)
-		nb = tab_nb[i];
-	while (i < tab_size && nb / 10)
-	{
-		nb /= 10;
-		digit++;
-	}
-	if (i < tab_size && nb / 1)
-		digit++;
-	if (i < tab_size)
-		digit += BIG_INT_DIGIT * (tab_size - (i + 1));
-	return (digit);
+	return (print_tab(tab_nb, tab_s, i, j));
 }

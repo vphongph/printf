@@ -6,7 +6,7 @@
 #    By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 21:12:59 by vphongph          #+#    #+#              #
-#    Updated: 2019/03/31 03:15:15 by vphongph         ###   ########.fr        #
+#    Updated: 2019/04/18 20:02:33 by vphongph         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ ifeq ($(DEBUG), yes)
 	CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address,undefined
 else ifeq ($(DEBUG), all)
 	CFLAGS	=	-g3 -Weverything
+else ifeq ($(DEBUG), san)
+	CFLAGS	=	-Wall -Wextra -g3 -fsanitize=address,undefined
 else
 	CFLAGS	=	-Wall -Wextra -Werror
 endif
@@ -58,7 +60,9 @@ SRCS		=	ft_memalloc.c		\
 				lf_set_exponent.c	\
 				lf_set_nan_inf.c	\
 				lf_check_nupi.c		\
-				lf_remove_decimal.c
+				lf_remove_decimal.c	\
+				ft_putnnbr_base.c	
+
 
 OBJS		=	$(SRCS:.c=.o)
 

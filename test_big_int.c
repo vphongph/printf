@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/17 23:01:09 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/18 22:58:33 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,8 @@ ATTENTION % -> & ne fonctionne qu'avec multiple de puissance de 2 comme / ->  >>
 // 			tab_nb = big_int_x(tab_nb, tab_size, tab_multi[tab_size]);
 // }
 //
+
+
 
 void lol_write_space(int z)
 {
@@ -343,6 +345,27 @@ int16_t	big_int_round(__uint128_t *tab_nb, uint16_t tab_size, int16_t location)
 	return (0);
 }
 
+int		big_int_rm_1st_dec(__uint128_t *tab_nb, int16_t tab_size)
+{
+	int16_t i;
+	__uint128_t carry;
+
+
+	i = 0;
+	carry = BIG_INT_CARRY / 10;
+	while (i < tab_size && !tab_nb[i])
+		i++;
+	while (carry)
+	{
+		if (tab_nb[i] / carry)
+		{
+			tab_nb[i] %= carry;
+			return (1);
+		}
+		carry /=10;
+	}
+	return (0);
+}
 
 
 int		main(void)
@@ -368,14 +391,14 @@ int		main(void)
 
 	// ulf2.x = uf2.x;
 	// ulf2.x = 2.095L; //prec 2
-	// ulf2.x = 2.999L; // prec 2, dec no good and need to print so, counting again needed
-	ulf2.x = 2.9L; // prec 0 , dec no good but no need to print so ok
+	// ulf2.x = 2.999L; // prec 2, dec no good and need to print so, counting again sneeded
+	// ulf2.x = 2.9L; // prec 0 , dec no good but no need to print so ok
 	// ulf2.x = 0.850000000000000000L;
 	// ulf2.x = 0.50000000000000000L;
 
 	// printf("%.70Lf\n",ulf2.x);
 
-	int precision = 0;
+	int precision = 154;
 
 	printf("%.*Lf\n\n", precision, ulf2.x);
 
@@ -421,13 +444,17 @@ int		main(void)
 	// ft_putnbr_base(tab128[0], 10, 0);
 	// printf("\n");
 
+
 	big_int_round(tab128, BIG_INT_TAB, (precision + 1) - (i - j));
 
 	printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
 
 
 	if (i - big_int_count(tab128, BIG_INT_TAB) < 0)
+	{
+		big_int_rm_1st_dec(tab128, BIG_INT_TAB);
 		big_int_add_one(tab128_2, 359, 1);
+	}
 
 	// check_round(tab128, 359, BIG_INT_CARRY / 10);
 	// big_int_add_one(tab128, 359, 0);
@@ -466,12 +493,19 @@ int		main(void)
 			// big_int_add(tab128, tab128_2, BIG_INT_TAB);
 		// i++;
 	// }
+
 	printf("\nbig int "ALLIANCE"DEC"RESET" print out : %d\n\n", big_int_print(tab128, BIG_INT_TAB));
+
+	printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
 
 	printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(tab128_2, BIG_INT_TAB));
 
 
+
 	// printf("digit : %d\n\n", big_int_count(tab128, BIG_INT_TAB));
+
+	printf("\nretour n nbr : %d\n", ft_putnnbr_base(UINT128_MAX, 10, 0, 7));
+	printf("\n");
 
 	i = 0;
 	while (i < MANTISSA_TAB + 1)
