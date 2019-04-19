@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/18 22:58:33 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/04/19 02:59:31 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -386,19 +386,23 @@ int		main(void)
 	uf2.y.mantissa = 0b0000000000000000000000000000000000000000000000000001;
 
 	ulf2.y.sign = 0;
-	ulf2.y.exponent = 0b011110111111111;
+	ulf2.y.exponent = 0b000000000000000;
 	ulf2.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000000;
+
+	// ulf2.y.sign = 0;
+	// ulf2.y.exponent = 0b011110111111111; // prec 154
+	// ulf2.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000000;
 
 	// ulf2.x = uf2.x;
 	// ulf2.x = 2.095L; //prec 2
-	// ulf2.x = 2.999L; // prec 2, dec no good and need to print so, counting again sneeded
-	// ulf2.x = 2.9L; // prec 0 , dec no good but no need to print so ok
+	// ulf2.x = 2.999L; // prec 2, nb of 0 change cause dec smaller and need to print so, counting again is needed
+	// ulf2.x = 2.9L; // prec 0 , nb of 0 change cause dec smaller but no need to print so ok
 	// ulf2.x = 0.850000000000000000L;
 	// ulf2.x = 0.50000000000000000L;
 
 	// printf("%.70Lf\n",ulf2.x);
 
-	int precision = 154;
+	int precision = 10000;
 
 	printf("%.*Lf\n\n", precision, ulf2.x);
 
@@ -432,7 +436,7 @@ int		main(void)
 	// tab128[BIG_INT_TAB -1] = 6546546546546549879;
 	// tab128_2[BIG_INT_TAB -1] = 1;
 	i = lf_get_mantissa_pow(tab_expo, ulf2.x);
-	printf("%d\n", i);
+	printf("smallest mantissa %d\n\n", i);
 	big_int_calc_dec(tab128, BIG_INT_TAB, tab_expo);
 	j = big_int_count(tab128, BIG_INT_TAB);
 	big_int_calc_int(tab128_2, BIG_INT_TAB, tab_expo);
@@ -447,8 +451,10 @@ int		main(void)
 
 	big_int_round(tab128, BIG_INT_TAB, (precision + 1) - (i - j));
 
-	printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
+	// printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
 
+	big_int_print(tab128, BIG_INT_TAB);
+	printf("\n");
 
 	if (i - big_int_count(tab128, BIG_INT_TAB) < 0)
 	{
@@ -478,10 +484,8 @@ int		main(void)
 	}
 	// check_round(tab128, 358, 100000000000);
 
-
 	// ft_bzero_v2(tab128, sizeof (tab128));
 	// big_int_calc_int(tab128, BIG_INT_TAB, tab_expo);
-
 
 	// int i = 1;
 	// while (i < 100)
@@ -495,8 +499,9 @@ int		main(void)
 	// }
 
 	printf("\nbig int "ALLIANCE"DEC"RESET" print out : %d\n\n", big_int_print(tab128, BIG_INT_TAB));
+	printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(tab128, BIG_INT_TAB, precision -  (i - big_int_count(tab128, BIG_INT_TAB))));
 
-	printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
+	// printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
 
 	printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(tab128_2, BIG_INT_TAB));
 
@@ -504,8 +509,8 @@ int		main(void)
 
 	// printf("digit : %d\n\n", big_int_count(tab128, BIG_INT_TAB));
 
-	printf("\nretour n nbr : %d\n", ft_putnnbr_base(UINT128_MAX, 10, 0, 7));
-	printf("\n");
+	// printf("\nretour n nbr : %d\n", ft_putnnbr_base(UINT128_MAX, 10, 0, 7));
+	// printf("\n");
 
 	i = 0;
 	while (i < MANTISSA_TAB + 1)
