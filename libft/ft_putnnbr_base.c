@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/22 17:50:45 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/18 23:11:46 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/05/30 20:27:02 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 ** c'est le nb de caract restant à imprimer.
 ** Le retour peut être utiliser comme un indicateur de caract retirés d'un nb,
 ** ou un indicateur de surplus si n > nb
+** ATTENTION over/underflow de du int8 n
 */
 
 static void		fill_base_tab(char *base_tab)

@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/19 02:59:31 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/05/30 22:06:49 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -396,15 +396,18 @@ int		main(void)
 	// ulf2.x = uf2.x;
 	// ulf2.x = 2.095L; //prec 2
 	// ulf2.x = 2.999L; // prec 2, nb of 0 change cause dec smaller and need to print so, counting again is needed
-	// ulf2.x = 2.9L; // prec 0 , nb of 0 change cause dec smaller but no need to print so ok
+	// ulf2.x = 2.9L; // prec 0 , nb of 0 change cause dec smaller bu§t no need to print so ok
 	// ulf2.x = 0.850000000000000000L;
 	// ulf2.x = 0.50000000000000000L;
 
 	// printf("%.70Lf\n",ulf2.x);
 
-	int precision = 10000;
+	int precision = 17000;
 
-	printf("%.*Lf\n\n", precision, ulf2.x);
+
+	// ulf2.x = 2.5L;
+
+	printf("HERE %.*Lf\n\n", precision, ulf2.x);
 
 
 	// ft_printbin(ulf2.y.sign, 1, 'b');
@@ -443,7 +446,7 @@ int		main(void)
 
 
 	//
-	big_int_print(tab128, BIG_INT_TAB);
+	// big_int_print(tab128, BIG_INT_TAB);
 	printf("\n");
 	// ft_putnbr_base(tab128[0], 10, 0);
 	// printf("\n");
@@ -453,7 +456,7 @@ int		main(void)
 
 	// printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
 
-	big_int_print(tab128, BIG_INT_TAB);
+	// big_int_print(tab128, BIG_INT_TAB);
 	printf("\n");
 
 	if (i - big_int_count(tab128, BIG_INT_TAB) < 0)
@@ -498,7 +501,8 @@ int		main(void)
 		// i++;
 	// }
 
-	printf("\nbig int "ALLIANCE"DEC"RESET" print out : %d\n\n", big_int_print(tab128, BIG_INT_TAB));
+	// printf("\nbig int "ALLIANCE"DEC"RESET" print out : %d\n\n", big_int_print(tab128, BIG_INT_TAB));
+	printf("precision %d\n", precision -  (i - big_int_count(tab128, BIG_INT_TAB)));
 	printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(tab128, BIG_INT_TAB, precision -  (i - big_int_count(tab128, BIG_INT_TAB))));
 
 	// printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));

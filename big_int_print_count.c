@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:41:21 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/19 02:05:17 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/05/30 20:36:02 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static int16_t	print_tab(__uint128_t *tab, int16_t tab_s, int16_t i, int16_t j)
 		}
 		i++;
 	}
-	if (j == 0)
-		write(1, "0", 1);
+	if (j == 0 && write(1, "0", 1))
+		return (1);
 	return (j);
 }
 

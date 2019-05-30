@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:41:21 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/19 02:39:50 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/05/30 21:59:47 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int16_t			big_int_n_print(__uint128_t *tab_nb, uint16_t tab_s, int16_t n)
 	one = 1;
 	while (i < tab_s && !(tab_nb[i]))
 		i++;
-	if (i == tab_s)
-		write (1, "0", 1);
+	if (i == tab_s  || n < 0)
+		return (write (1, "0", 1));
 	while (i < tab_s && tab_nb[i] / one)
 	{
 		n--;
