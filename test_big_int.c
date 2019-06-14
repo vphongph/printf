@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/05/30 22:06:49 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/06/03 21:52:53 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -402,7 +402,7 @@ int		main(void)
 
 	// printf("%.70Lf\n",ulf2.x);
 
-	int precision = 17000;
+	int precision = 16000;
 
 
 	// ulf2.x = 2.5L;
