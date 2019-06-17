@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/06/03 21:52:53 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/06/17 02:11:54 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -402,7 +402,7 @@ int		main(void)
 
 	// printf("%.70Lf\n",ulf2.x);
 
-	int precision = 16000;
+	int precision = 6000 - 1033;
 
 
 	// ulf2.x = 2.5L;
@@ -452,14 +452,14 @@ int		main(void)
 	// printf("\n");
 
 
-	big_int_round(tab128, BIG_INT_TAB, (precision + 1) - (i - j));
+	big_int_round(tab128, BIG_INT_TAB, (precision + 1) - (-i - j));
 
 	// printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
 
 	// big_int_print(tab128, BIG_INT_TAB);
 	printf("\n");
 
-	if (i - big_int_count(tab128, BIG_INT_TAB) < 0)
+	if (-i - big_int_count(tab128, BIG_INT_TAB) < 0)
 	{
 		big_int_rm_1st_dec(tab128, BIG_INT_TAB);
 		big_int_add_one(tab128_2, 359, 1);
@@ -502,8 +502,8 @@ int		main(void)
 	// }
 
 	// printf("\nbig int "ALLIANCE"DEC"RESET" print out : %d\n\n", big_int_print(tab128, BIG_INT_TAB));
-	printf("precision %d\n", precision -  (i - big_int_count(tab128, BIG_INT_TAB)));
-	printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(tab128, BIG_INT_TAB, precision -  (i - big_int_count(tab128, BIG_INT_TAB))));
+	printf("precision %d\n", precision - (-i - big_int_count(tab128, BIG_INT_TAB)));
+	printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(tab128, BIG_INT_TAB, precision -  (-i - big_int_count(tab128, BIG_INT_TAB))));
 
 	// printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
 
@@ -522,6 +522,9 @@ int		main(void)
 		// printf("%d\n", tab_expo[i]);
 		i++;
 	}
+
+	printf("\n");
+	printf("\nretour %d\n", ft_putnnbr_base(42, 16, 0, 3));
 
 	return (0);
 

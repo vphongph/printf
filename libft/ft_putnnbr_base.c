@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/22 17:50:45 by vphongph          #+#    #+#             */
-/*   Updated: 2019/05/30 20:27:02 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/06/17 02:09:35 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ int8_t			ft_putnnbr_base(__uint128_t nb, uint8_t base, char sign,
 		return (put_base10(nb, base_tab, sign, n));
 	if (nb > base - 1)
 		n = ft_putnnbr_base(nb / base, base, sign, n);
-	if (n-- > 0)
+	if (n > 0)
+	{
 		write(1, &base_tab[nb % base], 1);
+		n--;
+	}
 	return (n);
 }

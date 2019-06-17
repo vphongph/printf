@@ -6,14 +6,14 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 21:52:10 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/10 13:49:47 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/06/17 01:44:54 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-** Never return--*tab_expo
+** Never return --*tab_expo
 */
 
 static int	clean_tab_expo(int16_t *tab_expo)
@@ -51,5 +51,5 @@ int16_t		lf_get_mantissa_pow(int16_t *tab_expo, long double lf)
 			tab_expo[i++] = shift - (MANTISSA_TAB - 1) + expo;
 		shift--;
 	}
-	return (i == 0 ? 0 : -tab_expo[i - 1]);
+	return (i == 0 ? 0 : tab_expo[i - 1]);
 }
