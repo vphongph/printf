@@ -387,7 +387,7 @@ int		main(void)
 
 	ulf2.y.sign = 0;
 	ulf2.y.exponent = 0b000000000000000;
-	ulf2.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000000;
+	ulf2.y.mantissa = 0b0000000000000000000000000000000000000000000000000000000000000001;
 
 	// ulf2.y.sign = 0;
 	// ulf2.y.exponent = 0b011110111111111; // prec 154
@@ -402,7 +402,7 @@ int		main(void)
 
 	// printf("%.70Lf\n",ulf2.x);
 
-	int precision = 16000;
+	int precision = 16445;
 
 
 	// ulf2.x = 2.5L;
