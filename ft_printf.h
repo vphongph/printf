@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:36 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/19 01:59:22 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/06/30 07:05:41 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int16_t			lf_get_mantissa_pow(int16_t *tab_expo, long double lf);
 int8_t			big_int_calc_int(__uint128_t *tab_nb, uint16_t tab_s, int16_t *tab_expo);
 int8_t			big_int_calc_dec(__uint128_t *tab_nb, uint16_t tab_s, int16_t *tab_expo);
 int16_t			big_int_n_print(__uint128_t *tab_nb, uint16_t tab_s, int16_t n);
+int8_t			big_int_add_one(__uint128_t *tab_nb, int16_t index, __uint128_t one);
+
 
 
 

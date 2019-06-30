@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/18 23:11:09 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/06/30 06:04:01 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@
 */
 
 #  include <stdlib.h>
+#  include <stdbool.h>
+
 
 /*
 **_________________________________STRUCTURES___________________________________
@@ -153,7 +155,7 @@ __uint128_t		detectchar(__uint128_t mem, uint8_t memsize, uint8_t c);
 int16_t			lf_get_exponent(uint16_t to_get);
 uint16_t		lf_set_exponent(int16_t to_set);
 long double		lf_set_nan_inf(int8_t c, int8_t sign);
-int8_t			lf_check_nupi(long double x);
+bool			lf_check_nupi(long double x);
 long double		lf_remove_decimal(long double x);
 int8_t			ft_putnnbr_base(__uint128_t nb, uint8_t base, char sign,
 	int8_t n);
