@@ -19,7 +19,8 @@
 ** c'est le nb de caract restant à imprimer.
 ** Le retour peut être utiliser comme un indicateur de caract retirés d'un nb,
 ** ou un indicateur de surplus si n > nb
-** ATTENTION over/underflow de du int8 n
+** ATTENTION over/underflow du paramètre n (int8),
+** la fonction est utilisée dans big_int_n_print, avec n (int16).
 */
 
 static void		fill_base_tab(char *base_tab)
@@ -34,11 +35,8 @@ static void		fill_base_tab(char *base_tab)
 			base_tab[++j] = '0' + i;
 }
 
-static uint8_t	put_base10(__uint128_t nb, char *base_tab, char sign, int8_t n)
+static int8_t	put_base10(__uint128_t nb, char *base_tab, char sign, int8_t n)
 {
-	uint8_t		i;
-
-	i = 1;
 	if ((__int128_t)nb < 0 && sign == 's')
 	{
 		nb = -nb;
@@ -55,9 +53,7 @@ int8_t			ft_putnnbr_base(__uint128_t nb, uint8_t base, char sign,
 	int8_t n)
 {
 	char		base_tab[36];
-	uint8_t		i;
 
-	i = 1;
 	if (base < 2 || base > 36 || n < 0 || n > 39)
 		return (0);
 	fill_base_tab(base_tab);
