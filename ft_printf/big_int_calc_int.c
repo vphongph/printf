@@ -22,7 +22,8 @@ static int16_t	check(__uint128_t *tab_nb, uint16_t tab_s, int16_t *tab_expo)
 		ft_putstr_fd_v2(RED"Big int calc int -> ∅\n"RESET, 2);
 		return (-2);
 	}
-	while (tab_expo[i] != BIG_INT_EXPO + 1 && tab_expo[i] >= 0 && i < MANTISSA_TAB)
+	while (tab_expo[i] != BIG_INT_EXPO + 1 && tab_expo[i] >= 0
+		&& i < MANTISSA_TAB)
 		i++;
 	if (!i)
 		return (-1);

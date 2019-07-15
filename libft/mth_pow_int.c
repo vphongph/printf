@@ -68,25 +68,25 @@ static int64_t	known_pow(int64_t x, int64_t y)
 	return (0);
 }
 
-// static int64_t	zero_one_pow(int64_t x, int64_t y)
-// {
-// 	if (y == 0)
-// 		return (1);
-// 	if (x == 0)
-// 	{
-// 		if (y < 0)
-// 			ft_putstr_fd_v2(RED"Infinity\n"RESET, 2);
-// 		return (0);
-// 	}
-// 	if (x == -1 && y & 1)
-// 		return (-1);
-// 	return (1);
-// }
+static int64_t	zero_one_pow(int64_t x, int64_t y)
+{
+	if (y == 0)
+		return (1);
+	if (x == 0)
+	{
+		if (y < 0)
+			ft_putstr_fd_v2(RED"Infinity\n"RESET, 2);
+		return (0);
+	}
+	if (x == -1 && y & 1)
+		return (-1);
+	return (1);
+}
 
 int64_t			mth_pow_int(int64_t x, int64_t y)
 {
-	// if (x == 0 || x == 1 || x == -1)
-		// return (zero_one_pow(x, y));
+	if (x == 0 || x == 1 || x == -1)
+		return (zero_one_pow(x, y));
 	if (y < 2)
 		return (known_pow(x, y));
 	if (check_result(x, x))

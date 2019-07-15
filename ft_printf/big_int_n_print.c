@@ -19,7 +19,8 @@
 ** ATTENTION à over/underflow de ce dernier.
 */
 
-static int16_t	print_last_tab(__uint128_t *tab_nb, int16_t tab_s, int16_t n, int16_t *i)
+static int16_t	print_last_tab(__uint128_t *tab_nb, int16_t tab_s, int16_t n,
+	int16_t *i)
 {
 	__uint128_t carry;
 
@@ -40,7 +41,8 @@ static int16_t	print_last_tab(__uint128_t *tab_nb, int16_t tab_s, int16_t n, int
 	return (n);
 }
 
-static int16_t	print_full_tab(__uint128_t *tab_nb, int16_t tab_s, int16_t n, int16_t *i)
+static int16_t	print_full_tab(__uint128_t *tab_nb, int16_t tab_s, int16_t n,
+	int16_t *i)
 {
 	__uint128_t carry;
 
@@ -63,14 +65,14 @@ static int16_t	print_full_tab(__uint128_t *tab_nb, int16_t tab_s, int16_t n, int
 	return (n);
 }
 
-static int16_t	print_1st_tab(__uint128_t *tab_nb, uint16_t tab_s, int16_t n, int16_t i)
+static int16_t	print_1st_tab(__uint128_t *tab_nb, uint16_t tab_s, int16_t n,
+	int16_t i)
 {
-	int16_t tmp_n;
-	__uint128_t one;
+	int16_t		tmp_n;
+	__uint128_t	one;
 
 	tmp_n = n;
 	one = 1;
-
 	while (i < tab_s && tab_nb[i] / one)
 	{
 		n--;
@@ -85,7 +87,8 @@ static int16_t	print_1st_tab(__uint128_t *tab_nb, uint16_t tab_s, int16_t n, int
 	return (n);
 }
 
-static int16_t	check_param(__uint128_t *tab_nb, uint16_t tab_s, int16_t n, int16_t i)
+static int16_t	check_param(__uint128_t *tab_nb, uint16_t tab_s, int16_t n,
+	int16_t i)
 {
 	if (!tab_nb || tab_s > BIG_INT_TAB)
 	{
@@ -96,7 +99,7 @@ static int16_t	check_param(__uint128_t *tab_nb, uint16_t tab_s, int16_t n, int16
 		i++;
 	if (i == tab_s || n < 0)
 	{
-		write (1, "0", 1);
+		write(1, "0", 1);
 		return (-1);
 	}
 	return (i);
@@ -116,4 +119,3 @@ int16_t			big_int_n_print(__uint128_t *tab_nb, uint16_t tab_s, int16_t n)
 	print_last_tab(tab_nb, tab_s, n, &i);
 	return (2);
 }
-	

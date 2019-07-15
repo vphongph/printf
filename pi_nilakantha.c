@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "libft/libft.h"
+#include "libft.h"
 
 static long double	round_pi(long double pi, uint8_t mantiss_prec)
 {

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdbool.h>
 
 /*
 ** Check Not a Number, Unnormal, Pseudo infinity
@@ -26,8 +27,8 @@ bool	lf_check_nupi(long double x)
 
 	ulf.x = x;
 	if (ulf.y.exponent == 0b111111111111111 && ulf.y.mantissa != 1ULL << 63)
-		return (TRUE);
+		return (true);
 	if (ulf.y.exponent != 0 && !(ulf.y.mantissa & (1ULL << 63)))
-		return (TRUE);
-	return (FALSE);
+		return (true);
+	return (false);
 }

@@ -16,7 +16,7 @@
 #include <unistd.h>
 #include <i386/limits.h>
 #include <sys/syslimits.h>
-#include "libft/libft.h"
+#include "libft.h"
 #define MY_LLONG_MAX 9223372036854775807
 #define MY_PI 3.14159265358979323846 2643383279502884L
 

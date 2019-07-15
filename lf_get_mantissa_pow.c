@@ -18,12 +18,12 @@
 
 static int	clean_tab_expo(int16_t *tab_expo)
 {
-	int16_t i;
+	uint16_t i;
 
 	i = 0;
-	while ((uint16_t)i < (sizeof(int16_t) * MANTISSA_TAB / sizeof(__uint128_t)))
+	while (i < (sizeof(uint16_t) * MANTISSA_TAB / sizeof(__uint128_t)))
 		((__uint128_t *)tab_expo)[i++] = (BIG_INT_EXPO + 1) * DISTRIB_2_TO_8;
-	i *= sizeof(__uint128_t) / sizeof(int16_t);
+	i *= sizeof(__uint128_t) / sizeof(uint16_t);
 	while (i <= MANTISSA_TAB)
 		tab_expo[i++] = BIG_INT_EXPO + 1;
 	return (i);

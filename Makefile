@@ -38,8 +38,7 @@ else
 	CFLAGS		:=	-Wall -Wextra -Werror -MMD
 endif
 
-SRC_NAMES		:=	ft_printf.c		\
-					main.c
+SRC_NAMES		:=	main.c
 
 SRC_PATH		:=
 

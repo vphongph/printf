@@ -12,7 +12,7 @@
 
 #include <unistd.h>
 #include <printf.h>
-#include "libft/libft.h"
+#include "libft.h"
 #include <string.h>
 #include <math.h>
 

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "libft/libft.h"
+#include "libft.h"
 
 int				main(void)
 {

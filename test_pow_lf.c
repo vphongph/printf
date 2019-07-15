@@ -16,7 +16,7 @@
 #include <unistd.h>
 #include <i386/limits.h>
 #include <sys/syslimits.h>
-#include "libft/libft.h"
+#include "libft.h"
 #include <fcntl.h>
 #define MY_LLONG_MAX 9223372036854775807
 

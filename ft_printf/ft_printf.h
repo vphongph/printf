@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 # include <i386/endian.h>
 # if __DARWIN_BYTE_ORDER == __DARWIN_LITTLE_ENDIAN
-#  include "libft/libft.h"
+#  include "libft.h"
 #  include <stdlib.h>
 
 

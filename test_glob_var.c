@@ -13,7 +13,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "libft/libft.h"
+#include "libft.h"
 
 void	*address_get_set(void *address_to_save);
 

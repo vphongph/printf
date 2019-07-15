@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "libft/libft.h"
+#include "libft.h"
 
 #define DISTRIB_INT128_INT64 ((__uint128_t)0x0000000000000001 * 0x1000000000000000 * 0x10 + 0x0000000000000001)
 #define DISTRIB_INT128_INT32 ((__uint128_t)0x0000000100000001 * 0x100000000 * 0x100000000 + 0x0000000100000001)

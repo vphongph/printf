@@ -232,6 +232,7 @@ int16_t	big_int_round_legacy(__uint128_t *tab_nb, uint16_t tab_size, int16_t loc
 int16_t	big_int_round(__uint128_t *tab_nb, uint16_t tab_size, int16_t location);
 
 
+
 int		big_int_rm_1st_dec(__uint128_t *tab_nb, int16_t tab_size)
 {
 	int16_t i;
@@ -289,7 +290,7 @@ int		main(void)
 
 	// printf("%.70Lf\n",ulf2.x);
 
-	int precision = 5000;
+	int precision = 5020;
 
 
 	// ulf2.x = 2.51L;
@@ -340,16 +341,16 @@ int		main(void)
 	// printf("\n");
 
 
-	// big_int_round_legacy(tab128, BIG_INT_TAB, (precision + 1) - (i - j));
+	// big_int_round_legacy(tab128, BIG_INT_TAB, (precision + 1) - (-i - j));
 	big_int_round(tab128, BIG_INT_TAB, (precision + 1) - (-i - j));
-	
+
 
 	// printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
 
 	// big_int_print(tab128, BIG_INT_TAB);
 	printf("\n");
 
-	if (i - big_int_count(tab128, BIG_INT_TAB) < 0)
+	if (-i - big_int_count(tab128, BIG_INT_TAB) < 0)
 	{
 		big_int_rm_1st_dec(tab128, BIG_INT_TAB);
 		big_int_add_one(tab128_2, 359, 1);
@@ -375,7 +376,6 @@ int		main(void)
 		// write(1,"\n",1);
 		// i++;
 	}
-	// check_round(tab128, 358, 100000000000);
 
 	// ft_bzero_v2(tab128, sizeof (tab128));
 	// big_int_calc_int(tab128, BIG_INT_TAB, tab_expo);
@@ -392,8 +392,8 @@ int		main(void)
 	// }
 
 	// printf("\nbig int "ALLIANCE"DEC"RESET" print out : %d\n\n", big_int_print(tab128, BIG_INT_TAB));
-	printf("precision %d\n", precision - (i - big_int_count(tab128, BIG_INT_TAB)));
-	printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(tab128, BIG_INT_TAB, precision -  (i - big_int_count(tab128, BIG_INT_TAB))));
+	printf("precision %d\n", precision - (-i - big_int_count(tab128, BIG_INT_TAB)));
+	printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(tab128, BIG_INT_TAB, precision -  (-i - big_int_count(tab128, BIG_INT_TAB))));
 
 	// printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
 

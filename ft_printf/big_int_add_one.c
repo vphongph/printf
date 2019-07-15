@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "libft.h"
 #include "ft_printf.h"
 
 int8_t	big_int_add_one(__uint128_t *tab_nb, int16_t index, __uint128_t one)
