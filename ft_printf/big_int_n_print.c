@@ -19,7 +19,7 @@
 ** ATTENTION à over/underflow de ce dernier.
 */
 
-static int16_t	print_last_tab(__uint128_t *tab_nb, int16_t tab_s, int16_t n,
+static int16_t	print_last_tab(__uint128_t *tab_nb, uint16_t tab_s, int16_t n,
 	int16_t *i)
 {
 	__uint128_t carry;
@@ -41,7 +41,7 @@ static int16_t	print_last_tab(__uint128_t *tab_nb, int16_t tab_s, int16_t n,
 	return (n);
 }
 
-static int16_t	print_full_tab(__uint128_t *tab_nb, int16_t tab_s, int16_t n,
+static int16_t	print_full_tab(__uint128_t *tab_nb, uint16_t tab_s, int16_t n,
 	int16_t *i)
 {
 	__uint128_t carry;

@@ -6,53 +6,50 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/15 22:54:57 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/16 07:26:59 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <unistd.h>
-#include <i386/limits.h>
-#include <sys/syslimits.h>
-#include "libft/libft.h"
-#define MY_LLONG_MAX 9223372036854775807
 
-//h
-extern const double	my_pi;
+int64_t		compute_float(long double lf, int64_t precision, __uint128_t *tab128_int, __uint128_t *tab128_dec);
 
-//c
-const double	my_pi = 3.14159265;
-
-int			ft_printf(const char *restrict format, ...);
-uint64_t	ft_pow_int(int64_t x, uint64_t y);
-double		PI_nilakantha(int mantissa_bits);
-
-
-int			main()
+int			main(void)
 {
-
-	int64_t l = 3037000000;
-	int64_t m = 2;
-
-	(void)l;
-	(void)m;
+	__uint128_t	tab128_int[BIG_INT_TAB];
+	__uint128_t	tab128_dec[BIG_INT_TAB];
 
 
-	printf("    f : %f\n", M_PI);
-	printf(" f 25 : %.25f\n", M_PI);
-	printf("   lf : %lf\n", M_PI);
-	printf("lf 25 : %.25lf\n", M_PI);
-	printf("   Lf : %Lf\n", (long double)M_PI);
-	printf("Lf 25 : %.25Lf\n", (long double)M_PI);
+	ft_bzero_v2(tab128_int, sizeof(tab128_int));
+	ft_bzero_v2(tab128_dec, sizeof(tab128_dec));
 
-	printf("    e : %.25e\n", M_PI);
 
-	printf("\nmath pi 3.14159265358979323846\n");
+	t_lfloat ulf2;(void) ulf2;
 
-	printf("\n     double %.29f\n", 0.0123456789321654987147258369);
-	printf("long double %.29Lf\n", 0.0123456789321654987147258369L);
+	ulf2.y.sign = 0;
+	ulf2.y.exponent = 0b000000000000000;
+	ulf2.y.mantissa = 0b0000000000000000000000000000000000000000000000000000000000000001;
+
+
+	// ulf2.y.exponent = 0b111111111111110;
+	// ulf2.y.mantissa = 0b1111111111111111111111111111111111111111111111111111111111111111;
+
+	ulf2.x = 298414651.554654654L;
+
+	// int precision = 5020;
+	int precision = 100;
+
+	printf("%.*Lf\n", precision, ulf2.x);
+
+	int64_t nb_to_print;
+
+	nb_to_print = compute_float(ulf2.x, precision, tab128_int, tab128_dec);
+
+	printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(tab128_dec, BIG_INT_TAB, nb_to_print));
+
+	printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(tab128_int, BIG_INT_TAB));
+
 
 	return (0);
 }

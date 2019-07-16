@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 01:14:21 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/30 18:04:23 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/16 04:02:55 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 bool	lf_check_nupi(long double x)
 {
-	t_longf ulf;
+	t_lfloat ulf;
 
 	ulf.x = x;
 	if (ulf.y.exponent == 0b111111111111111 && ulf.y.mantissa != 1ULL << 63)

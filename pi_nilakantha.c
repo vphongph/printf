@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 23:56:30 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/17 01:48:50 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/16 04:03:07 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static long double	round_pi(long double pi, uint8_t mantiss_prec)
 {
-	union u_longf ulf;
+	union u_lfloat ulf;
 
 	ulf.x = pi;
 	mantiss_prec = 64 - mantiss_prec;

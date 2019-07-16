@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/04/06 03:12:18 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/16 04:03:01 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 //
 // static int8_t	check_exponent(long double x, long double y)
 // {
-// 	t_longf ratio;
+// 	t_lfloat ratio;
 //
 // 	ratio.x = x/y;
 // 	if (lf_get_exponent(ratio.y.exponent) >= 63)
@@ -54,9 +54,9 @@ long double lf_abs(long double x)
 
 static int8_t	check_xy(long double x, long double y)
 {
-	t_longf ux;
-	t_longf uy;
-	t_longf ratio;
+	t_lfloat ux;
+	t_lfloat uy;
+	t_lfloat ratio;
 
 	ux.x = x;
 	uy.x = y;
@@ -74,8 +74,8 @@ static int8_t	check_xy(long double x, long double y)
 
 long double		lf_modulo_test(long double x, long double y)
 {
-	t_longf ratio_lf1;
-	t_longf ratio_lf2;
+	t_lfloat ratio_lf1;
+	t_lfloat ratio_lf2;
 	__int128_t ratio_int;
 
 	if (check_xy(x, y))
@@ -103,10 +103,10 @@ long double		lf_modulo_test(long double x, long double y)
 
 int			main()
 {
-	t_longf ulf1;
-	t_longf ulf2;
-	t_longf ulf3; (void)ulf3;
-	t_longf ulf4; (void)ulf4;
+	t_lfloat ulf1;
+	t_lfloat ulf2;
+	t_lfloat ulf3; (void)ulf3;
+	t_lfloat ulf4; (void)ulf4;
 
 
 	ulf1.y.sign = 1;

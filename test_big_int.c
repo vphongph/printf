@@ -6,13 +6,10 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/06/17 02:11:54 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/16 04:03:09 by vphongph         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "libft.h"
-#include "ft_printf.h"
 #include <limits.h>
 
 const __uint128_t g_128max = 123;
@@ -264,8 +261,8 @@ int		main(void)
 	int j = 0;
 
 	(void)tab_expo;
-	t_longf ulf1;(void) ulf1;
-	t_longf ulf2;(void) ulf2;
+	t_lfloat ulf1;(void) ulf1;
+	t_lfloat ulf2;(void) ulf2;
 	t_float uf2;(void) uf2;
 
 	uf2.y.sign = 0;

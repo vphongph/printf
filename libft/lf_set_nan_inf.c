@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 01:02:30 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/30 21:02:54 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/16 04:02:50 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 long double	lf_set_nan_inf(int8_t c, int8_t sign)
 {
-	t_longf ulf;
+	t_lfloat ulf;
 
 	ulf.y.exponent = 0b111111111111111;
 	if (sign == 0 || sign == 1)

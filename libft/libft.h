@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 13:26:35 by vphongph          #+#    #+#             */
-/*   Updated: 2019/06/30 06:04:01 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/16 04:02:37 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,15 +103,16 @@ struct			s_long_double
 	uint64_t		padding : 48;
 };
 
-typedef union	u_longf
+typedef union	u_lfloat
 {
 	long double				x;
 	struct s_long_double	y;
-}				t_longf;
+}				t_lfloat;
 
 /*
 ** One implicit bit in the mantissa, but cast in long double -> will be explicit
 */
+
 struct			s_double
 {
 	uint64_t		mantissa : 52;

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf.h"
 
 static int16_t	check_trailing(__uint128_t *tab_nb, int16_t index,
@@ -46,10 +45,10 @@ static int16_t	check_round(__uint128_t *tab_nb, int16_t index,
 	return (0);
 }
 
-static int		jump(int *i, int *current, int location)
+static int64_t	jump(int64_t *i, int64_t *current, int64_t location)
 {
-	int tmp_i;
-	int tmp_current;
+	int64_t tmp_i;
+	int64_t tmp_current;
 
 	tmp_i = *i;
 	tmp_current = *current - 1;
@@ -62,27 +61,46 @@ static int		jump(int *i, int *current, int location)
 	return (-1);
 }
 
-int16_t			big_int_round(__uint128_t *tab_nb, uint16_t tab_size,
-	int16_t location)
+static int64_t	check_and_round_1st_tab(__uint128_t *tab_nb,
+	int64_t location, int64_t *i, __uint128_t *carry)
 {
-	int			i;
-	int			current;
+	int64_t		current;
+
+	current = 1;
+	if (!tab_nb || location <= 0)
+	{
+		ft_putstr_fd_v2(RED"Big int round -> ∅\n"RESET, 2);
+		return (-3);
+	}
+	while (*i < BIG_INT_TAB && !tab_nb[*i])
+		(*i)++;
+	if (*i == BIG_INT_TAB)
+		return (-2);
+	while (!(tab_nb[*i] / *carry))
+		*carry /= 10;
+	while (*carry)
+	{
+		if (current == location)
+			return (0);
+		current++;
+		*carry /= 10;
+	}
+	return (current);
+}
+
+int16_t			big_int_round(__uint128_t *tab_nb, int64_t location)
+{
+	int64_t		i;
+	int64_t		current;
 	__uint128_t	carry;
 
 	i = 0;
-	current = 1;
 	carry = BIG_INT_CARRY / 10;
-	while (i < tab_size && !tab_nb[i])
-		i++;
-	while (i < tab_size && !(tab_nb[i] / carry))
-		carry /= 10;
-	while (i < tab_size && carry)
-	{
-		if (current == location)
-			return (check_round(tab_nb, i, carry));
-		current++;
-		carry /= 10;
-	}
+	current = check_and_round_1st_tab(tab_nb, location, &i, &carry);
+	if (current < 0)
+		return (current);
+	if (current == 0)
+		return (check_round(tab_nb, i, carry));
 	carry = BIG_INT_CARRY / 10;
 	if ((jump(&i, &current, location)) < 0)
 		carry = 0;
@@ -93,5 +111,5 @@ int16_t			big_int_round(__uint128_t *tab_nb, uint16_t tab_size,
 		current++;
 		carry /= 10;
 	}
-	return (0);
+	return (-1);
 }

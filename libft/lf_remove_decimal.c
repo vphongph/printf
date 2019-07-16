@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 16:12:02 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/31 03:11:54 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/16 04:02:53 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 long double	lf_remove_decimal(long double x)
 {
-	t_longf ulf;
+	t_lfloat ulf;
 	int32_t	shift;
 
 	if (lf_check_nupi(x))

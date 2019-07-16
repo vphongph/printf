@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/03/18 14:48:04 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/16 04:03:00 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int16_t ft_printbin(__uint128_t nb, uint8_t size, uint8_t format_0b);
 int			main()
 {
 	// union u_lftoint1 toint1;
-	union u_longf ulf;
+	union u_lfloat ulf;
 
 	ulf.x = pi_nilakantha(64);
 	printf("        %.62Lf\n", 3.141592653589793238462643383279502884L);

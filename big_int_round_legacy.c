@@ -165,14 +165,20 @@ int16_t			big_int_round_legacy(__uint128_t *tab_nb, uint16_t tab_size, int16_t l
 		current++;
 		carry /= 10;
 	}
+
+
+	printf("\ncarry\n");
+	ft_putnbr_base(carry, 10, 0);
+	printf("\n");
+
 	printf("I first : %d\n", i);
 	printf("current first : %d\n", current);
 	carry = BIG_INT_CARRY / 10;
 	if ((z = jump(&i, &current, location)) < 0)
 		carry = 0;
 	z -= 2;
-	printf("I : %d\n", i);
-	printf("current : %d\n", current);
+	printf("I 1st round : %d\n", i);
+	printf("current 1st round : %d\n", current);
 	while (carry)
 	{
 		z++;

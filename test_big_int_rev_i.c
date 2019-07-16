@@ -1,12 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_big_int.c                                     :+:      :+:    :+:   */
+/*   test_big_int_rev_i.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/06/17 02:11:54 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/16 06:32:03 by vphongph         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
@@ -14,6 +15,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 #include <limits.h>
+
 
 const __uint128_t g_128max = 123;
 
@@ -162,99 +164,6 @@ ATTENTION % -> & ne fonctionne qu'avec multiple de puissance de 2 comme / ->  >>
 
 
 
-// void lol_write_space(int z)
-// {
-// 	(void)z;
-// 	write(1,"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			"                                                                                                                                                                                                        "
-// 			, z);
-// }
-
-int16_t	big_int_round_legacy(__uint128_t *tab_nb, uint16_t tab_size, int16_t location);
-int16_t	big_int_round(__uint128_t *tab_nb, uint16_t tab_size, int16_t location);
-
-
-
-int		big_int_rm_1st_dec(__uint128_t *tab_nb, int16_t tab_size)
-{
-	int16_t i;
-	__uint128_t carry;
-
-
-	i = 0;
-	carry = BIG_INT_CARRY / 10;
-	while (i < tab_size && !tab_nb[i])
-		i++;
-	while (carry)
-	{
-		if (tab_nb[i] / carry)
-		{
-			tab_nb[i] %= carry;
-			return (1);
-		}
-		carry /=10;
-	}
-	return (0);
-}
-
 
 int		main(void)
 {
@@ -265,8 +174,8 @@ int		main(void)
 	int j = 0;
 
 	(void)tab_expo;
-	t_longf ulf1;(void) ulf1;
-	t_longf ulf2;(void) ulf2;
+	t_lfloat ulf1;(void) ulf1;
+	t_lfloat ulf2;(void) ulf2;
 	t_float uf2;(void) uf2;
 
 	uf2.y.sign = 0;
@@ -277,27 +186,18 @@ int		main(void)
 	ulf2.y.exponent = 0b000000000000000;
 	ulf2.y.mantissa = 0b0000000000000000000000000000000000000000000000000000000000000001;
 
-	// ulf2.y.sign = 0;
-	// ulf2.y.exponent = 0b011110111111111; // prec 154
-	// ulf2.y.mantissa = 0b1000000000000000000000000000000000000000000000000000000000000000;
-
-	// ulf2.x = uf2.x;
 	// ulf2.x = 2.095L; //prec 2
 	// ulf2.x = 2.999L; // prec 2, nb of 0 change cause dec smaller and need to print so, counting again is needed
 	// ulf2.x = 2.9L; // prec 0 , nb of 0 change cause dec smaller bu§t no need to print so ok
-	// ulf2.x = 0.850000000000000000L;
-	// ulf2.x = 0.50000000000000000L;
 
-	// printf("%.70Lf\n",ulf2.x);
-
-	int precision = 5020;
+	int precision = 0;
+	// precision = 16445;
 
 
-	// ulf2.x = 2.51L;
+	ulf2.x = 23502121210L;
 
-	printf("HERE %.*Lf\n\n", precision, ulf2.x);
-	// printf("HERE %.-1Lf\n\n", ulf2.x);
 
+	printf("%.*Lf\n", precision, ulf2.x);
 
 	// ft_printbin(ulf2.y.sign, 1, 'b');
 	// printf("\n");
@@ -334,15 +234,9 @@ int		main(void)
 	big_int_calc_int(tab128_2, BIG_INT_TAB, tab_expo);
 
 
-	//
-	// big_int_print(tab128, BIG_INT_TAB);
-	printf("\n");
-	// ft_putnbr_base(tab128[0], 10, 0);
-	// printf("\n");
-
 
 	// big_int_round_legacy(tab128, BIG_INT_TAB, (precision + 1) - (-i - j));
-	big_int_round(tab128, BIG_INT_TAB, (precision + 1) - (-i - j));
+	big_int_round(tab128, (precision + 1) - (-i - j));
 
 
 	// printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
@@ -350,10 +244,10 @@ int		main(void)
 	// big_int_print(tab128, BIG_INT_TAB);
 	printf("\n");
 
-	if (-i - big_int_count(tab128, BIG_INT_TAB) < 0)
+	// if (-i - big_int_count(tab128, BIG_INT_TAB) < 0)
 	{
-		big_int_rm_1st_dec(tab128, BIG_INT_TAB);
-		big_int_add_one(tab128_2, 359, 1);
+		// big_int_rm_1st_dec(tab128, BIG_INT_TAB);
+		// big_int_add_one(tab128_2, 359, 1);
 	}
 
 	// check_round(tab128, 359, BIG_INT_CARRY / 10);
@@ -398,6 +292,8 @@ int		main(void)
 	// printf("nb 0 : %d\n", i - big_int_count(tab128, BIG_INT_TAB));
 
 	printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(tab128_2, BIG_INT_TAB));
+	// ft_putnbr_base(tab128_2[359], 10, 0);
+
 
 
 

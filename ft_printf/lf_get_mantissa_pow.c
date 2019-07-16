@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 21:52:10 by vphongph          #+#    #+#             */
-/*   Updated: 2019/06/17 01:44:54 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/16 06:07:06 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	clean_tab_expo(int16_t *tab_expo)
 
 int16_t		lf_get_mantissa_pow(int16_t *tab_expo, long double lf)
 {
-	t_longf		ulf;
+	t_lfloat	ulf;
 	int16_t		shift;
 	int16_t		expo;
 	__uint128_t	one;
