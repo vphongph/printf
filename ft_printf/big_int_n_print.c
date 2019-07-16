@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 15:41:21 by vphongph          #+#    #+#             */
-/*   Updated: 2019/05/30 21:59:47 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/16 08:04:41 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static int16_t	check_param(__uint128_t *tab_nb, uint16_t tab_s, int16_t n,
 		i++;
 	if (i == tab_s || n < 0)
 	{
-		write(1, "0", 1);
+		// write(1, "0", 1);
 		return (-1);
 	}
 	return (i);

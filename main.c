@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/16 07:26:59 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/16 08:04:37 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,19 @@ int			main(void)
 
 	ulf2.x = 298414651.554654654L;
 
-	// int precision = 5020;
-	int precision = 100;
+	int precision = 10;
+	// int precision = 100;
 
 	printf("%.*Lf\n", precision, ulf2.x);
 
 	int64_t nb_to_print;
 
 	nb_to_print = compute_float(ulf2.x, precision, tab128_int, tab128_dec);
+	nb_to_print = 10000;
 
 	printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(tab128_dec, BIG_INT_TAB, nb_to_print));
+
+	printf("to print %lld\n", nb_to_print);
 
 	printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(tab128_int, BIG_INT_TAB));
 
