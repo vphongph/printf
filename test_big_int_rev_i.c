@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:16:19 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/16 06:32:03 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/17 02:37:45 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,11 +190,11 @@ int		main(void)
 	// ulf2.x = 2.999L; // prec 2, nb of 0 change cause dec smaller and need to print so, counting again is needed
 	// ulf2.x = 2.9L; // prec 0 , nb of 0 change cause dec smaller bu§t no need to print so ok
 
-	int precision = 0;
-	// precision = 16445;
+	int precision = 5020;
+	precision = 16445;
 
 
-	ulf2.x = 23502121210L;
+	// ulf2.x = 23502121210L;
 
 
 	printf("%.*Lf\n", precision, ulf2.x);

@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:36 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/16 02:06:12 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/17 06:57:20 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,19 @@ typedef struct	s_big_int
 {
 	const __uint128_t uint128_max;
 }				t_big_int;
+
+typedef struct	s_float_meta
+{
+	int64_t precision;
+	int64_t sm_mantissa;
+	int64_t nb_digits;
+	int64_t nb_leading;
+	int64_t digits_to_print;
+	int64_t leading_to_print;
+	int64_t trailing_to_print;
+	int64_t char_printed;
+}				t_float_meta;
+
 
 extern const __uint128_t g_uint128_max;
 
