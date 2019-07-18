@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/17 07:01:27 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/18 06:20:58 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ int			main(void)
 	// ulf2.y.exponent = 0b111111111111110;
 	// ulf2.y.mantissa = 0b1111111111111111111111111111111111111111111111111111111111111111;
 
-	ulf2.x = 9812723987.09283490720000234023043L;
+	// ulf2.x = 1234567890.000123456789;
+	ulf2.x = 1234567890.000000001L;
 
-	fmeta->precision = 20;
+	fmeta->precision = 100;
 
 	printf("%.*Lf\n", (int)fmeta->precision, ulf2.x);
 
@@ -70,13 +71,24 @@ int			main(void)
 	printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(tab128_int, BIG_INT_TAB));
 
 
+
+	printf(" leading 0 %lld\n", fmeta->nb_leading);
+	printf(" digits to print    %lld\n\n", fmeta->digits_to_print);
+
+
 	if (fmeta->digits_to_print >= 0)
 		fmeta->leading_to_print = fmeta->nb_leading;
 	else
 		fmeta->leading_to_print = fmeta->precision;
 
 	if (fmeta->digits_to_print > fmeta->nb_digits)
+	{
 		fmeta->trailing_to_print = fmeta->digits_to_print - fmeta->nb_digits;
+		fmeta->digits_to_print = fmeta->nb_digits;
+	}
+
+	if (fmeta->sm_mantissa >= 0)
+		fmeta->trailing_to_print = fmeta->precision;
 
 	if (fmeta->digits_to_print < 0 || fmeta->nb_digits == 0)
 		fmeta->digits_to_print = 0;

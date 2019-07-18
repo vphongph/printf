@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 02:47:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/17 07:00:05 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/18 06:20:53 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,23 @@ int16_t		compute_float(long double lf, t_float_meta *fmeta,
 
 	fmeta->sm_mantissa = lf_get_mantissa_pow(tab_expo, lf);
 	big_int_calc_int(tab128_int, BIG_INT_TAB, tab_expo);
-	if (fmeta->sm_mantissa < 0 && fmeta->precision >= 0)
+	if (fmeta->sm_mantissa >= 0 || fmeta->precision == 0)
+		return (0);
+	big_int_calc_dec(tab128_dec, BIG_INT_TAB, tab_expo);
+	fmeta->nb_digits = big_int_count(tab128_dec, BIG_INT_TAB);
+	location = fmeta->precision + fmeta->sm_mantissa + fmeta->nb_digits + 1;
+	if (location <= fmeta->nb_digits && location > 0)
 	{
-		big_int_calc_dec(tab128_dec, BIG_INT_TAB, tab_expo);
-		fmeta->nb_digits = big_int_count(tab128_dec, BIG_INT_TAB);
-		location = fmeta->precision + fmeta->sm_mantissa + fmeta->nb_digits + 1;
-		if (fmeta->precision < -fmeta->sm_mantissa && location > 0)
+		big_int_round(tab128_dec, location);
+		if ((fmeta->nb_digits = big_int_count(tab128_dec, BIG_INT_TAB))
+			> -fmeta->sm_mantissa)
 		{
-			big_int_round(tab128_dec, location);
-			if ((fmeta->nb_digits = big_int_count(tab128_dec, BIG_INT_TAB))
-				> -fmeta->sm_mantissa)
-			{
-				big_int_rm_1st_dec(tab128_dec, BIG_INT_TAB);
-				big_int_add_one(tab128_int, BIG_INT_TAB - 1, 1);
-				--fmeta->nb_digits;
-			}
+			big_int_rm_1st_dec(tab128_dec, BIG_INT_TAB);
+			big_int_add_one(tab128_int, BIG_INT_TAB - 1, 1);
+			--fmeta->nb_digits;
 		}
 	}
 	fmeta->nb_leading = -(fmeta->sm_mantissa + fmeta->nb_digits);
 	fmeta->digits_to_print = fmeta->precision - fmeta->nb_leading;
-	return (0);
+	return (1);
 }
