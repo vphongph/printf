@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:36 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/19 05:18:58 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/19 19:57:04 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,6 @@ const extern __uint128_t g_128max;
 #  define BIG_INT_POW5 9
 #  define BIG_INT_POW5_RES 1953125
 #  define BIG_INT_EXPO 16445
-
-struct						s_float_meta
-{
-	int64_t precision;
-	int64_t sm_mantissa;
-	int64_t nb_digits;
-	int64_t nb_leading;
-	int64_t digits_to_print;
-	int64_t leading_to_print;
-	int64_t trailing_to_print;
-	int64_t char_printed;
-};
-typedef struct s_float_meta	t_float_meta;
 
 struct							s_printf_float
 {

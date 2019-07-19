@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/19 06:34:44 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/19 20:45:30 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,29 +42,34 @@ int			main(void)
 	t_lfloat ulf2;(void) ulf2;
 
 	ulf2.y.sign = 0;
-	ulf2.y.exponent = 0b000000000000010;
+	ulf2.y.exponent = 0b000000000000000;
 	ulf2.y.mantissa = 0b1111111111111111111111111111111111111111111111111111111111111111;
 
 	printf("expo = %d\n", lf_get_exponent(ulf2.y.exponent));
 
 
-	// ulf2.y.exponent = 0b111111111111110;
-	// ulf2.y.mantissa = 0b1111111111111111111111111111111111111111111111111111111111111111;
+	// ulf2.x = 003123123210.00010912839018;
+	// ulf2.x = 003123123210.00000000000000;
+	// ulf2.x = 00.000;
+	ulf2.x = 2.5000001L;
+	printf("expo = %d\n", lf_get_exponent(ulf2.y.exponent));
 
-	// ulf2.x = 003123123210.00001L;
+	// ulf2.x += 1;
 
-	precision = 50;
 
-	printf("%.*La\n", precision, ulf2.x);
+	precision = 100;
+
+	printf("%.*Le\n", precision, ulf2.x);
+	printf("%.*Lf\n", precision, ulf2.x);
+
 
 	compute_float(ulf2.x, precision, sf);
 
 	// printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(sf->tab128_dec, BIG_INT_TAB, sf->digits_to_print));
-	printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(sf->tab128_dec, BIG_INT_TAB, precision));
+	// printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(sf->tab128_dec, BIG_INT_TAB, precision));
 
 
-	printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(sf->tab128_int, BIG_INT_TAB));
-
+	// printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(sf->tab128_int, BIG_INT_TAB));
 
 
 	printf(" precision %d\n", precision);
