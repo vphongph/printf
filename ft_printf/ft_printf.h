@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:36 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/17 06:57:20 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/19 05:18:58 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,7 @@ const extern __uint128_t g_128max;
 #  define BIG_INT_POW5_RES 1953125
 #  define BIG_INT_EXPO 16445
 
-typedef struct	s_format
-{
-	int fieldwidth;
-	int precision;
-	int options;
-	int	type;
-}				t_format;
-
-typedef struct	s_big_int
-{
-	const __uint128_t uint128_max;
-}				t_big_int;
-
-typedef struct	s_float_meta
+struct						s_float_meta
 {
 	int64_t precision;
 	int64_t sm_mantissa;
@@ -85,10 +72,23 @@ typedef struct	s_float_meta
 	int64_t leading_to_print;
 	int64_t trailing_to_print;
 	int64_t char_printed;
-}				t_float_meta;
+};
+typedef struct s_float_meta	t_float_meta;
 
-
-extern const __uint128_t g_uint128_max;
+struct							s_printf_float
+{
+	__uint128_t	tab128_int[BIG_INT_TAB];
+	__uint128_t	tab128_dec[BIG_INT_TAB];
+	int64_t		sm_mantissa;
+	int64_t		nb_digits;
+	int64_t		nb_leading;
+	int64_t		location;
+	int64_t		digits_to_print;
+	int64_t		leading_to_print;
+	int64_t		trailing_to_print;
+	int64_t		char_printed;
+};
+typedef struct s_printf_float	t_printf_float;
 
 int8_t			big_int_x(__uint128_t *tab_nb, uint16_t tab_size, uint64_t fact);
 int8_t			big_int_pow_of_2(__uint128_t *tab, uint16_t tab_s, int16_t expo);
