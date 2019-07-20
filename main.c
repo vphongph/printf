@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/19 20:45:30 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/20 04:17:17 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,50 +29,57 @@
 
 
 
-int16_t		compute_float(long double lf, int32_t precision, t_printf_float *sf);
+int16_t		compute_float(t_printf_meta *smeta, t_printf_float *sf);
+
 
 int			main(void)
 {
-	t_printf_float sf[1];
-	int32_t precision;
+
+	t_printf_float	sf[1];
+	t_printf_meta	smeta[1];
+	t_printf_output output[1];(void) output;
+	t_lfloat ulf2;(void) ulf2;
 
 	ft_bzero_v2(sf, sizeof(sf));
 
 
-	t_lfloat ulf2;(void) ulf2;
-
 	ulf2.y.sign = 0;
-	ulf2.y.exponent = 0b000000000000000;
-	ulf2.y.mantissa = 0b1111111111111111111111111111111111111111111111111111111111111111;
+	ulf2.y.exponent = 0b000000000000001;
+	ulf2.y.mantissa = 0b1111111111111111111111111111111111111111111111111111111110000000;
 
-	printf("expo = %d\n", lf_get_exponent(ulf2.y.exponent));
+	// printf("expo = %d\n", lf_get_exponent(ulf2.y.exponent));
 
 
-	// ulf2.x = 003123123210.00010912839018;
+	// ulf2.x = 003123123210.00010912839018L;
 	// ulf2.x = 003123123210.00000000000000;
 	// ulf2.x = 00.000;
-	ulf2.x = 2.5000001L;
-	printf("expo = %d\n", lf_get_exponent(ulf2.y.exponent));
+	// ulf2.x = 2.5000001L;
+	// printf("expo = %d\n", lf_get_exponent(ulf2.y.exponent));
 
 	// ulf2.x += 1;
 
+	sf->value = ulf2.x;
 
-	precision = 100;
+	smeta->precision = 5000;
 
-	printf("%.*Le\n", precision, ulf2.x);
-	printf("%.*Lf\n", precision, ulf2.x);
+	// printf("%.*La\n", precision, ulf2.x);
+	// printf("%.*La\n", precision - 1, ulf2.x);
+	// printf("%.*La\n", precision - 2, ulf2.x);
 
-
-	compute_float(ulf2.x, precision, sf);
-
-	// printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(sf->tab128_dec, BIG_INT_TAB, sf->digits_to_print));
-	// printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(sf->tab128_dec, BIG_INT_TAB, precision));
-
-
-	// printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(sf->tab128_int, BIG_INT_TAB));
+	// int i = printf("%000000 150.*Lf\n", smeta->precision, sf->value);
+	int i = printf("%.*Lf\n", smeta->precision, sf->value);
 
 
-	printf(" precision %d\n", precision);
+	compute_float(smeta, sf);
+
+	printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(sf->tab128_dec, BIG_INT_TAB, sf->digits_to_print));
+	// printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(sf->tab128_dec, BIG_INT_TAB, smeta->precision));
+
+
+	printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(sf->tab128_int, BIG_INT_TAB));
+
+
+	printf(" precision %d\n", smeta->precision);
 	printf(" mantissa  %lld\n", sf->sm_mantissa);
 	printf(" digits    %lld\n", sf->nb_digits);
 	printf(" leading 0 %lld\n\n", sf->nb_leading);
@@ -82,7 +89,8 @@ int			main(void)
 	printf(" char printed       %lld\n", sf->char_printed);
 
 
-
+	printf("%d\n", i);
+	printf("%lu\n", sizeof(sf));
 
 	return (0);
 }

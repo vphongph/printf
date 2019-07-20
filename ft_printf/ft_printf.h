@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:36 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/19 19:57:04 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/20 02:41:49 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,30 @@ const extern __uint128_t g_128max;
 #  define BIG_INT_POW5_RES 1953125
 #  define BIG_INT_EXPO 16445
 
+struct							s_printf_meta
+{
+    size_t	flags;
+	int		width;
+	int		precision;
+};
+typedef	struct s_printf_meta	t_printf_meta;
+
+typedef	void (*output_fn)(char c, void *buf, size_t i, size_t max);
+
+struct							s_printf_output
+{
+    output_fn	fn;
+	void		*buf;
+	size_t		i;
+	size_t		max;
+};
+typedef	struct s_printf_output	t_printf_output;
+
 struct							s_printf_float
 {
 	__uint128_t	tab128_int[BIG_INT_TAB];
 	__uint128_t	tab128_dec[BIG_INT_TAB];
+	long double	value;
 	int64_t		sm_mantissa;
 	int64_t		nb_digits;
 	int64_t		nb_leading;
@@ -76,6 +96,7 @@ struct							s_printf_float
 	int64_t		char_printed;
 };
 typedef struct s_printf_float	t_printf_float;
+
 
 int8_t			big_int_x(__uint128_t *tab_nb, uint16_t tab_size, uint64_t fact);
 int8_t			big_int_pow_of_2(__uint128_t *tab, uint16_t tab_s, int16_t expo);
