@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:36 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/20 02:41:49 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/20 05:35:24 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int16_t			big_int_n_print(__uint128_t *tab_nb, uint16_t tab_s, int16_t n);
 int8_t			big_int_add_one(__uint128_t *tab_nb, int16_t index, __uint128_t one);
 int16_t			big_int_round(__uint128_t *tab_nb, int64_t location);
 int16_t			big_int_rm_1st_dec(__uint128_t *tab_nb, int16_t tab_size);
+int16_t			compute_float(t_printf_meta *smeta, t_printf_float *sf);
 
 # endif
 #endif

@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/20 04:17:17 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/20 05:42:14 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
 
 
 
-int16_t		compute_float(t_printf_meta *smeta, t_printf_float *sf);
-
 
 int			main(void)
 {
@@ -44,8 +42,8 @@ int			main(void)
 
 
 	ulf2.y.sign = 0;
-	ulf2.y.exponent = 0b000000000000001;
-	ulf2.y.mantissa = 0b1111111111111111111111111111111111111111111111111111111110000000;
+	ulf2.y.exponent = 0b000000000000000;
+	ulf2.y.mantissa = 0b1111111111111111111111111111111111111111111111111111111111111111;
 
 	// printf("expo = %d\n", lf_get_exponent(ulf2.y.exponent));
 
@@ -60,7 +58,7 @@ int			main(void)
 
 	sf->value = ulf2.x;
 
-	smeta->precision = 5000;
+	smeta->precision = 16445;
 
 	// printf("%.*La\n", precision, ulf2.x);
 	// printf("%.*La\n", precision - 1, ulf2.x);
@@ -70,7 +68,9 @@ int			main(void)
 	int i = printf("%.*Lf\n", smeta->precision, sf->value);
 
 
+	check_space_
 	compute_float(smeta, sf);
+
 
 	printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(sf->tab128_dec, BIG_INT_TAB, sf->digits_to_print));
 	// printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(sf->tab128_dec, BIG_INT_TAB, smeta->precision));
