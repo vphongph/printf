@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:36 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/20 05:35:24 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/21 04:46:59 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,18 @@ const extern __uint128_t g_128max;
 #  define BIG_INT_POW5_RES 1953125
 #  define BIG_INT_EXPO 16445
 
+#  define FT_PRINTF_FLAG_ALTERNATE (1U << 0U)
+#  define FT_PRINTF_FLAG_ZERO_PAD (1U << 1U)
+#  define FT_PRINTF_FLAG_LEFT_ADJUST (1U << 2U)
+#  define FT_PRINTF_FLAG_SPACE (1U << 3U)
+#  define FT_PRINTF_FLAG_SIGN (1U << 4U)
+#  define FT_PRINTF_FLAG_CHAR (1U << 5U)
+#  define FT_PRINTF_FLAG_SHORT (1U << 6U)
+#  define FT_PRINTF_FLAG_LONG (1U << 7U)
+#  define FT_PRINTF_FLAG_LONG_LONG (1U << 8U)
+#  define FT_PRINTF_FLAG_PRECISION (1U << 9U)
+#  define FT_PRINTF_FLAG_UPCASE (1U << 10U)
+
 struct							s_printf_meta
 {
     size_t	flags;
@@ -94,6 +106,8 @@ struct							s_printf_float
 	int64_t		leading_to_print;
 	int64_t		trailing_to_print;
 	int64_t		char_printed;
+	bool		neg;
+	__uint128_t	padding1 : 120;
 };
 typedef struct s_printf_float	t_printf_float;
 

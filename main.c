@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/20 05:42:14 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/21 04:56:46 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@
 */
 
 
+
+int16_t		compute_meta(t_printf_meta *smeta, t_printf_float *sf)
+{
+	(void)sf;
+	if (smeta->flags & FT_PRINTF_FLAG_SIGN && smeta->flags & FT_PRINTF_FLAG_SPACE)
+		smeta->flags ^= FT_PRINTF_FLAG_SPACE;
+	if (smeta->flags & FT_PRINTF_FLAG_LEFT_ADJUST && smeta->flags & FT_PRINTF_FLAG_ZERO_PAD)
+		smeta->flags ^= FT_PRINTF_FLAG_ZERO_PAD;
+	// if (sf->)
+	if (smeta->flags & FT_PRINTF_FLAG_SIGN || smeta->flags & FT_PRINTF_FLAG_SPACE)
+		smeta->width--;
+	// if ()
+	return (0);
+}
 
 
 int			main(void)
@@ -58,18 +72,19 @@ int			main(void)
 
 	sf->value = ulf2.x;
 
-	smeta->precision = 16445;
+	smeta->precision = 0;
 
 	// printf("%.*La\n", precision, ulf2.x);
 	// printf("%.*La\n", precision - 1, ulf2.x);
 	// printf("%.*La\n", precision - 2, ulf2.x);
 
-	// int i = printf("%000000 150.*Lf\n", smeta->precision, sf->value);
-	int i = printf("%.*Lf\n", smeta->precision, sf->value);
+	int i = printf("% 0#4.*Lf*\n", smeta->precision, sf->value);
+	// int i = printf("%.*Lf\n", smeta->precision, sf->value);
 
 
-	check_space_
 	compute_float(smeta, sf);
+	// compute_meta(smeta, sf);
+
 
 
 	printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(sf->tab128_dec, BIG_INT_TAB, sf->digits_to_print));
@@ -87,10 +102,8 @@ int			main(void)
 	printf(" leading 0 to print %lld\n", sf->leading_to_print);
 	printf(" traling 0 to print %lld\n", sf->trailing_to_print);
 	printf(" char printed       %lld\n", sf->char_printed);
+	printf("printf return %d\n", i);
 
-
-	printf("%d\n", i);
-	printf("%lu\n", sizeof(sf));
 
 	return (0);
 }
