@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 02:47:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/20 03:40:37 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/22 02:59:33 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ int16_t		compute_to_print(t_printf_meta *smeta, t_printf_float *sf,
 	}
 	if (sf->digits_to_print < 0)
 		sf->digits_to_print = 0;
-	if (!(sf->char_printed = big_int_count(sf->tab128_int, BIG_INT_TAB)))
-		sf->char_printed = 1;
+	if (!(sf->char_to_print = big_int_count(sf->tab128_int, BIG_INT_TAB)))
+		sf->char_to_print = 1;
+	sf->neg ? sf->char_to_print++ : sf->char_to_print;
 	if (smeta->precision > 0)
-		sf->char_printed += sf->leading_to_print
+		sf->char_to_print += sf->leading_to_print
 		+ sf->digits_to_print + sf->trailing_to_print + 1;
 	return (i);
 }

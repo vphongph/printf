@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:36 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/21 04:46:59 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/22 00:52:11 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,11 @@ struct							s_printf_float
 	int64_t		digits_to_print;
 	int64_t		leading_to_print;
 	int64_t		trailing_to_print;
-	int64_t		char_printed;
+	int64_t		char_to_print;
+	uint16_t	exponent;
 	bool		neg;
-	__uint128_t	padding1 : 120;
+	// int16_t tab_expo[MANTISSA_TAB + 1];
+	__uint128_t	padding : 104;
 };
 typedef struct s_printf_float	t_printf_float;
 
