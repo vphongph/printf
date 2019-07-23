@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/23 05:06:51 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/24 00:23:20 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,18 +146,20 @@ int			main(void)
 	// printf("\nbig int "ALLIANCE"n DEC"RESET" print out : %d\n\n", big_int_n_print(sf->tab128_dec, BIG_INT_TAB, smeta->precision));
 
 
-	// printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(sf->tab128_int, BIG_INT_TAB));
+	printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(sf->tab128_int, BIG_INT_TAB));
 
 
 	printf(" precision %d\n", smeta->precision);
 	printf(" mantissa  %lld\n", sf->sm_mantissa);
-	printf(" digits    %lld\n", sf->nb_digits);
+	printf(" digits    %lld\n", sf->nb_digits_dec);
 	printf(" leading 0 %lld\n\n", sf->nb_leading);
 	printf(" digits to print    %lld\n", sf->digits_to_print);
 	printf(" leading 0 to print %lld\n", sf->leading_to_print);
 	printf(" traling 0 to print %lld\n", sf->trailing_to_print);
 	printf(" char to print      %lld\n", sf->char_to_print);
 	printf("printf return %d\n", i);
+	printf(" digits int    %lld\n", sf->nb_digits_int);
+
 
 	printf("%lu\n", sizeof(sf));
 	// printf("%lu\n", sizeof(sf->tab_expo));

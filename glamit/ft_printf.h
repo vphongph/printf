@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:36 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/23 01:34:51 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/24 00:21:31 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,22 @@
 #  define BIG_INT_POW5_RES 1953125
 #  define BIG_INT_EXPO 16445
 
+typedef struct		s_flags
+{
+	int				fd;
+	unsigned int	f_size;
+	int				ret;
+	int				minus;
+	int				plus;
+	int				zero;
+	int				blank;
+	int				htag;
+	int				precision;
+	int				padding;
+	int				width_len;
+	char			conv;
+	t_length		l;
+}					t_flags;
 
 struct							s_printf_float
 {
@@ -63,7 +79,8 @@ struct							s_printf_float
 	__uint128_t	tab128_dec[BIG_INT_TAB];
 	long double	value;
 	int64_t		sm_mantissa;
-	int64_t		nb_digits;
+	int64_t		nb_digits_int;
+	int64_t		nb_digits_dec;
 	int64_t		nb_leading;
 	int64_t		location;
 	int64_t		digits_to_print;

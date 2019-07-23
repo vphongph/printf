@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 02:47:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/24 00:12:51 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/24 00:23:22 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** because we return the number of dec to print (without leading 0)
 */
 
-int16_t		compute_to_print(t_printf_meta *smeta, t_printf_float *sf,
+int16_t		compute_to_print(t_flags *smeta, t_printf_float *sf,
 	int16_t i)
 {
 	if (i == 0)
@@ -52,7 +52,7 @@ int16_t		compute_to_print(t_printf_meta *smeta, t_printf_float *sf,
 	return (i);
 }
 
-int16_t		compute_float(t_printf_meta *smeta, t_printf_float *sf)
+int16_t		compute_float(t_flags *smeta, t_printf_float *sf)
 {
 	int16_t	tab_expo[MANTISSA_TAB + 1];
 

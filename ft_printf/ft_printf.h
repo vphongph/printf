@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:36 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/22 00:52:11 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/24 00:19:55 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ struct							s_printf_float
 	__uint128_t	tab128_dec[BIG_INT_TAB];
 	long double	value;
 	int64_t		sm_mantissa;
-	int64_t		nb_digits;
+	// int64_t		nb_digits_int;
+	int64_t		nb_digits_dec;
 	int64_t		nb_leading;
 	int64_t		location;
 	int64_t		digits_to_print;
