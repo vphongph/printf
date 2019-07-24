@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:36 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/24 00:21:31 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/24 00:27:53 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ struct							s_printf_float
 	int64_t		char_to_print;
 	uint16_t	exponent;
 	bool		neg;
+	int 		exception;
 	// int16_t tab_expo[MANTISSA_TAB + 1];
 	__uint128_t	padding : 104;
 };
