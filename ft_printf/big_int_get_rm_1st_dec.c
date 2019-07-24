@@ -6,12 +6,11 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 01:36:41 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/25 01:22:57 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/25 01:46:26 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 int16_t		big_int_get_1st_dec(__uint128_t *tab_nb, int16_t tab_size)
 {
@@ -35,7 +34,6 @@ int16_t		big_int_get_1st_dec(__uint128_t *tab_nb, int16_t tab_size)
 	}
 	return (0);
 }
-
 
 int16_t		big_int_rm_1st_dec(__uint128_t *tab_nb, int16_t tab_size)
 {

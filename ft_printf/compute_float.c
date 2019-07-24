@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 02:47:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/25 01:36:31 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/25 01:47:08 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 
 int16_t		check_round_int(t_printf_float *sf)
 {
-
 	if ((sf->nb_digits_dec = big_int_count(sf->tab128_dec, BIG_INT_TAB))
 		> -sf->sm_mantissa)
 		return (1);
