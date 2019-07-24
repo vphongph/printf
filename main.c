@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/24 00:23:20 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/25 01:36:32 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int16_t		compute_meta(t_printf_meta *smeta, t_printf_float *sf)
 }
 
 
+#include <stdint.h>
+
 int			main(void)
 {
 
@@ -113,12 +115,15 @@ int			main(void)
 	// ulf2.x = 003123123210.00010912839018L;
 	// ulf2.x = 003123123210.00000000000000;
 	// ulf2.x = 00.000;
-	// ulf2.x = 2.5000001L;
+	ulf2.x = 3.500000L;
 	// printf("expo = %d\n", lf_get_exponent(ulf2.y.exponent));
 
 	// ulf2.x += 100;
 
-	smeta->precision = 5000;
+
+	// ulf2.x = __LDBL_MIN__;
+
+	smeta->precision = 0;
 
 	sf->value = ulf2.x;
 
@@ -158,7 +163,7 @@ int			main(void)
 	printf(" traling 0 to print %lld\n", sf->trailing_to_print);
 	printf(" char to print      %lld\n", sf->char_to_print);
 	printf("printf return %d\n", i);
-	printf(" digits int    %lld\n", sf->nb_digits_int);
+	// printf(" digits int    %lld\n", sf->nb_digits_int);
 
 
 	printf("%lu\n", sizeof(sf));
