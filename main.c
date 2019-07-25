@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 17:11:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/25 01:36:32 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/25 02:32:35 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int			main(void)
 	// ulf2.x = 003123123210.00010912839018L;
 	// ulf2.x = 003123123210.00000000000000;
 	// ulf2.x = 00.000;
-	ulf2.x = 3.500000L;
+	ulf2.x = 3.99999999999L;
 	// printf("expo = %d\n", lf_get_exponent(ulf2.y.exponent));
 
 	// ulf2.x += 100;
@@ -123,7 +123,7 @@ int			main(void)
 
 	// ulf2.x = __LDBL_MIN__;
 
-	smeta->precision = 0;
+	smeta->precision = 12;
 
 	sf->value = ulf2.x;
 
@@ -152,6 +152,7 @@ int			main(void)
 
 
 	printf("\nbig int "ORDER"INT"RESET" print out : %d\n\n", big_int_print(sf->tab128_int, BIG_INT_TAB));
+
 
 
 	printf(" precision %d\n", smeta->precision);

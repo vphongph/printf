@@ -6,7 +6,7 @@
 /*   By: vphongph <vphongph@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 02:47:42 by vphongph          #+#    #+#             */
-/*   Updated: 2019/07/25 01:47:08 by vphongph         ###   ########.fr       */
+/*   Updated: 2019/07/25 02:31:37 by vphongph         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,18 @@
 ** because we return the number of dec to print (without leading 0)
 */
 
-int16_t		check_round_int(t_printf_float *sf)
+int16_t		check_round_int(t_printf_meta *smeta, t_printf_float *sf)
 {
 	if ((sf->nb_digits_dec = big_int_count(sf->tab128_dec, BIG_INT_TAB))
 		> -sf->sm_mantissa)
+	{
+		big_int_rm_1st_dec(sf->tab128_dec, BIG_INT_TAB);
 		return (1);
+	}
 	if (sf->nb_leading == 0
 		&& big_int_get_1st_dec(sf->tab128_dec, BIG_INT_TAB) == 5
-		&& sf->tab128_int[BIG_INT_TAB - 1] % 2)
+		&& sf->tab128_int[BIG_INT_TAB - 1] % 2
+		&& smeta->precision == 0)
 		return (1);
 	return (0);
 }
@@ -76,11 +80,10 @@ int16_t		compute_float(t_printf_meta *smeta, t_printf_float *sf)
 	if (sf->location <= sf->nb_digits_dec && sf->location > 0)
 	{
 		big_int_round(sf->tab128_dec, sf->location);
-		if (check_round_int(sf))
+		if (check_round_int(smeta, sf))
 		{
-			big_int_rm_1st_dec(sf->tab128_dec, BIG_INT_TAB);
 			big_int_add_one(sf->tab128_int, BIG_INT_TAB - 1, 1);
-			--sf->nb_digits_dec;
+			sf->nb_digits_dec = big_int_count(sf->tab128_dec, BIG_INT_TAB);
 		}
 	}
 	return (compute_to_print(smeta, sf, 1));
